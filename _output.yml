@@ -1,0 +1,27 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc_depth: 4
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">ds4da Cookbook</a></li>
+      after: |
+        <li><a href="https://github.com/knapply/ds4da-cookbook" target="blank">Published with bookdown</a></li>
+    edit:
+      link: https://github.com/knapply/ds4da-cookbook/edit/master/%s
+    download:
+      - ["ds4da-cookbook.pdf", "PDF"]
+    sharing:
+      facebook: yes
+      twitter: yes
+      github: yes
+      linkedin: yes
+    info: yes
+  # includes:
+    # in_header: _includes/analytics.html
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  citation_package: natbib
+  keep_tex: yes

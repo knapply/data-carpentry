@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Tabular Data | ds4da Cookbook</title>
+  <meta name="description" content="A Cookbook" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Tabular Data | ds4da Cookbook" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://knapply.github.io/ds4da-cookbook/" />
+  
+  <meta property="og:description" content="A Cookbook" />
+  <meta name="github-repo" content="knapply/ds4da-cookbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Tabular Data | ds4da Cookbook" />
+  
+  <meta name="twitter:description" content="A Cookbook" />
+  
+
+<meta name="author" content="Brendan Knapp and Christopher Callaghan" />
+
+
+<meta name="date" content="2020-09-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="setup-r-and-rstudio.html"/>
+<link rel="next" href="manipulating-data-frames.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ds4da Cookbook</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>I Setup</b></span></li>
+<li class="chapter" data-level="1" data-path="setup-r-and-rstudio.html"><a href="setup-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="setup-r-and-rstudio.html"><a href="setup-r-and-rstudio.html#r"><i class="fa fa-check"></i><b>1.1</b> R</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="setup-r-and-rstudio.html"><a href="setup-r-and-rstudio.html#installation"><i class="fa fa-check"></i><b>1.1.1</b> Installation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup-r-and-rstudio.html"><a href="setup-r-and-rstudio.html#rstudio"><i class="fa fa-check"></i><b>1.2</b> RStudio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="setup-r-and-rstudio.html"><a href="setup-r-and-rstudio.html#installation-1"><i class="fa fa-check"></i><b>1.2.1</b> Installation</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Reading and Writing Data</b></span></li>
+<li class="chapter" data-level="2" data-path="tabular-data.html"><a href="tabular-data.html"><i class="fa fa-check"></i><b>2</b> Tabular Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="tabular-data.html"><a href="tabular-data.html#basics"><i class="fa fa-check"></i><b>2.1</b> Basics</a></li>
+<li class="chapter" data-level="2.2" data-path="tabular-data.html"><a href="tabular-data.html#common-pitfalls"><i class="fa fa-check"></i><b>2.2</b> Common Pitfalls</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="tabular-data.html"><a href="tabular-data.html#incorrect-column-types"><i class="fa fa-check"></i><b>2.2.1</b> Incorrect Column Types</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Data Frames</b></span></li>
+<li class="chapter" data-level="3" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html"><i class="fa fa-check"></i><b>3</b> Manipulating Data Frames</a><ul>
+<li class="chapter" data-level="3.1" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#select-columns"><i class="fa fa-check"></i><b>3.1</b> <code>select()</code> Columns</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#by-name"><i class="fa fa-check"></i><b>3.1.1</b> by Name</a></li>
+<li class="chapter" data-level="3.1.2" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#by-index"><i class="fa fa-check"></i><b>3.1.2</b> by Index</a></li>
+<li class="chapter" data-level="3.1.3" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#by-name-pattern"><i class="fa fa-check"></i><b>3.1.3</b> by Name Pattern</a></li>
+<li class="chapter" data-level="3.1.4" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#by-data-type"><i class="fa fa-check"></i><b>3.1.4</b> by Data Type</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#filter-rows"><i class="fa fa-check"></i><b>3.2</b> <code>filter()</code> Rows</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#by-row_number"><i class="fa fa-check"></i><b>3.2.1</b> by <code>row_number()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#by-name-1"><i class="fa fa-check"></i><b>3.2.2</b> by Name</a></li>
+<li class="chapter" data-level="3.2.3" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#by-type"><i class="fa fa-check"></i><b>3.2.3</b> by Type</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#arrange-rows"><i class="fa fa-check"></i><b>3.3</b> <code>arrange()</code> Rows</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/knapply/ds4da-cookbook" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ds4da Cookbook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tabular-data" class="section level1">
+<h1><span class="header-section-number">2</span> Tabular Data</h1>
+<ul>
+<li>Aliases:
+<ul>
+<li>Tabular files</li>
+<li>Flat</li>
+<li>Delimited</li>
+</ul></li>
+<li>Includes:
+<ul>
+<li>Comma-Separated Value (.csv)</li>
+<li>Tab-Separated Value (.tsv)</li>
+</ul></li>
+</ul>
+<div id="basics" class="section level2">
+<h2><span class="header-section-number">2.1</span> Basics</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="tabular-data.html#cb2-1"></a><span class="kw">library</span>(readr)</span></code></pre></div>
+<p>Here’s some example data, modified from <a href="http://www.gapminder.org/data/" class="uri">http://www.gapminder.org/data/</a></p>
+<pre><code>country,continent,year,lifeExp,pop,gdpPercap       # header/column names, separated by commas
+Afghanistan,Asia,1952,28.801,8425333,779.4453145
+Afghanistan,Asia,1957,30.332,9240934,820.8530296   # comma-separated values
+Afghanistan,Asia,1962,31.997,10267083,853.10071
+Afghanistan,Asia,1967,34.02,11537966,836.1971382
+Afghanistan,Asia,1972,36.088,13079460,739.9811058
+Afghanistan,Asia,1977,38.438,14880372,786.11336
+Afghanistan,Asia,1982,39.854,12881816,978.0114388
+Afghanistan,Asia,1987,40.822,13867957,852.3959448</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="tabular-data.html#cb4-1"></a>csv_text &lt;-<span class="st"> </span></span>
+<span id="cb4-2"><a href="tabular-data.html#cb4-2"></a><span class="st">&#39;country,continent,year,lifeExp,pop,gdpPercap     </span></span>
+<span id="cb4-3"><a href="tabular-data.html#cb4-3"></a><span class="st">Afghanistan,Asia,1952,28.801,8425333,779.4453145</span></span>
+<span id="cb4-4"><a href="tabular-data.html#cb4-4"></a><span class="st">Afghanistan,Asia,1957,30.332,9240934,820.8530296</span></span>
+<span id="cb4-5"><a href="tabular-data.html#cb4-5"></a><span class="st">Afghanistan,Asia,1962,31.997,10267083,853.10071</span></span>
+<span id="cb4-6"><a href="tabular-data.html#cb4-6"></a><span class="st">Afghanistan,Asia,1967,34.02,11537966,836.1971382</span></span>
+<span id="cb4-7"><a href="tabular-data.html#cb4-7"></a><span class="st">Afghanistan,Asia,1972,36.088,13079460,739.9811058</span></span>
+<span id="cb4-8"><a href="tabular-data.html#cb4-8"></a><span class="st">Afghanistan,Asia,1977,38.438,14880372,786.11336</span></span>
+<span id="cb4-9"><a href="tabular-data.html#cb4-9"></a><span class="st">Afghanistan,Asia,1982,39.854,12881816,978.0114388</span></span>
+<span id="cb4-10"><a href="tabular-data.html#cb4-10"></a><span class="st">Afghanistan,Asia,1987,40.822,13867957,852.3959448&#39;</span></span>
+<span id="cb4-11"><a href="tabular-data.html#cb4-11"></a></span>
+<span id="cb4-12"><a href="tabular-data.html#cb4-12"></a>csv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.csv&quot;</span>)      </span>
+<span id="cb4-13"><a href="tabular-data.html#cb4-13"></a>csv_file <span class="co"># a temporary file path</span></span></code></pre></div>
+<pre><code>## [1] &quot;/tmp/Rtmp31WVcS/file5e8339c18cdf.csv&quot;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="tabular-data.html#cb6-1"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> csv_text, <span class="dt">con =</span> csv_file) <span class="co"># write `csv_text` to `csv_file`</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="tabular-data.html#cb7-1"></a><span class="kw">read_csv</span>(<span class="dt">file =</span> csv_file)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   country = col_character(),
+##   continent = col_character(),
+##   year = col_double(),
+##   lifeExp = col_double(),
+##   pop = col_double(),
+##   gdpPercap = col_double()
+## )</code></pre>
+<pre><code>## # A tibble: 8 x 6
+##   country     continent  year lifeExp      pop gdpPercap
+##   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8  8425333      779.
+## 2 Afghanistan Asia       1957    30.3  9240934      821.
+## 3 Afghanistan Asia       1962    32.0 10267083      853.
+## 4 Afghanistan Asia       1967    34.0 11537966      836.
+## 5 Afghanistan Asia       1972    36.1 13079460      740.
+## 6 Afghanistan Asia       1977    38.4 14880372      786.
+## 7 Afghanistan Asia       1982    39.9 12881816      978.
+## 8 Afghanistan Asia       1987    40.8 13867957      852.</code></pre>
+<p>You may encounter Tab-Delimited data where values are separated by <code>\t</code> instead of <code>,</code>. Instead of <code>readr::read_csv()</code>, we can use <code>readr::read_tsv()</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="tabular-data.html#cb10-1"></a>tsv_text &lt;-<span class="st"> </span></span>
+<span id="cb10-2"><a href="tabular-data.html#cb10-2"></a><span class="st">&#39;country</span><span class="ch">\t</span><span class="st">continent</span><span class="ch">\t</span><span class="st">year</span><span class="ch">\t</span><span class="st">lifeExp</span><span class="ch">\t</span><span class="st">pop</span><span class="ch">\t</span><span class="st">gdpPercap     </span></span>
+<span id="cb10-3"><a href="tabular-data.html#cb10-3"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1952</span><span class="ch">\t</span><span class="st">28.801</span><span class="ch">\t</span><span class="st">8425333</span><span class="ch">\t</span><span class="st">779.4453145</span></span>
+<span id="cb10-4"><a href="tabular-data.html#cb10-4"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1957</span><span class="ch">\t</span><span class="st">30.332</span><span class="ch">\t</span><span class="st">9240934</span><span class="ch">\t</span><span class="st">820.8530296</span></span>
+<span id="cb10-5"><a href="tabular-data.html#cb10-5"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1962</span><span class="ch">\t</span><span class="st">31.997</span><span class="ch">\t</span><span class="st">10267083</span><span class="ch">\t</span><span class="st">853.10071</span></span>
+<span id="cb10-6"><a href="tabular-data.html#cb10-6"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1967</span><span class="ch">\t</span><span class="st">34.02</span><span class="ch">\t</span><span class="st">11537966</span><span class="ch">\t</span><span class="st">836.1971382</span></span>
+<span id="cb10-7"><a href="tabular-data.html#cb10-7"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1972</span><span class="ch">\t</span><span class="st">36.088</span><span class="ch">\t</span><span class="st">13079460</span><span class="ch">\t</span><span class="st">739.9811058</span></span>
+<span id="cb10-8"><a href="tabular-data.html#cb10-8"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1977</span><span class="ch">\t</span><span class="st">38.438</span><span class="ch">\t</span><span class="st">14880372</span><span class="ch">\t</span><span class="st">786.11336</span></span>
+<span id="cb10-9"><a href="tabular-data.html#cb10-9"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1982</span><span class="ch">\t</span><span class="st">39.854</span><span class="ch">\t</span><span class="st">12881816</span><span class="ch">\t</span><span class="st">978.0114388</span></span>
+<span id="cb10-10"><a href="tabular-data.html#cb10-10"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1987</span><span class="ch">\t</span><span class="st">40.822</span><span class="ch">\t</span><span class="st">13867957</span><span class="ch">\t</span><span class="st">852.3959448&#39;</span></span>
+<span id="cb10-11"><a href="tabular-data.html#cb10-11"></a></span>
+<span id="cb10-12"><a href="tabular-data.html#cb10-12"></a>tsv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.tsv&quot;</span>)</span>
+<span id="cb10-13"><a href="tabular-data.html#cb10-13"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> tsv_text, <span class="dt">con =</span> tsv_file)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="tabular-data.html#cb11-1"></a><span class="kw">read_tsv</span>(<span class="dt">file =</span> tsv_file)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   country = col_character(),
+##   continent = col_character(),
+##   year = col_double(),
+##   lifeExp = col_double(),
+##   pop = col_double(),
+##   gdpPercap = col_double()
+## )</code></pre>
+<pre><code>## # A tibble: 8 x 6
+##   country     continent  year lifeExp      pop gdpPercap
+##   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8  8425333      779.
+## 2 Afghanistan Asia       1957    30.3  9240934      821.
+## 3 Afghanistan Asia       1962    32.0 10267083      853.
+## 4 Afghanistan Asia       1967    34.0 11537966      836.
+## 5 Afghanistan Asia       1972    36.1 13079460      740.
+## 6 Afghanistan Asia       1977    38.4 14880372      786.
+## 7 Afghanistan Asia       1982    39.9 12881816      978.
+## 8 Afghanistan Asia       1987    40.8 13867957      852.</code></pre>
+<p>If we find ourselves reading delmited data that uses something other than <code>\t</code> or <code>,</code> to separate values, we can use <code>readr::read_delim()</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="tabular-data.html#cb14-1"></a>pipe_separated_values_text &lt;-<span class="st"> </span></span>
+<span id="cb14-2"><a href="tabular-data.html#cb14-2"></a><span class="st">&#39;country|continent|year|lifeExp|pop|gdpPercap     </span></span>
+<span id="cb14-3"><a href="tabular-data.html#cb14-3"></a><span class="st">Afghanistan|Asia|1952|28.801|8425333|779.4453145</span></span>
+<span id="cb14-4"><a href="tabular-data.html#cb14-4"></a><span class="st">Afghanistan|Asia|1957|30.332|9240934|820.8530296</span></span>
+<span id="cb14-5"><a href="tabular-data.html#cb14-5"></a><span class="st">Afghanistan|Asia|1962|31.997|10267083|853.10071</span></span>
+<span id="cb14-6"><a href="tabular-data.html#cb14-6"></a><span class="st">Afghanistan|Asia|1967|34.02|11537966|836.1971382</span></span>
+<span id="cb14-7"><a href="tabular-data.html#cb14-7"></a><span class="st">Afghanistan|Asia|1972|36.088|13079460|739.9811058</span></span>
+<span id="cb14-8"><a href="tabular-data.html#cb14-8"></a><span class="st">Afghanistan|Asia|1977|38.438|14880372|786.11336</span></span>
+<span id="cb14-9"><a href="tabular-data.html#cb14-9"></a><span class="st">Afghanistan|Asia|1982|39.854|12881816|978.0114388</span></span>
+<span id="cb14-10"><a href="tabular-data.html#cb14-10"></a><span class="st">Afghanistan|Asia|1987|40.822|13867957|852.3959448&#39;</span></span>
+<span id="cb14-11"><a href="tabular-data.html#cb14-11"></a></span>
+<span id="cb14-12"><a href="tabular-data.html#cb14-12"></a>psv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.tsv&quot;</span>)</span>
+<span id="cb14-13"><a href="tabular-data.html#cb14-13"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> pipe_separated_values_text, <span class="dt">con =</span> psv_file)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="tabular-data.html#cb15-1"></a><span class="kw">read_delim</span>(<span class="dt">file =</span> psv_file, <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   country = col_character(),
+##   continent = col_character(),
+##   year = col_double(),
+##   lifeExp = col_double(),
+##   pop = col_double(),
+##   `gdpPercap     ` = col_double()
+## )</code></pre>
+<pre><code>## # A tibble: 8 x 6
+##   country     continent  year lifeExp      pop `gdpPercap     `
+##   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8  8425333             779.
+## 2 Afghanistan Asia       1957    30.3  9240934             821.
+## 3 Afghanistan Asia       1962    32.0 10267083             853.
+## 4 Afghanistan Asia       1967    34.0 11537966             836.
+## 5 Afghanistan Asia       1972    36.1 13079460             740.
+## 6 Afghanistan Asia       1977    38.4 14880372             786.
+## 7 Afghanistan Asia       1982    39.9 12881816             978.
+## 8 Afghanistan Asia       1987    40.8 13867957             852.</code></pre>
+<pre><code>country,continent,year,lifeExp,pop,gdpPercap       # header/column names
+Afghanistan,Asia,1952,28.801,8425333,779.4453145
+Afghanistan,Asia,1957,30.332,9240934,820.8530296
+Afghanistan,Asia,1962,31.997,10267083,853.10071
+Afghanistan,Asia,1967,34.02,11537966,836.1971382
+Afghanistan,Asia,1972,36.088,13079460,739.9811058
+Afghanistan,Asia,1977,38.438,14880372,786.11336
+Afghanistan,Asia,1982,39.854,12881816,978.0114388
+Afghanistan,Asia,1987,40.822,13867957,852.3959448
+Afghanistan,,,N/A,,                                # notice that we&#39;re missing values</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="tabular-data.html#cb19-1"></a>csv_text &lt;-<span class="st"> </span></span>
+<span id="cb19-2"><a href="tabular-data.html#cb19-2"></a><span class="st">&#39;country,continent,year,lifeExp,pop,gdpPercap</span></span>
+<span id="cb19-3"><a href="tabular-data.html#cb19-3"></a><span class="st">Afghanistan,Asia,1952,28.801,8425333,779.4453145</span></span>
+<span id="cb19-4"><a href="tabular-data.html#cb19-4"></a><span class="st">Afghanistan,Asia,1957,30.332,9240934,820.8530296</span></span>
+<span id="cb19-5"><a href="tabular-data.html#cb19-5"></a><span class="st">Afghanistan,Asia,1962,31.997,10267083,853.10071</span></span>
+<span id="cb19-6"><a href="tabular-data.html#cb19-6"></a><span class="st">Afghanistan,Asia,1967,34.02,11537966,836.1971382</span></span>
+<span id="cb19-7"><a href="tabular-data.html#cb19-7"></a><span class="st">Afghanistan,Asia,1972,36.088,13079460,739.9811058</span></span>
+<span id="cb19-8"><a href="tabular-data.html#cb19-8"></a><span class="st">Afghanistan,Asia,1977,38.438,14880372,786.11336</span></span>
+<span id="cb19-9"><a href="tabular-data.html#cb19-9"></a><span class="st">Afghanistan,Asia,1982,39.854,12881816,978.0114388</span></span>
+<span id="cb19-10"><a href="tabular-data.html#cb19-10"></a><span class="st">Afghanistan,Asia,1987,40.822,13867957,852.3959448</span></span>
+<span id="cb19-11"><a href="tabular-data.html#cb19-11"></a><span class="st">Afghanistan,,,N/A,,&#39;</span></span>
+<span id="cb19-12"><a href="tabular-data.html#cb19-12"></a></span>
+<span id="cb19-13"><a href="tabular-data.html#cb19-13"></a>csv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.csv&quot;</span>)</span>
+<span id="cb19-14"><a href="tabular-data.html#cb19-14"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> csv_text, <span class="dt">con =</span> csv_file)</span></code></pre></div>
+</div>
+<div id="common-pitfalls" class="section level2">
+<h2><span class="header-section-number">2.2</span> Common Pitfalls</h2>
+<div id="incorrect-column-types" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Incorrect Column Types</h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tabular-data.html#cb20-1"></a>data_frame_from_csv &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> csv_file)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   country = col_character(),
+##   continent = col_character(),
+##   year = col_double(),
+##   lifeExp = col_character(),
+##   pop = col_double(),
+##   gdpPercap = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="tabular-data.html#cb22-1"></a>data_frame_from_csv</span></code></pre></div>
+<pre><code>## # A tibble: 9 x 6
+##   country     continent  year lifeExp      pop gdpPercap
+##   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952 28.801   8425333      779.
+## 2 Afghanistan Asia       1957 30.332   9240934      821.
+## 3 Afghanistan Asia       1962 31.997  10267083      853.
+## 4 Afghanistan Asia       1967 34.02   11537966      836.
+## 5 Afghanistan Asia       1972 36.088  13079460      740.
+## 6 Afghanistan Asia       1977 38.438  14880372      786.
+## 7 Afghanistan Asia       1982 39.854  12881816      978.
+## 8 Afghanistan Asia       1987 40.822  13867957      852.
+## 9 Afghanistan &lt;NA&gt;         NA N/A           NA       NA</code></pre>
+<p>Notice that our <code>year</code> column says <code>&lt;dbl&gt;</code>, referring to it being of type <code>double</code>, yet all of our <code>year</code> values are whole numbers.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="tabular-data.html#cb24-1"></a><span class="kw">typeof</span>(data_frame_from_csv<span class="op">$</span>year)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="tabular-data.html#cb26-1"></a>data_frame_from_csv<span class="op">$</span>year</span></code></pre></div>
+<pre><code>## [1] 1952 1957 1962 1967 1972 1977 1982 1987   NA</code></pre>
+<p>We also have <code>"N/A"</code> in our <code>lifeExp</code> column, forcing R to interpret all <code>lifeExp</code> values as <code>character</code>s (<code>&lt;chr&gt;</code>).</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="tabular-data.html#cb28-1"></a><span class="kw">typeof</span>(data_frame_from_csv<span class="op">$</span>lifeExp)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="tabular-data.html#cb30-1"></a>data_frame_from_csv<span class="op">$</span>lifeExp</span></code></pre></div>
+<pre><code>## [1] &quot;28.801&quot; &quot;30.332&quot; &quot;31.997&quot; &quot;34.02&quot;  &quot;36.088&quot; &quot;38.438&quot; &quot;39.854&quot; &quot;40.822&quot; &quot;N/A&quot;</code></pre>
+<div id="solution" class="section level4">
+<h4><span class="header-section-number">2.2.1.1</span> Solution</h4>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="tabular-data.html#cb32-1"></a><span class="kw">read_csv</span>(</span>
+<span id="cb32-2"><a href="tabular-data.html#cb32-2"></a>  <span class="dt">file =</span> csv_file,</span>
+<span id="cb32-3"><a href="tabular-data.html#cb32-3"></a>  <span class="dt">col_types =</span> <span class="kw">cols</span>(</span>
+<span id="cb32-4"><a href="tabular-data.html#cb32-4"></a>    <span class="dt">country =</span> <span class="kw">col_character</span>(),</span>
+<span id="cb32-5"><a href="tabular-data.html#cb32-5"></a>    <span class="dt">continent =</span> <span class="kw">col_character</span>(),</span>
+<span id="cb32-6"><a href="tabular-data.html#cb32-6"></a>    <span class="dt">year =</span> <span class="kw">col_integer</span>(),        <span class="co"># read `year` as `integer`</span></span>
+<span id="cb32-7"><a href="tabular-data.html#cb32-7"></a>    <span class="dt">lifeExp =</span> <span class="kw">col_double</span>(),      <span class="co"># read `lifeExp` as `double`</span></span>
+<span id="cb32-8"><a href="tabular-data.html#cb32-8"></a>    <span class="dt">pop =</span> <span class="kw">col_double</span>(),</span>
+<span id="cb32-9"><a href="tabular-data.html#cb32-9"></a>    <span class="dt">gdpPercap =</span> <span class="kw">col_double</span>()</span>
+<span id="cb32-10"><a href="tabular-data.html#cb32-10"></a>  ),</span>
+<span id="cb32-11"><a href="tabular-data.html#cb32-11"></a>  <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;N/A&quot;</span>)              <span class="co"># be explicit about how `csv_file` represents missing values</span></span>
+<span id="cb32-12"><a href="tabular-data.html#cb32-12"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 9 x 6
+##   country     continent  year lifeExp      pop gdpPercap
+##   &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8  8425333      779.
+## 2 Afghanistan Asia       1957    30.3  9240934      821.
+## 3 Afghanistan Asia       1962    32.0 10267083      853.
+## 4 Afghanistan Asia       1967    34.0 11537966      836.
+## 5 Afghanistan Asia       1972    36.1 13079460      740.
+## 6 Afghanistan Asia       1977    38.4 14880372      786.
+## 7 Afghanistan Asia       1982    39.9 12881816      978.
+## 8 Afghanistan Asia       1987    40.8 13867957      852.
+## 9 Afghanistan &lt;NA&gt;         NA    NA         NA       NA</code></pre>
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="setup-r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manipulating-data-frames.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/knapply/ds4da-cookbook/edit/master/2-tabular-data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["ds4da-cookbook.pdf", "PDF"]],
+"toc": {
+"collapse": "section"
+},
+"toc_depth": 4,
+"info": true
+});
+});
+</script>
+
+</body>
+
+</html>
