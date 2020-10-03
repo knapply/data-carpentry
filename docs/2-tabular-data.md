@@ -55,13 +55,7 @@ Afghanistan,Asia,1987,40.822,13867957,852.3959448'
 
 csv_file <- tempfile(fileext = ".csv")      
 csv_file # a temporary file path
-```
-
-```
-## [1] "/tmp/Rtmpu2PRwa/file5fe27f20420f.csv"
-```
-
-```r
+#> [1] "/tmp/RtmpF0Nbt3/file9405503f1bc.csv"
 writeLines(text = csv_text, con = csv_file) # write `csv_text` to `csv_file`
 ```
 
@@ -69,32 +63,25 @@ writeLines(text = csv_text, con = csv_file) # write `csv_text` to `csv_file`
 
 ```r
 read_csv(file = csv_file)
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   country = col_character(),
-##   continent = col_character(),
-##   year = col_double(),
-##   lifeExp = col_double(),
-##   pop = col_double(),
-##   gdpPercap = col_double()
-## )
-```
-
-```
-## # A tibble: 8 x 6
-##   country     continent  year lifeExp      pop gdpPercap
-##   <chr>       <chr>     <dbl>   <dbl>    <dbl>     <dbl>
-## 1 Afghanistan Asia       1952    28.8  8425333      779.
-## 2 Afghanistan Asia       1957    30.3  9240934      821.
-## 3 Afghanistan Asia       1962    32.0 10267083      853.
-## 4 Afghanistan Asia       1967    34.0 11537966      836.
-## 5 Afghanistan Asia       1972    36.1 13079460      740.
-## 6 Afghanistan Asia       1977    38.4 14880372      786.
-## 7 Afghanistan Asia       1982    39.9 12881816      978.
-## 8 Afghanistan Asia       1987    40.8 13867957      852.
+#> Parsed with column specification:
+#> cols(
+#>   country = col_character(),
+#>   continent = col_character(),
+#>   year = col_double(),
+#>   lifeExp = col_double(),
+#>   pop = col_double(),
+#>   gdpPercap = col_double()
+#> )
+#> # A tibble: 8 x 6
+#>   country     continent  year lifeExp      pop gdpPercap
+#>   <chr>       <chr>     <dbl>   <dbl>    <dbl>     <dbl>
+#> 1 Afghanistan Asia       1952    28.8  8425333      779.
+#> 2 Afghanistan Asia       1957    30.3  9240934      821.
+#> 3 Afghanistan Asia       1962    32.0 10267083      853.
+#> 4 Afghanistan Asia       1967    34.0 11537966      836.
+#> 5 Afghanistan Asia       1972    36.1 13079460      740.
+#> 6 Afghanistan Asia       1977    38.4 14880372      786.
+#> # … with 2 more rows
 ```
 
 
@@ -122,32 +109,25 @@ writeLines(text = tsv_text, con = tsv_file)
 
 ```r
 read_tsv(file = tsv_file)
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   country = col_character(),
-##   continent = col_character(),
-##   year = col_double(),
-##   lifeExp = col_double(),
-##   pop = col_double(),
-##   gdpPercap = col_double()
-## )
-```
-
-```
-## # A tibble: 8 x 6
-##   country     continent  year lifeExp      pop gdpPercap
-##   <chr>       <chr>     <dbl>   <dbl>    <dbl>     <dbl>
-## 1 Afghanistan Asia       1952    28.8  8425333      779.
-## 2 Afghanistan Asia       1957    30.3  9240934      821.
-## 3 Afghanistan Asia       1962    32.0 10267083      853.
-## 4 Afghanistan Asia       1967    34.0 11537966      836.
-## 5 Afghanistan Asia       1972    36.1 13079460      740.
-## 6 Afghanistan Asia       1977    38.4 14880372      786.
-## 7 Afghanistan Asia       1982    39.9 12881816      978.
-## 8 Afghanistan Asia       1987    40.8 13867957      852.
+#> Parsed with column specification:
+#> cols(
+#>   country = col_character(),
+#>   continent = col_character(),
+#>   year = col_double(),
+#>   lifeExp = col_double(),
+#>   pop = col_double(),
+#>   gdpPercap = col_double()
+#> )
+#> # A tibble: 8 x 6
+#>   country     continent  year lifeExp      pop gdpPercap
+#>   <chr>       <chr>     <dbl>   <dbl>    <dbl>     <dbl>
+#> 1 Afghanistan Asia       1952    28.8  8425333      779.
+#> 2 Afghanistan Asia       1957    30.3  9240934      821.
+#> 3 Afghanistan Asia       1962    32.0 10267083      853.
+#> 4 Afghanistan Asia       1967    34.0 11537966      836.
+#> 5 Afghanistan Asia       1972    36.1 13079460      740.
+#> 6 Afghanistan Asia       1977    38.4 14880372      786.
+#> # … with 2 more rows
 ```
 
 
@@ -175,32 +155,25 @@ writeLines(text = pipe_separated_values_text, con = psv_file)
 
 ```r
 read_delim(file = psv_file, delim = "|")
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   country = col_character(),
-##   continent = col_character(),
-##   year = col_double(),
-##   lifeExp = col_double(),
-##   pop = col_double(),
-##   `gdpPercap     ` = col_double()
-## )
-```
-
-```
-## # A tibble: 8 x 6
-##   country     continent  year lifeExp      pop `gdpPercap     `
-##   <chr>       <chr>     <dbl>   <dbl>    <dbl>            <dbl>
-## 1 Afghanistan Asia       1952    28.8  8425333             779.
-## 2 Afghanistan Asia       1957    30.3  9240934             821.
-## 3 Afghanistan Asia       1962    32.0 10267083             853.
-## 4 Afghanistan Asia       1967    34.0 11537966             836.
-## 5 Afghanistan Asia       1972    36.1 13079460             740.
-## 6 Afghanistan Asia       1977    38.4 14880372             786.
-## 7 Afghanistan Asia       1982    39.9 12881816             978.
-## 8 Afghanistan Asia       1987    40.8 13867957             852.
+#> Parsed with column specification:
+#> cols(
+#>   country = col_character(),
+#>   continent = col_character(),
+#>   year = col_double(),
+#>   lifeExp = col_double(),
+#>   pop = col_double(),
+#>   `gdpPercap     ` = col_double()
+#> )
+#> # A tibble: 8 x 6
+#>   country     continent  year lifeExp      pop `gdpPercap     `
+#>   <chr>       <chr>     <dbl>   <dbl>    <dbl>            <dbl>
+#> 1 Afghanistan Asia       1952    28.8  8425333             779.
+#> 2 Afghanistan Asia       1957    30.3  9240934             821.
+#> 3 Afghanistan Asia       1962    32.0 10267083             853.
+#> 4 Afghanistan Asia       1967    34.0 11537966             836.
+#> 5 Afghanistan Asia       1972    36.1 13079460             740.
+#> 6 Afghanistan Asia       1977    38.4 14880372             786.
+#> # … with 2 more rows
 ```
 
 
@@ -249,37 +222,26 @@ writeLines(text = csv_text, con = csv_file)
 
 ```r
 data_frame_from_csv <- read_csv(file = csv_file)
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   country = col_character(),
-##   continent = col_character(),
-##   year = col_double(),
-##   lifeExp = col_character(),
-##   pop = col_double(),
-##   gdpPercap = col_double()
-## )
-```
-
-```r
+#> Parsed with column specification:
+#> cols(
+#>   country = col_character(),
+#>   continent = col_character(),
+#>   year = col_double(),
+#>   lifeExp = col_character(),
+#>   pop = col_double(),
+#>   gdpPercap = col_double()
+#> )
 data_frame_from_csv
-```
-
-```
-## # A tibble: 9 x 6
-##   country     continent  year lifeExp      pop gdpPercap
-##   <chr>       <chr>     <dbl> <chr>      <dbl>     <dbl>
-## 1 Afghanistan Asia       1952 28.801   8425333      779.
-## 2 Afghanistan Asia       1957 30.332   9240934      821.
-## 3 Afghanistan Asia       1962 31.997  10267083      853.
-## 4 Afghanistan Asia       1967 34.02   11537966      836.
-## 5 Afghanistan Asia       1972 36.088  13079460      740.
-## 6 Afghanistan Asia       1977 38.438  14880372      786.
-## 7 Afghanistan Asia       1982 39.854  12881816      978.
-## 8 Afghanistan Asia       1987 40.822  13867957      852.
-## 9 Afghanistan <NA>         NA N/A           NA       NA
+#> # A tibble: 9 x 6
+#>   country     continent  year lifeExp      pop gdpPercap
+#>   <chr>       <chr>     <dbl> <chr>      <dbl>     <dbl>
+#> 1 Afghanistan Asia       1952 28.801   8425333      779.
+#> 2 Afghanistan Asia       1957 30.332   9240934      821.
+#> 3 Afghanistan Asia       1962 31.997  10267083      853.
+#> 4 Afghanistan Asia       1967 34.02   11537966      836.
+#> 5 Afghanistan Asia       1972 36.088  13079460      740.
+#> 6 Afghanistan Asia       1977 38.438  14880372      786.
+#> # … with 3 more rows
 ```
 
 Notice that our `year` column says `<dbl>`, referring to it being of type `double`, yet all of our `year` values are whole numbers.
@@ -287,18 +249,9 @@ Notice that our `year` column says `<dbl>`, referring to it being of type `doubl
 
 ```r
 typeof(data_frame_from_csv$year)
-```
-
-```
-## [1] "double"
-```
-
-```r
+#> [1] "double"
 data_frame_from_csv$year
-```
-
-```
-## [1] 1952 1957 1962 1967 1972 1977 1982 1987   NA
+#> [1] 1952 1957 1962 1967 1972 1977 1982 1987   NA
 ```
 
 We also have `"N/A"` in our `lifeExp` column, forcing R to interpret all `lifeExp` values as `character`s (`<chr>`).
@@ -306,18 +259,9 @@ We also have `"N/A"` in our `lifeExp` column, forcing R to interpret all `lifeEx
 
 ```r
 typeof(data_frame_from_csv$lifeExp)
-```
-
-```
-## [1] "character"
-```
-
-```r
+#> [1] "character"
 data_frame_from_csv$lifeExp
-```
-
-```
-## [1] "28.801" "30.332" "31.997" "34.02"  "36.088" "38.438" "39.854" "40.822" "N/A"
+#> [1] "28.801" "30.332" "31.997" "34.02"  "36.088" "38.438" "39.854" "40.822" "N/A"
 ```
 
 #### Solution
@@ -336,21 +280,16 @@ read_csv(
   ),
   na = c("", "N/A")              # be explicit about how `csv_file` represents missing values
 )
-```
-
-```
-## # A tibble: 9 x 6
-##   country     continent  year lifeExp      pop gdpPercap
-##   <chr>       <chr>     <int>   <dbl>    <dbl>     <dbl>
-## 1 Afghanistan Asia       1952    28.8  8425333      779.
-## 2 Afghanistan Asia       1957    30.3  9240934      821.
-## 3 Afghanistan Asia       1962    32.0 10267083      853.
-## 4 Afghanistan Asia       1967    34.0 11537966      836.
-## 5 Afghanistan Asia       1972    36.1 13079460      740.
-## 6 Afghanistan Asia       1977    38.4 14880372      786.
-## 7 Afghanistan Asia       1982    39.9 12881816      978.
-## 8 Afghanistan Asia       1987    40.8 13867957      852.
-## 9 Afghanistan <NA>         NA    NA         NA       NA
+#> # A tibble: 9 x 6
+#>   country     continent  year lifeExp      pop gdpPercap
+#>   <chr>       <chr>     <int>   <dbl>    <dbl>     <dbl>
+#> 1 Afghanistan Asia       1952    28.8  8425333      779.
+#> 2 Afghanistan Asia       1957    30.3  9240934      821.
+#> 3 Afghanistan Asia       1962    32.0 10267083      853.
+#> 4 Afghanistan Asia       1967    34.0 11537966      836.
+#> 5 Afghanistan Asia       1972    36.1 13079460      740.
+#> 6 Afghanistan Asia       1977    38.4 14880372      786.
+#> # … with 3 more rows
 ```
 
 

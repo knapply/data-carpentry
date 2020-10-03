@@ -1,4 +1,4 @@
-all: clean gitbook pdf
+all: clean gitbook
 .PHONY: clean gitbook pdf
 
 clean:

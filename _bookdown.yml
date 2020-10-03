@@ -1,5 +1,5 @@
-book_filename: "ds4da-cookbook.Rmd"
-repo: https://github.com/knapply/ds4da-cookbook
+book_filename: "data-carpentry.Rmd"
+repo: https://github.com/knapply/data-carpentry
 clean: [packages.bib, bookdown.bbl]
 new_session: yes
 output_dir: "docs"
@@ -12,6 +12,7 @@ rmd_files: [
 
   "1-setup.Rmd",
   "1-setup-r-and-rstudio.Rmd",
+  "1-basic-syntax.Rmd",
 
   "2.Rmd",
   "2-tabular-data.Rmd",
@@ -19,3 +20,5 @@ rmd_files: [
   "3.Rmd",
   "3-thesaurus.Rmd"
 ]
+
+before_chapter_script: "_common.R"
