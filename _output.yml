@@ -5,13 +5,13 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="./">ds4da Cookbook</a></li>
+        <li><a href="./">Data Carpentry</a></li>
       after: |
-        <li><a href="https://github.com/knapply/ds4da-cookbook" target="blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/knapply/data-carpentry" target="blank">Published with bookdown</a></li>
     edit:
-      link: https://github.com/knapply/ds4da-cookbook/edit/master/%s
+      link: https://github.com/knapply/data-carpentry/edit/master/%s
     download:
-      - ["ds4da-cookbook.pdf", "PDF"]
+      - ["data-carpentry.pdf", "PDF"]
     sharing:
       facebook: yes
       twitter: yes
@@ -23,5 +23,14 @@ bookdown::gitbook:
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
-  citation_package: natbib
+  #   before_body: latex/before_body.tex
+  #   after_body: latex/after_body.tex
   keep_tex: yes
+  dev: "cairo_pdf"
+  latex_engine: xelatex
+  citation_package: natbib
+  # template: null
+  # pandoc_args: ["--top-level-division=chapter", "--listings"]
+  # pandoc_args: --listings
+  toc_depth: 5
+

@@ -6,20 +6,45 @@ code, .sourceLine, .sourceCode {
 }
 
 
-.infobox {
+.info {
   padding: 1em 1em 1em 4em;
   margin-bottom: 10px;
   border: 2px solid orange;
   border-radius: 10px;
   background: 5px center/3em no-repeat;
+
+  background-image: url("images/info.png");
+  background-color: #bfd5ff
 }
 
 .caution {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border: 2px solid orange;
+  border-radius: 10px;
+  background: 5px center/3em no-repeat;
+
   background-image: url("images/caution.png");
   background-color: #f7faca
 }
 
+/*
 .tip {
-  background-image: url("images/tip.png");
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border: 2px solid orange;
+  border-radius: 10px;
+  background: 5px center/3em no-repeat;
+
+  background-image: url("images/info.png");
   background-color: #bfd5ff
+}
+*/
+
+pre code {
+  white-space: pre-wrap;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal code {
+  padding: 2px 0;
 }

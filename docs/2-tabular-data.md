@@ -55,7 +55,7 @@ Afghanistan,Asia,1987,40.822,13867957,852.3959448'
 
 csv_file <- tempfile(fileext = ".csv")      
 csv_file # a temporary file path
-#> [1] "/tmp/RtmpF0Nbt3/file9405503f1bc.csv"
+#> [1] "/tmp/Rtmp6lOJkS/file73aac04c4a3.csv"
 writeLines(text = csv_text, con = csv_file) # write `csv_text` to `csv_file`
 ```
 
@@ -81,7 +81,8 @@ read_csv(file = csv_file)
 #> 4 Afghanistan Asia       1967    34.0 11537966      836.
 #> 5 Afghanistan Asia       1972    36.1 13079460      740.
 #> 6 Afghanistan Asia       1977    38.4 14880372      786.
-#> # … with 2 more rows
+#> 7 Afghanistan Asia       1982    39.9 12881816      978.
+#> 8 Afghanistan Asia       1987    40.8 13867957      852.
 ```
 
 
@@ -127,7 +128,8 @@ read_tsv(file = tsv_file)
 #> 4 Afghanistan Asia       1967    34.0 11537966      836.
 #> 5 Afghanistan Asia       1972    36.1 13079460      740.
 #> 6 Afghanistan Asia       1977    38.4 14880372      786.
-#> # … with 2 more rows
+#> 7 Afghanistan Asia       1982    39.9 12881816      978.
+#> 8 Afghanistan Asia       1987    40.8 13867957      852.
 ```
 
 
@@ -173,7 +175,8 @@ read_delim(file = psv_file, delim = "|")
 #> 4 Afghanistan Asia       1967    34.0 11537966             836.
 #> 5 Afghanistan Asia       1972    36.1 13079460             740.
 #> 6 Afghanistan Asia       1977    38.4 14880372             786.
-#> # … with 2 more rows
+#> 7 Afghanistan Asia       1982    39.9 12881816             978.
+#> 8 Afghanistan Asia       1987    40.8 13867957             852.
 ```
 
 
@@ -241,7 +244,9 @@ data_frame_from_csv
 #> 4 Afghanistan Asia       1967 34.02   11537966      836.
 #> 5 Afghanistan Asia       1972 36.088  13079460      740.
 #> 6 Afghanistan Asia       1977 38.438  14880372      786.
-#> # … with 3 more rows
+#> 7 Afghanistan Asia       1982 39.854  12881816      978.
+#> 8 Afghanistan Asia       1987 40.822  13867957      852.
+#> 9 Afghanistan <NA>         NA N/A           NA       NA
 ```
 
 Notice that our `year` column says `<dbl>`, referring to it being of type `double`, yet all of our `year` values are whole numbers.
@@ -289,7 +294,9 @@ read_csv(
 #> 4 Afghanistan Asia       1967    34.0 11537966      836.
 #> 5 Afghanistan Asia       1972    36.1 13079460      740.
 #> 6 Afghanistan Asia       1977    38.4 14880372      786.
-#> # … with 3 more rows
+#> 7 Afghanistan Asia       1982    39.9 12881816      978.
+#> 8 Afghanistan Asia       1987    40.8 13867957      852.
+#> 9 Afghanistan <NA>         NA    NA         NA       NA
 ```
 
 

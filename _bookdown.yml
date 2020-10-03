@@ -12,7 +12,7 @@ rmd_files: [
 
   "1-setup.Rmd",
   "1-setup-r-and-rstudio.Rmd",
-  "1-basic-syntax.Rmd",
+  "1-basics.Rmd",
 
   "2.Rmd",
   "2-tabular-data.Rmd",
