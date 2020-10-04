@@ -10,15 +10,16 @@ rmd_files: [
 
   "preface.Rmd",
 
-  "1-setup.Rmd",
+  "1.Rmd",
   "1-setup-r-and-rstudio.Rmd",
   "1-basics.Rmd",
 
   "2.Rmd",
   "2-tabular-data.Rmd",
+  "2-thesaurus.Rmd",
 
   "3.Rmd",
-  "3-thesaurus.Rmd"
+  "3-spatial.Rmd"
 ]
 
 before_chapter_script: "_common.R"

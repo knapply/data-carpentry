@@ -1,4 +1,4 @@
-Package: ds4dacookbook
+Package: datacarpentry
 Title: ds4da Cookbook
 Version: 0.0.0.9000
 Authors@R: c(person(given = "Brendan", family = "Knapp",

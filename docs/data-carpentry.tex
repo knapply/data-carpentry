@@ -41,7 +41,7 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage[lmargin=0.375in, rmargin=0.375in, top=3cm, bottom=3cm]{geometry}
+\usepackage[lmargin=0.375in, rmargin=0.375in, top=2cm, bottom=3cm]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -258,8 +258,8 @@ init
 
 \cleardoublepage
 
-\hypertarget{part-setup}{%
-\part{Setup}\label{part-setup}}
+\hypertarget{part-day-1}{%
+\part{Day 1}\label{part-day-1}}
 
 \hypertarget{setup-r-and-rstudio}{%
 \chapter{R and RStudio}\label{setup-r-and-rstudio}}
@@ -304,9 +304,6 @@ init
 \DecValTok{2} \OperatorTok{*}\StringTok{ }\DecValTok{3}                     \CommentTok{\# multiplication}
 \CommentTok{\#\textgreater{} [1] 6}
 
-\DecValTok{2} \OperatorTok{/}\StringTok{ }\DecValTok{3}                     \CommentTok{\# division}
-\CommentTok{\#\textgreater{} [1] 0.667}
-
 \DecValTok{1} \OperatorTok{+}\StringTok{ }\DecValTok{1} \OperatorTok{*}\StringTok{ }\DecValTok{3}                 \CommentTok{\# combining operations}
 \CommentTok{\#\textgreater{} [1] 4}
 
@@ -335,7 +332,7 @@ init
 
 \begin{caution}{caution}
 
-If your code doesn't form a complete \emph{expression}, then R will look for the rest of on the next line.
+If your code doesn't form a complete \emph{expression}, then R will look for more on the next line.
 
 Here's an example:
 
@@ -345,7 +342,7 @@ Here's an example:
 \end{Highlighting}
 \end{Shaded}
 
-\texttt{1\ +} isn't a complete expression, so R will look for more on subsequent lines. You'll see something like the following:
+\texttt{1\ +} isn't a complete expression, so R prompt for more code on subsequent lines. You'll see something like the following:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -602,7 +599,7 @@ Here's what that looks like for \texttt{sort()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{images/sort-documentation} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{images/sort-documentation} \end{center}
 
 There's \emph{a ton} of information here, but all we're interested in at the moment is the order in which we need to pass arguments to \texttt{sort()}, which we can find in the \textbf{Arguments} section.
 
@@ -612,7 +609,7 @@ There's \emph{a ton} of information here, but all we're interested in at the mom
 \hypertarget{na}{%
 \subsection{\texorpdfstring{\texttt{NA}}{NA}}\label{na}}
 
-You may have noticed the \texttt{na.last} argument in \texttt{sort()}'s documentation. R can represent nothingness with \texttt{NULL} (or \texttt{None} in Python), but it can also represent \emph{unknown} or \emph{missing} values with \texttt{NA}.
+You may have noticed the \texttt{na.last} argument in \texttt{sort()}'s documentation. R can represent nothingness with \texttt{NULL} (same as \texttt{null} or \texttt{None} in other languages), but it can also represent \emph{unknown} or \emph{missing} values with \texttt{NA}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -645,7 +642,7 @@ If we want to keep \texttt{NA}s, we must specify whether \texttt{sort()} places 
 \hypertarget{null}{%
 \subsection{\texorpdfstring{\texttt{NULL}}{NULL}}\label{null}}
 
-For most purposes, the difference between \texttt{NA} and \texttt{NULL} is that \texttt{vector}s (like \texttt{unsorted\_numbers\_with\_nas}) can have \texttt{NA} values.
+For the moment, think of the difference between \texttt{NA} and \texttt{NULL} as being that \texttt{vector}s (like \texttt{unsorted\_numbers\_with\_nas}) can have \texttt{NA} values but they cannot have \texttt{NULL} values.
 
 If we try to put \texttt{NULL} in a \texttt{vector}, it simply disappears.
 
@@ -663,7 +660,7 @@ But, how do we check if something is \texttt{NA} or \texttt{NULL}?
 
 A \emph{predicate function} is a function that \texttt{return}s either \texttt{TRUE} or \texttt{FALSE} based on some condition the function is checking.
 
-Predicate function (should) use a name that expresses this intent, such as \texttt{is\textless{}some\ condition\textgreater{}}, \texttt{any\textless{}some\ condition\textgreater{}()}, or \texttt{all\textless{}some\ condition\textgreater{}()}.
+Predicate functions \emph{should} use a name that expresses this intent, such as \texttt{is\textless{}some\ condition\textgreater{}}, \texttt{any\textless{}some\ condition\textgreater{}()}, or \texttt{all\textless{}some\ condition\textgreater{}()}.
 
 If we want check if something is \texttt{NULL}, we use \texttt{is.null()}.
 
@@ -755,20 +752,18 @@ Can you guess what \texttt{is.na()} \texttt{return}s?
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{images/the-what} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{images/the-what} \end{center}
 
-We'll discuss accessing a \texttt{vector}'s individual elements later, but \texttt{is.na()} is what we call a \emph{vectorized} function: a function that takes \texttt{vector} argument and operates every on element simultaneously.
+We'll discuss accessing a \texttt{vector}'s individual elements later, but \texttt{is.na()} is what we call a \emph{vectorized} function: a function that takes \texttt{vector} argument and operates on every element simultaneously.
 
 \hypertarget{vectorized-functions}{%
 \section{Vectorized Functions}\label{vectorized-functions}}
 
 As high-speed R coders, we should prefer \texttt{vector}ized solutions whenever possible as they're not only idiomatic (and thus easy for other R users to understand), but they're typically several orders of magnitude faster than other solutions.
 
-While R isn't the fastest language out there, complaints about its speed often come poor code, which is often ``speaking'' R with a C or Python accent.
+While R isn't the fastest language out there, complaints about its speed usually come from poor code, including code that ``speaks'' R with a C or Python accent.
 
-The simplest way to wrap our heads around \texttt{vector}ized operations probably is with math.
-
-To do this, let's first make a \texttt{vector} with five \texttt{0}s in it.
+The simplest way to wrap our heads around \texttt{vector}ized operations is with math. let's first make a \texttt{vector} with five \texttt{0}s in it.
 
 We could do that like the following:
 
@@ -779,7 +774,7 @@ We could do that like the following:
 \end{Highlighting}
 \end{Shaded}
 
-But, good coders are lazy coders who want to (correctly) automate everything they can. With that in mind, let's \texttt{rep()}eat \texttt{0} \texttt{5} times.
+But, good coders are \emph{lazy} and want to (correctly) automate everything they can. With that in mind, let's \texttt{rep()}eat \texttt{0} \texttt{5} times.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -814,14 +809,14 @@ Let's see what happens when we add \texttt{zeros} and a \texttt{vector} containi
 \end{Highlighting}
 \end{Shaded}
 
-That's probably not what you expected, but R threw a \texttt{warning()} to tell us something seems wrong.
+That's probably not what you expected and R gives us a \texttt{warning()} to tell us something seems wrong.
 
 R let's us get away with a lot of things it shouldn't, which includes
 
 \cleardoublepage
 
-\hypertarget{part-reading-and-writing-data}{%
-\part{Reading and Writing Data}\label{part-reading-and-writing-data}}
+\hypertarget{part-day-2}{%
+\part{Day 2}\label{part-day-2}}
 
 \hypertarget{tabular-data}{%
 \chapter{Tabular Data}\label{tabular-data}}
@@ -890,7 +885,7 @@ Afghanistan,Asia,1987,40.822,13867957,852.3959448
 
 \NormalTok{csv\_file \textless{}{-}}\StringTok{ }\KeywordTok{tempfile}\NormalTok{(}\DataTypeTok{fileext =} \StringTok{".csv"}\NormalTok{)      }
 \NormalTok{csv\_file }\CommentTok{\# a temporary file path}
-\CommentTok{\#\textgreater{} [1] "/tmp/Rtmp6lOJkS/file73aac04c4a3.csv"}
+\CommentTok{\#\textgreater{} [1] "/tmp/RtmpuxJjlO/file386534d96861.csv"}
 \KeywordTok{writeLines}\NormalTok{(}\DataTypeTok{text =}\NormalTok{ csv\_text, }\DataTypeTok{con =}\NormalTok{ csv\_file) }\CommentTok{\# write \textasciigrave{}csv\_text\textasciigrave{} to \textasciigrave{}csv\_file\textasciigrave{}}
 \end{Highlighting}
 \end{Shaded}
@@ -1132,11 +1127,6 @@ We also have \texttt{"N/A"} in our \texttt{lifeExp} column, forcing R to interpr
 \CommentTok{\#\textgreater{} 9 Afghanistan \textless{}NA\textgreater{}         NA    NA         NA       NA}
 \end{Highlighting}
 \end{Shaded}
-
-\cleardoublepage
-
-\hypertarget{part-data-frames}{%
-\part{Data Frames}\label{part-data-frames}}
 
 \hypertarget{manipulating-data-frames}{%
 \chapter{Manipulating Data Frames}\label{manipulating-data-frames}}
@@ -1779,6 +1769,472 @@ We also have \texttt{"N/A"} in our \texttt{lifeExp} column, forcing R to interpr
 \end{Highlighting}
 \end{Shaded}
 
+\cleardoublepage
+
+\hypertarget{part-day-3}{%
+\part{Day 3}\label{part-day-3}}
+
+\hypertarget{spatial-data}{%
+\chapter{Spatial Data}\label{spatial-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{packages \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+  \StringTok{"leaflet"}\NormalTok{,  }\CommentTok{\# interactive web mapping}
+  \StringTok{"osmdata"}\NormalTok{,  }\CommentTok{\# Open Street Maps API data}
+  \StringTok{"raster"}\NormalTok{,   }\CommentTok{\# obtaining administrative boundary data and spatial raster data handling}
+  \StringTok{"sf"}\NormalTok{,       }\CommentTok{\# spatial vector data handling}
+  \StringTok{"stars"}\NormalTok{,    }\CommentTok{\# \{sf\}\textquotesingle{}s spatio{-}temporal raster counterpart}
+  \StringTok{"tidyverse"} \CommentTok{\# data manipulation}
+\NormalTok{)}
+
+\KeywordTok{install.packages}\NormalTok{(}
+\NormalTok{  packages[}\OperatorTok{!}\KeywordTok{sapply}\NormalTok{(packages, requireNamespace, }\DataTypeTok{quietly =} \OtherTok{TRUE}\NormalTok{)]}
+\NormalTok{)}
+
+\KeywordTok{library}\NormalTok{(leaflet)}
+\KeywordTok{library}\NormalTok{(sf)}
+\CommentTok{\#\textgreater{} Linking to GEOS 3.7.1, GDAL 2.4.2, PROJ 5.2.0}
+\KeywordTok{library}\NormalTok{(stars)}
+\CommentTok{\#\textgreater{} Loading required package: abind}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\#\textgreater{} {-}{-} Attaching packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} tidyverse 1.3.0 {-}{-}}
+\CommentTok{\#\textgreater{} v ggplot2 3.3.2     v purrr   0.3.4}
+\CommentTok{\#\textgreater{} v tibble  3.0.3     v dplyr   1.0.2}
+\CommentTok{\#\textgreater{} v tidyr   1.1.2     v stringr 1.4.0}
+\CommentTok{\#\textgreater{} v readr   1.3.1     v forcats 0.5.0}
+\CommentTok{\#\textgreater{} {-}{-} Conflicts {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} tidyverse\_conflicts() {-}{-}}
+\CommentTok{\#\textgreater{} x dplyr::filter() masks stats::filter()}
+\CommentTok{\#\textgreater{} x dplyr::lag()    masks stats::lag()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-3-1} \includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-3-2} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-4-1} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-5-1} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-6-1} \end{center}
+
+\hypertarget{geometry}{%
+\section{\texorpdfstring{\texttt{geometry}}{geometry}}\label{geometry}}
+
+Spatial vector data represent the world as a collection of points which, for two-dimensional data, are stored as \(x\) and \(y\) coordinates.
+
+Points can be joined in order to make lines, which themselves can be joined to make polygons.
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-7-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{practice\_coords \textless{}{-}}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{lng =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{20}\NormalTok{, }\DecValTok{{-}20}\NormalTok{, }\DecValTok{{-}10}\NormalTok{, }\DecValTok{{-}10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{20}\NormalTok{,  }\DecValTok{10}\NormalTok{,  }\DecValTok{10}\NormalTok{), }
+                          \DataTypeTok{lat =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{20}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{{-}10}\NormalTok{, }\DecValTok{{-}10}\NormalTok{,  }\DecValTok{10}\NormalTok{,  }\DecValTok{20}\NormalTok{, }\DecValTok{{-}20}\NormalTok{),}
+                          \DataTypeTok{lab =} \KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"D"}\NormalTok{, }\StringTok{"E"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"G"}\NormalTok{, }\StringTok{"H"}\NormalTok{),}
+                          \DataTypeTok{grp =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{))}
+\NormalTok{practice\_coords}
+\CommentTok{\#\textgreater{} \# A tibble: 8 x 4}
+\CommentTok{\#\textgreater{}     lng   lat lab   grp  }
+\CommentTok{\#\textgreater{}   \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}chr\textgreater{} \textless{}chr\textgreater{}}
+\CommentTok{\#\textgreater{} 1   {-}20   {-}20 A     a    }
+\CommentTok{\#\textgreater{} 2   {-}20    10 B     a    }
+\CommentTok{\#\textgreater{} 3   {-}10    20 C     a    }
+\CommentTok{\#\textgreater{} 4   {-}10   {-}10 D     a    }
+\CommentTok{\#\textgreater{} 5    20   {-}10 E     b    }
+\CommentTok{\#\textgreater{} 6    20    10 F     b    }
+\CommentTok{\#\textgreater{} 7    10    20 G     b    }
+\CommentTok{\#\textgreater{} 8    10   {-}20 H     b}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{point}{%
+\subsubsection{\texorpdfstring{\texttt{POINT}}{POINT}}\label{point}}
+
+\texttt{POINT} refers to the location of a single point in space.
+
+Here, we use \texttt{st\_as\_sf()} to convert a regular \texttt{data.frame} into an \texttt{sf} object.
+
+\begin{itemize}
+\tightlist
+\item
+  Steps:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    take \texttt{practice\_coords}
+  \item
+    convert to \texttt{sf} object with \texttt{st\_as\_sf()}, providing a \texttt{character} \texttt{vector} indicating the \texttt{names} of \texttt{practice\_coords} in \((x, y)\) / \((longitude, latitude)\) order
+  \item
+    \texttt{mutate()} to a add a column named \texttt{shape}, which we obtain using \texttt{st\_geometry\_type()}.
+  \end{enumerate}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{point\_sf \textless{}{-}}\StringTok{ }\NormalTok{practice\_coords }\OperatorTok{\%\textgreater{}\%}\StringTok{              }\CommentTok{\# Step 1.}
+\StringTok{  }\KeywordTok{st\_as\_sf}\NormalTok{(}\DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\StringTok{"lng"}\NormalTok{, }\StringTok{"lat"}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{     }\CommentTok{\# 2.}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{st\_geometry\_type}\NormalTok{(geometry)) }\CommentTok{\# 3.}
+\NormalTok{point\_sf}
+\CommentTok{\#\textgreater{} Simple feature collection with 8 features and 3 fields}
+\CommentTok{\#\textgreater{} geometry type:  POINT}
+\CommentTok{\#\textgreater{} dimension:      XY}
+\CommentTok{\#\textgreater{} bbox:           xmin: {-}20 ymin: {-}20 xmax: 20 ymax: 20}
+\CommentTok{\#\textgreater{} CRS:            NA}
+\CommentTok{\#\textgreater{} \# A tibble: 8 x 4}
+\CommentTok{\#\textgreater{}   lab   grp    geometry shape}
+\CommentTok{\#\textgreater{} * \textless{}chr\textgreater{} \textless{}chr\textgreater{}   \textless{}POINT\textgreater{} \textless{}fct\textgreater{}}
+\CommentTok{\#\textgreater{} 1 A     a     ({-}20 {-}20) POINT}
+\CommentTok{\#\textgreater{} 2 B     a      ({-}20 10) POINT}
+\CommentTok{\#\textgreater{} 3 C     a      ({-}10 20) POINT}
+\CommentTok{\#\textgreater{} 4 D     a     ({-}10 {-}10) POINT}
+\CommentTok{\#\textgreater{} 5 E     b      (20 {-}10) POINT}
+\CommentTok{\#\textgreater{} 6 F     b       (20 10) POINT}
+\CommentTok{\#\textgreater{} 7 G     b       (10 20) POINT}
+\CommentTok{\#\textgreater{} 8 H     b      (10 {-}20) POINT}
+\end{Highlighting}
+\end{Shaded}
+
+The data in our \texttt{lng} and \texttt{lat} columns are moved to a new \texttt{geometry} column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ point\_sf) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom\_sf}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ lab), }\DataTypeTok{size =} \DecValTok{5}\NormalTok{, }\DataTypeTok{show.legend =} \StringTok{"point"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"POINT"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-10-1} \end{center}
+
+\hypertarget{multipoint}{%
+\subsubsection{\texorpdfstring{\texttt{MULTIPOINT}}{MULTIPOINT}}\label{multipoint}}
+
+\texttt{MULTIPOINT} refers to a collection of \texttt{POINT}s.
+
+\begin{itemize}
+\tightlist
+\item
+  Steps:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    take \texttt{point\_sf}
+  \item
+    using \texttt{group\_by()}, group the rows together based on the values in their \texttt{grp} column
+  \item
+    \texttt{summarise()} each group, which combines the points of each group into a \texttt{MULTIPOINT}
+  \item
+    \texttt{mutate()} the \texttt{shape} column to change it to the new \texttt{st\_geometry\_type()}
+  \end{enumerate}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{multi\_point\_sf \textless{}{-}}\StringTok{ }\NormalTok{point\_sf }\OperatorTok{\%\textgreater{}\%}\StringTok{               }\CommentTok{\# Step 1.}
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(grp) }\OperatorTok{\%\textgreater{}\%}\StringTok{                          }\CommentTok{\# 2.}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{                            }\CommentTok{\# 3.}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{st\_geometry\_type}\NormalTok{(geometry)) }\CommentTok{\# 4.}
+\CommentTok{\#\textgreater{} \textasciigrave{}summarise()\textasciigrave{} ungrouping output (override with \textasciigrave{}.groups\textasciigrave{} argument)}
+
+\NormalTok{multi\_point\_sf}
+\CommentTok{\#\textgreater{} Simple feature collection with 2 features and 2 fields}
+\CommentTok{\#\textgreater{} geometry type:  MULTIPOINT}
+\CommentTok{\#\textgreater{} dimension:      XY}
+\CommentTok{\#\textgreater{} bbox:           xmin: {-}20 ymin: {-}20 xmax: 20 ymax: 20}
+\CommentTok{\#\textgreater{} CRS:            NA}
+\CommentTok{\#\textgreater{} \# A tibble: 2 x 3}
+\CommentTok{\#\textgreater{}   grp                                     geometry shape     }
+\CommentTok{\#\textgreater{} * \textless{}chr\textgreater{}                               \textless{}MULTIPOINT\textgreater{} \textless{}fct\textgreater{}     }
+\CommentTok{\#\textgreater{} 1 a     (({-}20 {-}20), ({-}20 10), ({-}10 {-}10), ({-}10 20)) MULTIPOINT}
+\CommentTok{\#\textgreater{} 2 b         ((10 {-}20), (10 20), (20 {-}10), (20 10)) MULTIPOINT}
+\end{Highlighting}
+\end{Shaded}
+
+Instead of the 8 separate \texttt{POINT}s with which we started, we now have 2 rows of \texttt{MULTIPOINT}s, each of which contain 4 points.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ multi\_point\_sf) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom\_sf}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ grp), }\DataTypeTok{size =} \DecValTok{5}\NormalTok{, }\DataTypeTok{show.legend =} \StringTok{"point"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"MULTIPOINT"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-12-1} \end{center}
+
+\hypertarget{linestring}{%
+\subsubsection{\texorpdfstring{\texttt{LINESTRING}}{LINESTRING}}\label{linestring}}
+
+\texttt{LINESTRING} is how we represent individual lines.
+
+\begin{itemize}
+\tightlist
+\item
+  Steps:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    take \texttt{multi\_point\_sf}
+  \item
+    cast the \texttt{geometry} \texttt{to=} \texttt{LINESTRING} using \texttt{st\_cast()}
+    3 \texttt{mutate()} the \texttt{shape} column to change it to the new \texttt{st\_geometry\_type()}
+  \end{enumerate}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{linestring\_sf \textless{}{-}}\StringTok{ }\NormalTok{multi\_point\_sf }\OperatorTok{\%\textgreater{}\%}\StringTok{          }\CommentTok{\# Step 1.}
+\StringTok{  }\KeywordTok{st\_cast}\NormalTok{(}\DataTypeTok{to =} \StringTok{"LINESTRING"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{             }\CommentTok{\# 2.}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{st\_geometry\_type}\NormalTok{(geometry)) }\CommentTok{\# 3.}
+
+\NormalTok{linestring\_sf}
+\CommentTok{\#\textgreater{} Simple feature collection with 2 features and 2 fields}
+\CommentTok{\#\textgreater{} geometry type:  LINESTRING}
+\CommentTok{\#\textgreater{} dimension:      XY}
+\CommentTok{\#\textgreater{} bbox:           xmin: {-}20 ymin: {-}20 xmax: 20 ymax: 20}
+\CommentTok{\#\textgreater{} CRS:            NA}
+\CommentTok{\#\textgreater{} \# A tibble: 2 x 3}
+\CommentTok{\#\textgreater{}   grp   shape                                geometry}
+\CommentTok{\#\textgreater{} * \textless{}chr\textgreater{} \textless{}fct\textgreater{}                            \textless{}LINESTRING\textgreater{}}
+\CommentTok{\#\textgreater{} 1 a     LINESTRING ({-}20 {-}20, {-}20 10, {-}10 {-}10, {-}10 20)}
+\CommentTok{\#\textgreater{} 2 b     LINESTRING     (10 {-}20, 10 20, 20 {-}10, 20 10)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we have 2 rows that each contain a \texttt{LINESTRING}, which was built by connecting each point to the next.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ linestring\_sf) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom\_sf}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ grp), }\DataTypeTok{size =} \DecValTok{2}\NormalTok{, }\DataTypeTok{show.legend =} \StringTok{"line"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"LINESTRING"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-14-1} \end{center}
+
+\hypertarget{multilinestring}{%
+\subsubsection{\texorpdfstring{\texttt{MULTILINESTRING}}{MULTILINESTRING}}\label{multilinestring}}
+
+Similar to \texttt{MULTIPOINT}s that contain multiple points, we also have \texttt{MULTILINESTRING}s.
+
+\begin{itemize}
+\tightlist
+\item
+  Steps:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    take \texttt{linestring\_sf}
+  \item
+    \texttt{summarise()} the rows, combining them all into a single \texttt{MULTILINESTRING}
+  \item
+    \texttt{mutate()} the \texttt{shape} column to change it to the new \texttt{st\_geometry\_type()} and replace the \texttt{grp} column that is dropped when we \texttt{summarise()} without using \texttt{group\_by()}
+  \end{enumerate}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{multi\_linestring\_sf \textless{}{-}}\StringTok{ }\NormalTok{linestring\_sf }\OperatorTok{\%\textgreater{}\%}\StringTok{     }\CommentTok{\# Step 1.}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{                            }\CommentTok{\# 2.}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{st\_geometry\_type}\NormalTok{(geometry), }\CommentTok{\# 3.}
+         \DataTypeTok{grp =} \StringTok{"multi"}\NormalTok{)                      }\CommentTok{\# 4.}
+
+\NormalTok{multi\_linestring\_sf}
+\CommentTok{\#\textgreater{} Simple feature collection with 1 feature and 2 fields}
+\CommentTok{\#\textgreater{} geometry type:  MULTILINESTRING}
+\CommentTok{\#\textgreater{} dimension:      XY}
+\CommentTok{\#\textgreater{} bbox:           xmin: {-}20 ymin: {-}20 xmax: 20 ymax: 20}
+\CommentTok{\#\textgreater{} CRS:            NA}
+\CommentTok{\#\textgreater{} \# A tibble: 1 x 3}
+\CommentTok{\#\textgreater{}                                                               geometry shape           grp  }
+\CommentTok{\#\textgreater{} *                                                    \textless{}MULTILINESTRING\textgreater{} \textless{}fct\textgreater{}           \textless{}chr\textgreater{}}
+\CommentTok{\#\textgreater{} 1 (({-}20 {-}20, {-}20 10, {-}10 {-}10, {-}10 20), (10 {-}20, 10 20, 20 {-}10, 20 10)) MULTILINESTRING multi}
+\end{Highlighting}
+\end{Shaded}
+
+Now we have 2 lines embedded inside a single \texttt{MULTILINESTRING} row.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ multi\_linestring\_sf) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom\_sf}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ grp), }\DataTypeTok{size =} \DecValTok{2}\NormalTok{, }\DataTypeTok{show.legend =} \StringTok{"line"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"MULTILINESTRING"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-16-1} \end{center}
+
+\hypertarget{polygon}{%
+\subsubsection{\texorpdfstring{\texttt{POLYGON}}{POLYGON}}\label{polygon}}
+
+\texttt{POLYGON}s are essentially sets of lines that close to form a ring, although \texttt{POLGYON}s can also contain holes. We can easily wrap a shape around any \texttt{geometry} using \texttt{st\_convex\_hull()} to form a \href{https://en.wikipedia.org/wiki/Convex_hull}{convex hull} polygon.
+
+\begin{itemize}
+\tightlist
+\item
+  Steps:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    take \texttt{point\_sf}
+  \item
+    using \texttt{group\_by()}, group the rows together based on the values in their \texttt{grp} column
+  \item
+    \texttt{summarise()} each group, combining them into \texttt{MULTIPOINT}s
+  \item
+    wrap the \texttt{MULTIPOINT}s in a polygon using \texttt{st\_convex\_hull()}
+  \item
+    \texttt{mutate()} the \texttt{shape} column to change it to the new \texttt{st\_geometry\_type()}
+  \end{enumerate}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{polygon\_sf \textless{}{-}}\StringTok{ }\NormalTok{point\_sf }\OperatorTok{\%\textgreater{}\%}\StringTok{                   }\CommentTok{\# Step 1.}
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(grp) }\OperatorTok{\%\textgreater{}\%}\StringTok{                          }\CommentTok{\# 2.}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{                            }\CommentTok{\# 3.}
+\StringTok{  }\KeywordTok{st\_convex\_hull}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{                       }\CommentTok{\# 4.}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{st\_geometry\_type}\NormalTok{(geometry)) }\CommentTok{\# 5.}
+\CommentTok{\#\textgreater{} \textasciigrave{}summarise()\textasciigrave{} ungrouping output (override with \textasciigrave{}.groups\textasciigrave{} argument)}
+
+\NormalTok{polygon\_sf}
+\CommentTok{\#\textgreater{} Simple feature collection with 2 features and 2 fields}
+\CommentTok{\#\textgreater{} geometry type:  POLYGON}
+\CommentTok{\#\textgreater{} dimension:      XY}
+\CommentTok{\#\textgreater{} bbox:           xmin: {-}20 ymin: {-}20 xmax: 20 ymax: 20}
+\CommentTok{\#\textgreater{} CRS:            NA}
+\CommentTok{\#\textgreater{} \# A tibble: 2 x 3}
+\CommentTok{\#\textgreater{}   grp                                        geometry shape  }
+\CommentTok{\#\textgreater{} * \textless{}chr\textgreater{}                                     \textless{}POLYGON\textgreater{} \textless{}fct\textgreater{}  }
+\CommentTok{\#\textgreater{} 1 a     (({-}20 {-}20, {-}20 10, {-}10 20, {-}10 {-}10, {-}20 {-}20)) POLYGON}
+\CommentTok{\#\textgreater{} 2 b          ((10 {-}20, 10 20, 20 10, 20 {-}10, 10 {-}20)) POLYGON}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ polygon\_sf) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom\_sf}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ grp), }\DataTypeTok{show.legend =} \StringTok{"polygon"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"POLYGON"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-18-1} \end{center}
+
+\hypertarget{multipolygon}{%
+\subsubsection{\texorpdfstring{\texttt{MULTIPOLYGON}}{MULTIPOLYGON}}\label{multipolygon}}
+
+\texttt{POLYGON}s can also be grouped together to form \texttt{MULTIPOLYGON}s.
+
+\begin{itemize}
+\tightlist
+\item
+  Steps:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    take \texttt{polygon\_sf}
+  \item
+    \texttt{summarise()} the rows, combining them all into a single \texttt{MULTILIPOLYGON}
+  \item
+    \texttt{mutate()} the \texttt{shape} column to change it to the new \texttt{st\_geometry\_type()} and replace the \texttt{grp} column that is dropped when we \texttt{summarise()} without using \texttt{group\_by()}
+  \end{enumerate}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{multi\_polygon\_sf \textless{}{-}}\StringTok{ }\NormalTok{polygon\_sf }\OperatorTok{\%\textgreater{}\%}\StringTok{           }\CommentTok{\# Step 1.}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}\StringTok{                            }\CommentTok{\# 2.}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{st\_geometry\_type}\NormalTok{(geometry), }\CommentTok{\# 3.}
+         \DataTypeTok{grp =} \StringTok{"multi"}\NormalTok{)}
+
+\NormalTok{multi\_polygon\_sf}
+\CommentTok{\#\textgreater{} Simple feature collection with 1 feature and 2 fields}
+\CommentTok{\#\textgreater{} geometry type:  MULTIPOLYGON}
+\CommentTok{\#\textgreater{} dimension:      XY}
+\CommentTok{\#\textgreater{} bbox:           xmin: {-}20 ymin: {-}20 xmax: 20 ymax: 20}
+\CommentTok{\#\textgreater{} CRS:            NA}
+\CommentTok{\#\textgreater{} \# A tibble: 1 x 3}
+\CommentTok{\#\textgreater{}                                                                       geometry shape      grp  }
+\CommentTok{\#\textgreater{} *                                                               \textless{}MULTIPOLYGON\textgreater{} \textless{}fct\textgreater{}      \textless{}chr\textgreater{}}
+\CommentTok{\#\textgreater{} 1 ((({-}20 {-}20, {-}20 10, {-}10 20, {-}10 {-}10, {-}20 {-}20)), ((10 {-}20, 10 20, 20 10, 20 \textasciitilde{} MULTIPOLY\textasciitilde{} multi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ multi\_polygon\_sf) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_sf}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ grp), }\DataTypeTok{show.legend =} \StringTok{"polygon"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"MULTIPOLYGON"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-20-1} \end{center}
+
+\hypertarget{geometry-1}{%
+\subsubsection{\texorpdfstring{\texttt{GEOMETRY}}{GEOMETRY}}\label{geometry-1}}
+
+\texttt{GEOMETRY} is a special \texttt{geometry} type. It refers to a column of mixed geometries, i.e.~we have multiple geometry types in our \texttt{geometry} column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{geometry\_sf \textless{}{-}}\StringTok{ }\KeywordTok{list}\NormalTok{(point\_sf, multi\_point\_sf, linestring\_sf, }
+\NormalTok{                    multi\_linestring\_sf, polygon\_sf, multi\_polygon\_sf) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{map\_if}\NormalTok{(}\OperatorTok{\textasciitilde{}}\StringTok{ "lab"} \OperatorTok{\%in\%}\StringTok{ }\KeywordTok{names}\NormalTok{(.x), select, }\OperatorTok{{-}}\NormalTok{lab) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{do.call}\NormalTok{(}\DataTypeTok{what =}\NormalTok{ rbind) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{grp =} \KeywordTok{if\_else}\NormalTok{(shape }\OperatorTok{==}\StringTok{ "POINT"}\NormalTok{, }\KeywordTok{as.character}\NormalTok{(}\KeywordTok{row\_number}\NormalTok{()), grp))}
+
+\NormalTok{geometry\_sf}
+\CommentTok{\#\textgreater{} Simple feature collection with 16 features and 2 fields}
+\CommentTok{\#\textgreater{} geometry type:  GEOMETRY}
+\CommentTok{\#\textgreater{} dimension:      XY}
+\CommentTok{\#\textgreater{} bbox:           xmin: {-}20 ymin: {-}20 xmax: 20 ymax: 20}
+\CommentTok{\#\textgreater{} CRS:            NA}
+\CommentTok{\#\textgreater{} \# A tibble: 16 x 3}
+\CommentTok{\#\textgreater{}    grp                                                                    geometry shape       }
+\CommentTok{\#\textgreater{}  * \textless{}chr\textgreater{}                                                                \textless{}GEOMETRY\textgreater{} \textless{}fct\textgreater{}       }
+\CommentTok{\#\textgreater{}  1 1                                                               POINT ({-}20 {-}20) POINT       }
+\CommentTok{\#\textgreater{}  2 2                                                                POINT ({-}20 10) POINT       }
+\CommentTok{\#\textgreater{}  3 3                                                                POINT ({-}10 20) POINT       }
+\CommentTok{\#\textgreater{}  4 4                                                               POINT ({-}10 {-}10) POINT       }
+\CommentTok{\#\textgreater{}  5 5                                                                POINT (20 {-}10) POINT       }
+\CommentTok{\#\textgreater{}  6 6                                                                 POINT (20 10) POINT       }
+\CommentTok{\#\textgreater{}  7 7                                                                 POINT (10 20) POINT       }
+\CommentTok{\#\textgreater{}  8 8                                                                POINT (10 {-}20) POINT       }
+\CommentTok{\#\textgreater{}  9 a                         MULTIPOINT (({-}20 {-}20), ({-}20 10), ({-}10 {-}10), ({-}10 20)) MULTIPOINT  }
+\CommentTok{\#\textgreater{} 10 b                             MULTIPOINT ((10 {-}20), (10 20), (20 {-}10), (20 10)) MULTIPOINT  }
+\CommentTok{\#\textgreater{} 11 a                                 LINESTRING ({-}20 {-}20, {-}20 10, {-}10 {-}10, {-}10 20) LINESTRING  }
+\CommentTok{\#\textgreater{} 12 b                                     LINESTRING (10 {-}20, 10 20, 20 {-}10, 20 10) LINESTRING  }
+\CommentTok{\#\textgreater{} 13 multi MULTILINESTRING (({-}20 {-}20, {-}20 10, {-}10 {-}10, {-}10 20), (10 {-}20, 10 20, 20 \textasciitilde{} MULTILINEST\textasciitilde{}}
+\CommentTok{\#\textgreater{} 14 a                         POLYGON (({-}20 {-}20, {-}20 10, {-}10 20, {-}10 {-}10, {-}20 {-}20)) POLYGON     }
+\CommentTok{\#\textgreater{} 15 b                              POLYGON ((10 {-}20, 10 20, 20 10, 20 {-}10, 10 {-}20)) POLYGON     }
+\CommentTok{\#\textgreater{} 16 multi MULTIPOLYGON ((({-}20 {-}20, {-}20 10, {-}10 20, {-}10 {-}10, {-}20 {-}20)), ((10 {-}20, 1\textasciitilde{} MULTIPOLYGON}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ geometry\_sf) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_sf}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ grp, }\DataTypeTok{fill =}\NormalTok{ grp), }\DataTypeTok{size =} \DecValTok{2}\NormalTok{, }\DataTypeTok{show.legend =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet\_wrap}\NormalTok{(}\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{shape, }\DataTypeTok{nrow =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"GEOMETRY"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-22-1} \end{center}
 
   \bibliography{book.bib}
 

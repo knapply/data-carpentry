@@ -55,7 +55,7 @@ Afghanistan,Asia,1987,40.822,13867957,852.3959448'
 
 csv_file <- tempfile(fileext = ".csv")      
 csv_file # a temporary file path
-#> [1] "/tmp/Rtmp6lOJkS/file73aac04c4a3.csv"
+#> [1] "/tmp/RtmpuxJjlO/file386534d96861.csv"
 writeLines(text = csv_text, con = csv_file) # write `csv_text` to `csv_file`
 ```
 

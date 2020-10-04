@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://knapply.github.io/data-carpentry/" />
   
   <meta property="og:description" content="A practical roadmap for practitioners." />
-  <meta name="github-repo" content="knapply/ds4da-cookbook" />
+  <meta name="github-repo" content="knapply/data-carpentry" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="2 The Basics | Data Carpentry" />
@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="part"><span><b>I Setup</b></span></li>
+<li class="part"><span><b>I Day 1</b></span></li>
 <li class="chapter" data-level="1" data-path="setup-r-and-rstudio.html"><a href="setup-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> R and RStudio</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="setup-r-and-rstudio.html"><a href="setup-r-and-rstudio.html#r"><i class="fa fa-check"></i><b>1.1</b> R</a>
@@ -164,7 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="the-basics.html"><a href="the-basics.html#predicate-functions"><i class="fa fa-check"></i><b>2.8</b> Predicate Functions</a></li>
 <li class="chapter" data-level="2.9" data-path="the-basics.html"><a href="the-basics.html#vectorized-functions"><i class="fa fa-check"></i><b>2.9</b> Vectorized Functions</a></li>
 </ul></li>
-<li class="part"><span><b>II Reading and Writing Data</b></span></li>
+<li class="part"><span><b>II Day 2</b></span></li>
 <li class="chapter" data-level="3" data-path="tabular-data.html"><a href="tabular-data.html"><i class="fa fa-check"></i><b>3</b> Tabular Data</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="tabular-data.html"><a href="tabular-data.html#basics"><i class="fa fa-check"></i><b>3.1</b> Basics</a></li>
@@ -173,7 +173,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.1" data-path="tabular-data.html"><a href="tabular-data.html#incorrect-column-types"><i class="fa fa-check"></i><b>3.2.1</b> Incorrect Column Types</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>III Data Frames</b></span></li>
 <li class="chapter" data-level="4" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html"><i class="fa fa-check"></i><b>4</b> Manipulating Data Frames</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#select-columns"><i class="fa fa-check"></i><b>4.1</b> <code>select()</code> Columns</a>
@@ -190,6 +189,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.3" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#by-type"><i class="fa fa-check"></i><b>4.2.3</b> by Type</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#arrange-rows"><i class="fa fa-check"></i><b>4.3</b> <code>arrange()</code> Rows</a></li>
+</ul></li>
+<li class="part"><span><b>III Day 3</b></span></li>
+<li class="chapter" data-level="5" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>5</b> Spatial Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="spatial-data.html"><a href="spatial-data.html#geometry"><i class="fa fa-check"></i><b>5.1</b> <code>geometry</code></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/knapply/data-carpentry" target="blank">Published with bookdown</a></li>
@@ -226,37 +230,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-7"><a href="the-basics.html#cb3-7"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span>                     <span class="co"># multiplication</span></span>
 <span id="cb3-8"><a href="the-basics.html#cb3-8"></a><span class="co">#&gt; [1] 6</span></span>
 <span id="cb3-9"><a href="the-basics.html#cb3-9"></a></span>
-<span id="cb3-10"><a href="the-basics.html#cb3-10"></a><span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>                     <span class="co"># division</span></span>
-<span id="cb3-11"><a href="the-basics.html#cb3-11"></a><span class="co">#&gt; [1] 0.667</span></span>
+<span id="cb3-10"><a href="the-basics.html#cb3-10"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span>                 <span class="co"># combining operations</span></span>
+<span id="cb3-11"><a href="the-basics.html#cb3-11"></a><span class="co">#&gt; [1] 4</span></span>
 <span id="cb3-12"><a href="the-basics.html#cb3-12"></a></span>
-<span id="cb3-13"><a href="the-basics.html#cb3-13"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span>                 <span class="co"># combining operations</span></span>
-<span id="cb3-14"><a href="the-basics.html#cb3-14"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb3-13"><a href="the-basics.html#cb3-13"></a>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="dv">3</span>               <span class="co"># operator precedence</span></span>
+<span id="cb3-14"><a href="the-basics.html#cb3-14"></a><span class="co">#&gt; [1] 6</span></span>
 <span id="cb3-15"><a href="the-basics.html#cb3-15"></a></span>
-<span id="cb3-16"><a href="the-basics.html#cb3-16"></a>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="dv">3</span>               <span class="co"># operator precedence</span></span>
-<span id="cb3-17"><a href="the-basics.html#cb3-17"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb3-16"><a href="the-basics.html#cb3-16"></a><span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>                     <span class="co"># division</span></span>
+<span id="cb3-17"><a href="the-basics.html#cb3-17"></a><span class="co">#&gt; [1] 1.5</span></span>
 <span id="cb3-18"><a href="the-basics.html#cb3-18"></a></span>
-<span id="cb3-19"><a href="the-basics.html#cb3-19"></a><span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>                     <span class="co"># division</span></span>
-<span id="cb3-20"><a href="the-basics.html#cb3-20"></a><span class="co">#&gt; [1] 1.5</span></span>
-<span id="cb3-21"><a href="the-basics.html#cb3-21"></a></span>
-<span id="cb3-22"><a href="the-basics.html#cb3-22"></a><span class="co"># ↓↓ pronounced &quot;modulo&quot;</span></span>
-<span id="cb3-23"><a href="the-basics.html#cb3-23"></a><span class="dv">3</span> <span class="op">%%</span><span class="st"> </span><span class="dv">2</span>                    <span class="co"># division remainder</span></span>
-<span id="cb3-24"><a href="the-basics.html#cb3-24"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb3-19"><a href="the-basics.html#cb3-19"></a><span class="co"># ↓↓ pronounced &quot;modulo&quot;</span></span>
+<span id="cb3-20"><a href="the-basics.html#cb3-20"></a><span class="dv">3</span> <span class="op">%%</span><span class="st"> </span><span class="dv">2</span>                    <span class="co"># division remainder</span></span>
+<span id="cb3-21"><a href="the-basics.html#cb3-21"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb3-22"><a href="the-basics.html#cb3-22"></a></span>
+<span id="cb3-23"><a href="the-basics.html#cb3-23"></a><span class="dv">4</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span>                   <span class="co"># integer division</span></span>
+<span id="cb3-24"><a href="the-basics.html#cb3-24"></a><span class="co">#&gt; [1] 2</span></span>
 <span id="cb3-25"><a href="the-basics.html#cb3-25"></a></span>
-<span id="cb3-26"><a href="the-basics.html#cb3-26"></a><span class="dv">4</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span>                   <span class="co"># integer division</span></span>
-<span id="cb3-27"><a href="the-basics.html#cb3-27"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb3-28"><a href="the-basics.html#cb3-28"></a></span>
-<span id="cb3-29"><a href="the-basics.html#cb3-29"></a><span class="dv">3</span><span class="op">^</span><span class="dv">2</span>                       <span class="co"># exponents</span></span>
-<span id="cb3-30"><a href="the-basics.html#cb3-30"></a><span class="co">#&gt; [1] 9</span></span>
-<span id="cb3-31"><a href="the-basics.html#cb3-31"></a><span class="dv">4</span><span class="op">**</span><span class="dv">2</span>                      <span class="co"># also exponents!</span></span>
-<span id="cb3-32"><a href="the-basics.html#cb3-32"></a><span class="co">#&gt; [1] 16</span></span>
-<span id="cb3-33"><a href="the-basics.html#cb3-33"></a></span>
-<span id="cb3-34"><a href="the-basics.html#cb3-34"></a><span class="ot">Inf</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>       <span class="co"># 🤔</span></span>
-<span id="cb3-35"><a href="the-basics.html#cb3-35"></a><span class="co">#&gt; [1] Inf</span></span></code></pre></div>
+<span id="cb3-26"><a href="the-basics.html#cb3-26"></a><span class="dv">3</span><span class="op">^</span><span class="dv">2</span>                       <span class="co"># exponents</span></span>
+<span id="cb3-27"><a href="the-basics.html#cb3-27"></a><span class="co">#&gt; [1] 9</span></span>
+<span id="cb3-28"><a href="the-basics.html#cb3-28"></a><span class="dv">4</span><span class="op">**</span><span class="dv">2</span>                      <span class="co"># also exponents!</span></span>
+<span id="cb3-29"><a href="the-basics.html#cb3-29"></a><span class="co">#&gt; [1] 16</span></span>
+<span id="cb3-30"><a href="the-basics.html#cb3-30"></a></span>
+<span id="cb3-31"><a href="the-basics.html#cb3-31"></a><span class="ot">Inf</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>       <span class="co"># 🤔</span></span>
+<span id="cb3-32"><a href="the-basics.html#cb3-32"></a><span class="co">#&gt; [1] Inf</span></span></code></pre></div>
 <div class="caution">
-<p>If your code doesn’t form a complete <em>expression</em>, then R will look for the rest of on the next line.</p>
+<p>If your code doesn’t form a complete <em>expression</em>, then R will look for more on the next line.</p>
 <p>Here’s an example:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="the-basics.html#cb4-1"></a><span class="dv">1</span> <span class="op">+</span></span></code></pre></div>
-<p><code>1 +</code> isn’t a complete expression, so R will look for more on subsequent lines. You’ll see something like the following:</p>
+<p><code>1 +</code> isn’t a complete expression, so R prompt for more code on subsequent lines. You’ll see something like the following:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="the-basics.html#cb5-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span></span>
 <span id="cb5-2"><a href="the-basics.html#cb5-2"></a><span class="op">+</span></span>
 <span id="cb5-3"><a href="the-basics.html#cb5-3"></a><span class="op">+</span></span>
@@ -389,14 +390,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here’s what that looks like for <code>sort()</code></p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="the-basics.html#cb22-1"></a>?sort </span></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="the-basics.html#cb23-1"></a><span class="kw">help</span>(sort) <span class="co"># does the same thing as `?sort`</span></span></code></pre></div>
-<p><img src="images/sort-documentation.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="images/sort-documentation.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>There’s <em>a ton</em> of information here, but all we’re interested in at the moment is the order in which we need to pass arguments to <code>sort()</code>, which we can find in the <strong>Arguments</strong> section.</p>
 </div>
 <div id="missingness-and-nothingness" class="section level2" number="2.7">
 <h2><span class="header-section-number">2.7</span> Missingness and Nothingness</h2>
 <div id="na" class="section level3" number="2.7.1">
 <h3><span class="header-section-number">2.7.1</span> <code>NA</code></h3>
-<p>You may have noticed the <code>na.last</code> argument in <code>sort()</code>’s documentation. R can represent nothingness with <code>NULL</code> (or <code>None</code> in Python), but it can also represent <em>unknown</em> or <em>missing</em> values with <code>NA</code>.</p>
+<p>You may have noticed the <code>na.last</code> argument in <code>sort()</code>’s documentation. R can represent nothingness with <code>NULL</code> (same as <code>null</code> or <code>None</code> in other languages), but it can also represent <em>unknown</em> or <em>missing</em> values with <code>NA</code>.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="the-basics.html#cb24-1"></a>unsorted_numbers_with_nas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="ot">NA</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="ot">NA</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
 <span id="cb24-2"><a href="the-basics.html#cb24-2"></a>unsorted_numbers_with_nas</span>
 <span id="cb24-3"><a href="the-basics.html#cb24-3"></a><span class="co">#&gt;  [1]  3  2 10  8 NA  1  4  9 NA  6  5  7</span></span></code></pre></div>
@@ -411,7 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="null" class="section level3" number="2.7.2">
 <h3><span class="header-section-number">2.7.2</span> <code>NULL</code></h3>
-<p>For most purposes, the difference between <code>NA</code> and <code>NULL</code> is that <code>vector</code>s (like <code>unsorted_numbers_with_nas</code>) can have <code>NA</code> values.</p>
+<p>For the moment, think of the difference between <code>NA</code> and <code>NULL</code> as being that <code>vector</code>s (like <code>unsorted_numbers_with_nas</code>) can have <code>NA</code> values but they cannot have <code>NULL</code> values.</p>
 <p>If we try to put <code>NULL</code> in a <code>vector</code>, it simply disappears.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="the-basics.html#cb27-1"></a><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="ot">NULL</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="ot">NULL</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
 <span id="cb27-2"><a href="the-basics.html#cb27-2"></a><span class="co">#&gt;  [1]  3  2 10  8  1  4  9  6  5  7</span></span></code></pre></div>
@@ -421,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="predicate-functions" class="section level2" number="2.8">
 <h2><span class="header-section-number">2.8</span> Predicate Functions</h2>
 <p>A <em>predicate function</em> is a function that <code>return</code>s either <code>TRUE</code> or <code>FALSE</code> based on some condition the function is checking.</p>
-<p>Predicate function (should) use a name that expresses this intent, such as <code>is&lt;some condition&gt;</code>, <code>any&lt;some condition&gt;()</code>, or <code>all&lt;some condition&gt;()</code>.</p>
+<p>Predicate functions <em>should</em> use a name that expresses this intent, such as <code>is&lt;some condition&gt;</code>, <code>any&lt;some condition&gt;()</code>, or <code>all&lt;some condition&gt;()</code>.</p>
 <p>If we want check if something is <code>NULL</code>, we use <code>is.null()</code>.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="the-basics.html#cb28-1"></a><span class="kw">is.null</span>(<span class="st">&quot;this string isn&#39;t NULL!&quot;</span>)</span>
 <span id="cb28-2"><a href="the-basics.html#cb28-2"></a><span class="co">#&gt; [1] FALSE</span></span>
@@ -477,19 +478,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Can you guess what <code>is.na()</code> <code>return</code>s?</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="the-basics.html#cb32-1"></a><span class="kw">is.na</span>(unsorted_numbers_with_nas)</span>
 <span id="cb32-2"><a href="the-basics.html#cb32-2"></a><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span></code></pre></div>
-<p><img src="images/the-what.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>We’ll discuss accessing a <code>vector</code>’s individual elements later, but <code>is.na()</code> is what we call a <em>vectorized</em> function: a function that takes <code>vector</code> argument and operates every on element simultaneously.</p>
+<p><img src="images/the-what.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We’ll discuss accessing a <code>vector</code>’s individual elements later, but <code>is.na()</code> is what we call a <em>vectorized</em> function: a function that takes <code>vector</code> argument and operates on every element simultaneously.</p>
 </div>
 <div id="vectorized-functions" class="section level2" number="2.9">
 <h2><span class="header-section-number">2.9</span> Vectorized Functions</h2>
 <p>As high-speed R coders, we should prefer <code>vector</code>ized solutions whenever possible as they’re not only idiomatic (and thus easy for other R users to understand), but they’re typically several orders of magnitude faster than other solutions.</p>
-<p>While R isn’t the fastest language out there, complaints about its speed often come poor code, which is often “speaking” R with a C or Python accent.</p>
-<p>The simplest way to wrap our heads around <code>vector</code>ized operations probably is with math.</p>
-<p>To do this, let’s first make a <code>vector</code> with five <code>0</code>s in it.</p>
+<p>While R isn’t the fastest language out there, complaints about its speed usually come from poor code, including code that “speaks” R with a C or Python accent.</p>
+<p>The simplest way to wrap our heads around <code>vector</code>ized operations is with math. let’s first make a <code>vector</code> with five <code>0</code>s in it.</p>
 <p>We could do that like the following:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="the-basics.html#cb33-1"></a><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
 <span id="cb33-2"><a href="the-basics.html#cb33-2"></a><span class="co">#&gt; [1] 0 0 0 0 0</span></span></code></pre></div>
-<p>But, good coders are lazy coders who want to (correctly) automate everything they can. With that in mind, let’s <code>rep()</code>eat <code>0</code> <code>5</code> times.</p>
+<p>But, good coders are <em>lazy</em> and want to (correctly) automate everything they can. With that in mind, let’s <code>rep()</code>eat <code>0</code> <code>5</code> times.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="the-basics.html#cb34-1"></a>zeros &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="dt">length =</span> <span class="dv">5</span>)</span>
 <span id="cb34-2"><a href="the-basics.html#cb34-2"></a>zeros</span>
 <span id="cb34-3"><a href="the-basics.html#cb34-3"></a><span class="co">#&gt; [1] 0 0 0 0 0</span></span></code></pre></div>
@@ -504,7 +504,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb36-3"><a href="the-basics.html#cb36-3"></a>zeros <span class="op">+</span><span class="st"> </span>two_threes</span>
 <span id="cb36-4"><a href="the-basics.html#cb36-4"></a><span class="co">#&gt; Warning in zeros + two_threes: longer object length is not a multiple of shorter object length</span></span>
 <span id="cb36-5"><a href="the-basics.html#cb36-5"></a><span class="co">#&gt; [1] 3 3 3 3 3</span></span></code></pre></div>
-<p>That’s probably not what you expected, but R threw a <code>warning()</code> to tell us something seems wrong.</p>
+<p>That’s probably not what you expected and R gives us a <code>warning()</code> to tell us something seems wrong.</p>
 <p>R let’s us get away with a lot of things it shouldn’t, which includes</p>
 
 </div>
@@ -571,6 +571,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

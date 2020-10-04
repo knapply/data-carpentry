@@ -26,9 +26,6 @@ chunk_output_type: console
 2 * 3                     # multiplication
 #> [1] 6
 
-2 / 3                     # division
-#> [1] 0.667
-
 1 + 1 * 3                 # combining operations
 #> [1] 4
 
@@ -60,7 +57,7 @@ Inf + 1       # 🤔
 
 ::: {.caution data-latex="{caution}"}
 
-If your code doesn't form a complete _expression_, then R will look for the rest of on the next line.
+If your code doesn't form a complete _expression_, then R will look for more on the next line.
 
 Here's an example:
 
@@ -69,7 +66,7 @@ Here's an example:
 1 +
 ```
 
-`1 + ` isn't a complete expression, so R will look for more on subsequent lines. You'll see something like the following:
+`1 + ` isn't a complete expression, so R prompt for more code on subsequent lines. You'll see something like the following:
 
 
 ```r
@@ -307,7 +304,7 @@ help(sort) # does the same thing as `?sort`
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{images/sort-documentation} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{images/sort-documentation} \end{center}
 
 
 There's _a ton_ of information here, but all we're interested in at the moment is the order in which we need to pass arguments to `sort()`, which we can find in the __Arguments__ section.
@@ -317,7 +314,7 @@ There's _a ton_ of information here, but all we're interested in at the moment i
 
 ### `NA`
 
-You may have noticed the `na.last` argument in `sort()`'s documentation. R can represent nothingness with `NULL` (or `None` in Python), but it can also represent _unknown_ or _missing_ values with `NA`.
+You may have noticed the `na.last` argument in `sort()`'s documentation. R can represent nothingness with `NULL` (same as `null` or `None` in other languages), but it can also represent _unknown_ or _missing_ values with `NA`.
 
 
 ```r
@@ -346,7 +343,7 @@ sort(unsorted_numbers_with_nas, na.last = FALSE)
 
 ### `NULL`
 
-For most purposes, the difference between `NA` and `NULL` is that `vector`s (like `unsorted_numbers_with_nas`) can have `NA` values.
+For the moment, think of the difference between `NA` and `NULL` as being that `vector`s (like `unsorted_numbers_with_nas`) can have `NA` values but they cannot have `NULL` values.
 
 If we try to put `NULL` in a `vector`, it simply disappears.
 
@@ -364,7 +361,7 @@ But, how do we check if something is `NA` or `NULL`?
 
 A _predicate function_ is a function that `return`s either `TRUE` or `FALSE` based on some condition the function is checking. 
 
-Predicate function (should) use a name that expresses this intent, such as `is<some condition>`, `any<some condition>()`, or `all<some condition>()`.
+Predicate functions _should_ use a name that expresses this intent, such as `is<some condition>`, `any<some condition>()`, or `all<some condition>()`.
 
 If we want check if something is `NULL`, we use `is.null()`.
 
@@ -448,20 +445,18 @@ is.na(unsorted_numbers_with_nas)
 ```
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{images/the-what} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{images/the-what} \end{center}
 
 
-We'll discuss accessing a `vector`'s individual elements later, but `is.na()` is what we call a _vectorized_ function: a function that takes `vector` argument and operates every on element simultaneously.
+We'll discuss accessing a `vector`'s individual elements later, but `is.na()` is what we call a _vectorized_ function: a function that takes `vector` argument and operates on every element simultaneously.
 
 ## Vectorized Functions
 
 As high-speed R coders, we should prefer `vector`ized solutions whenever possible as they're not only idiomatic (and thus easy for other R users to understand), but they're typically several orders of magnitude faster than other solutions.
 
-While R isn't the fastest language out there, complaints about its speed often come poor code, which is often "speaking" R with a C or Python accent.
+While R isn't the fastest language out there, complaints about its speed usually come from poor code, including code that "speaks" R with a C or Python accent.
 
-The simplest way to wrap our heads around `vector`ized operations probably is with math.
-
-To do this, let's first make a `vector` with five `0`s in it.
+The simplest way to wrap our heads around `vector`ized operations is with math. let's first make a `vector` with five `0`s in it.
 
 We could do that like the following:
 
@@ -471,7 +466,7 @@ c(0, 0, 0, 0, 0)
 #> [1] 0 0 0 0 0
 ```
 
-But, good coders are lazy coders who want to (correctly) automate everything they can. With that  in mind, let's `rep()`eat `0` `5` times.
+But, good coders are _lazy_ and want to (correctly) automate everything they can. With that  in mind, let's `rep()`eat `0` `5` times.
 
 
 ```r
@@ -506,7 +501,7 @@ zeros + two_threes
 #> [1] 3 3 3 3 3
 ```
 
-That's probably not what you expected, but R threw a `warning()` to tell us something seems wrong.
+That's probably not what you expected and R gives us a `warning()` to tell us something seems wrong.
 
 R let's us get away with a lot of things it shouldn't, which includes
 

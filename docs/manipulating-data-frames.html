@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://knapply.github.io/data-carpentry/" />
   
   <meta property="og:description" content="A practical roadmap for practitioners." />
-  <meta name="github-repo" content="knapply/ds4da-cookbook" />
+  <meta name="github-repo" content="knapply/data-carpentry" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="4 Manipulating Data Frames | Data Carpentry" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="tabular-data.html"/>
-
+<link rel="next" href="spatial-data.html"/>
 <script src="libs/header-attrs-2.4.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="part"><span><b>I Setup</b></span></li>
+<li class="part"><span><b>I Day 1</b></span></li>
 <li class="chapter" data-level="1" data-path="setup-r-and-rstudio.html"><a href="setup-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> R and RStudio</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="setup-r-and-rstudio.html"><a href="setup-r-and-rstudio.html#r"><i class="fa fa-check"></i><b>1.1</b> R</a>
@@ -164,7 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="the-basics.html"><a href="the-basics.html#predicate-functions"><i class="fa fa-check"></i><b>2.8</b> Predicate Functions</a></li>
 <li class="chapter" data-level="2.9" data-path="the-basics.html"><a href="the-basics.html#vectorized-functions"><i class="fa fa-check"></i><b>2.9</b> Vectorized Functions</a></li>
 </ul></li>
-<li class="part"><span><b>II Reading and Writing Data</b></span></li>
+<li class="part"><span><b>II Day 2</b></span></li>
 <li class="chapter" data-level="3" data-path="tabular-data.html"><a href="tabular-data.html"><i class="fa fa-check"></i><b>3</b> Tabular Data</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="tabular-data.html"><a href="tabular-data.html#basics"><i class="fa fa-check"></i><b>3.1</b> Basics</a></li>
@@ -173,7 +173,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.1" data-path="tabular-data.html"><a href="tabular-data.html#incorrect-column-types"><i class="fa fa-check"></i><b>3.2.1</b> Incorrect Column Types</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>III Data Frames</b></span></li>
 <li class="chapter" data-level="4" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html"><i class="fa fa-check"></i><b>4</b> Manipulating Data Frames</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#select-columns"><i class="fa fa-check"></i><b>4.1</b> <code>select()</code> Columns</a>
@@ -190,6 +189,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.3" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#by-type"><i class="fa fa-check"></i><b>4.2.3</b> by Type</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#arrange-rows"><i class="fa fa-check"></i><b>4.3</b> <code>arrange()</code> Rows</a></li>
+</ul></li>
+<li class="part"><span><b>III Day 3</b></span></li>
+<li class="chapter" data-level="5" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>5</b> Spatial Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="spatial-data.html"><a href="spatial-data.html#geometry"><i class="fa fa-check"></i><b>5.1</b> <code>geometry</code></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/knapply/data-carpentry" target="blank">Published with bookdown</a></li>
@@ -664,13 +668,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </div>
 </div>
+
+
+
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="tabular-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="tabular-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="spatial-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -701,7 +709,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/knapply/data-carpentry/edit/master/3-thesaurus.Rmd",
+"link": "https://github.com/knapply/data-carpentry/edit/master/2-thesaurus.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -722,6 +730,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
