@@ -24,7 +24,7 @@
 <meta name="author" content="Brendan Knapp and Christopher Callaghan" />
 
 
-<meta name="date" content="2020-10-03" />
+<meta name="date" content="2020-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -190,10 +190,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#arrange-rows"><i class="fa fa-check"></i><b>4.3</b> <code>arrange()</code> Rows</a></li>
 </ul></li>
-<li class="part"><span><b>III Day 3</b></span></li>
-<li class="chapter" data-level="5" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>5</b> Spatial Data</a>
+<li class="part"><span><b>III Spatial Data</b></span></li>
+<li class="chapter" data-level="5" data-path="types-of-spatial-data.html"><a href="types-of-spatial-data.html"><i class="fa fa-check"></i><b>5</b> Types of Spatial Data</a></li>
+<li class="chapter" data-level="6" data-path="vector-geometries.html"><a href="vector-geometries.html"><i class="fa fa-check"></i><b>6</b> Vector Geometries</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="spatial-data.html"><a href="spatial-data.html#geometry"><i class="fa fa-check"></i><b>5.1</b> <code>geometry</code></a></li>
+<li class="chapter" data-level="6.1" data-path="vector-geometries.html"><a href="vector-geometries.html#point"><i class="fa fa-check"></i><b>6.1</b> <code>POINT</code></a></li>
+<li class="chapter" data-level="6.2" data-path="vector-geometries.html"><a href="vector-geometries.html#multipoint"><i class="fa fa-check"></i><b>6.2</b> <code>MULTIPOINT</code></a></li>
+<li class="chapter" data-level="6.3" data-path="vector-geometries.html"><a href="vector-geometries.html#linestring"><i class="fa fa-check"></i><b>6.3</b> <code>LINESTRING</code></a></li>
+<li class="chapter" data-level="6.4" data-path="vector-geometries.html"><a href="vector-geometries.html#multilinestring"><i class="fa fa-check"></i><b>6.4</b> <code>MULTILINESTRING</code></a></li>
+<li class="chapter" data-level="6.5" data-path="vector-geometries.html"><a href="vector-geometries.html#polygon"><i class="fa fa-check"></i><b>6.5</b> <code>POLYGON</code></a></li>
+<li class="chapter" data-level="6.6" data-path="vector-geometries.html"><a href="vector-geometries.html#multipolygon"><i class="fa fa-check"></i><b>6.6</b> <code>MULTIPOLYGON</code></a></li>
+<li class="chapter" data-level="6.7" data-path="vector-geometries.html"><a href="vector-geometries.html#geometry"><i class="fa fa-check"></i><b>6.7</b> <code>GEOMETRY</code></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/knapply/data-carpentry" target="blank">Published with bookdown</a></li>
@@ -232,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="basics" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Basics</h2>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="tabular-data.html#cb37-1"></a><span class="kw">library</span>(readr)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="tabular-data.html#cb36-1"></a><span class="kw">library</span>(readr)</span></code></pre></div>
 <p>Here’s some example data, modified from <a href="http://www.gapminder.org/data/" class="uri">http://www.gapminder.org/data/</a></p>
 <pre><code>country,continent,year,lifeExp,pop,gdpPercap       # header/column names, separated by commas
 Afghanistan,Asia,1952,28.801,8425333,779.4453145
@@ -243,112 +250,112 @@ Afghanistan,Asia,1972,36.088,13079460,739.9811058
 Afghanistan,Asia,1977,38.438,14880372,786.11336
 Afghanistan,Asia,1982,39.854,12881816,978.0114388
 Afghanistan,Asia,1987,40.822,13867957,852.3959448</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="tabular-data.html#cb39-1"></a>csv_text &lt;-<span class="st"> </span></span>
-<span id="cb39-2"><a href="tabular-data.html#cb39-2"></a><span class="st">&#39;country,continent,year,lifeExp,pop,gdpPercap     </span></span>
-<span id="cb39-3"><a href="tabular-data.html#cb39-3"></a><span class="st">Afghanistan,Asia,1952,28.801,8425333,779.4453145</span></span>
-<span id="cb39-4"><a href="tabular-data.html#cb39-4"></a><span class="st">Afghanistan,Asia,1957,30.332,9240934,820.8530296</span></span>
-<span id="cb39-5"><a href="tabular-data.html#cb39-5"></a><span class="st">Afghanistan,Asia,1962,31.997,10267083,853.10071</span></span>
-<span id="cb39-6"><a href="tabular-data.html#cb39-6"></a><span class="st">Afghanistan,Asia,1967,34.02,11537966,836.1971382</span></span>
-<span id="cb39-7"><a href="tabular-data.html#cb39-7"></a><span class="st">Afghanistan,Asia,1972,36.088,13079460,739.9811058</span></span>
-<span id="cb39-8"><a href="tabular-data.html#cb39-8"></a><span class="st">Afghanistan,Asia,1977,38.438,14880372,786.11336</span></span>
-<span id="cb39-9"><a href="tabular-data.html#cb39-9"></a><span class="st">Afghanistan,Asia,1982,39.854,12881816,978.0114388</span></span>
-<span id="cb39-10"><a href="tabular-data.html#cb39-10"></a><span class="st">Afghanistan,Asia,1987,40.822,13867957,852.3959448&#39;</span></span>
-<span id="cb39-11"><a href="tabular-data.html#cb39-11"></a></span>
-<span id="cb39-12"><a href="tabular-data.html#cb39-12"></a>csv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.csv&quot;</span>)      </span>
-<span id="cb39-13"><a href="tabular-data.html#cb39-13"></a>csv_file <span class="co"># a temporary file path</span></span>
-<span id="cb39-14"><a href="tabular-data.html#cb39-14"></a><span class="co">#&gt; [1] &quot;/tmp/Rtmpy5oDCc/file36157da156c3.csv&quot;</span></span>
-<span id="cb39-15"><a href="tabular-data.html#cb39-15"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> csv_text, <span class="dt">con =</span> csv_file) <span class="co"># write `csv_text` to `csv_file`</span></span></code></pre></div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="tabular-data.html#cb40-1"></a><span class="kw">read_csv</span>(<span class="dt">file =</span> csv_file)</span>
-<span id="cb40-2"><a href="tabular-data.html#cb40-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
-<span id="cb40-3"><a href="tabular-data.html#cb40-3"></a><span class="co">#&gt; cols(</span></span>
-<span id="cb40-4"><a href="tabular-data.html#cb40-4"></a><span class="co">#&gt;   country = col_character(),</span></span>
-<span id="cb40-5"><a href="tabular-data.html#cb40-5"></a><span class="co">#&gt;   continent = col_character(),</span></span>
-<span id="cb40-6"><a href="tabular-data.html#cb40-6"></a><span class="co">#&gt;   year = col_double(),</span></span>
-<span id="cb40-7"><a href="tabular-data.html#cb40-7"></a><span class="co">#&gt;   lifeExp = col_double(),</span></span>
-<span id="cb40-8"><a href="tabular-data.html#cb40-8"></a><span class="co">#&gt;   pop = col_double(),</span></span>
-<span id="cb40-9"><a href="tabular-data.html#cb40-9"></a><span class="co">#&gt;   gdpPercap = col_double()</span></span>
-<span id="cb40-10"><a href="tabular-data.html#cb40-10"></a><span class="co">#&gt; )</span></span>
-<span id="cb40-11"><a href="tabular-data.html#cb40-11"></a><span class="co">#&gt; # A tibble: 8 x 6</span></span>
-<span id="cb40-12"><a href="tabular-data.html#cb40-12"></a><span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span></span>
-<span id="cb40-13"><a href="tabular-data.html#cb40-13"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb40-14"><a href="tabular-data.html#cb40-14"></a><span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779.</span></span>
-<span id="cb40-15"><a href="tabular-data.html#cb40-15"></a><span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821.</span></span>
-<span id="cb40-16"><a href="tabular-data.html#cb40-16"></a><span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853.</span></span>
-<span id="cb40-17"><a href="tabular-data.html#cb40-17"></a><span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836.</span></span>
-<span id="cb40-18"><a href="tabular-data.html#cb40-18"></a><span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span></span>
-<span id="cb40-19"><a href="tabular-data.html#cb40-19"></a><span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span></span>
-<span id="cb40-20"><a href="tabular-data.html#cb40-20"></a><span class="co">#&gt; 7 Afghanistan Asia       1982    39.9 12881816      978.</span></span>
-<span id="cb40-21"><a href="tabular-data.html#cb40-21"></a><span class="co">#&gt; 8 Afghanistan Asia       1987    40.8 13867957      852.</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="tabular-data.html#cb38-1"></a>csv_text &lt;-<span class="st"> </span></span>
+<span id="cb38-2"><a href="tabular-data.html#cb38-2"></a><span class="st">&#39;country,continent,year,lifeExp,pop,gdpPercap     </span></span>
+<span id="cb38-3"><a href="tabular-data.html#cb38-3"></a><span class="st">Afghanistan,Asia,1952,28.801,8425333,779.4453145</span></span>
+<span id="cb38-4"><a href="tabular-data.html#cb38-4"></a><span class="st">Afghanistan,Asia,1957,30.332,9240934,820.8530296</span></span>
+<span id="cb38-5"><a href="tabular-data.html#cb38-5"></a><span class="st">Afghanistan,Asia,1962,31.997,10267083,853.10071</span></span>
+<span id="cb38-6"><a href="tabular-data.html#cb38-6"></a><span class="st">Afghanistan,Asia,1967,34.02,11537966,836.1971382</span></span>
+<span id="cb38-7"><a href="tabular-data.html#cb38-7"></a><span class="st">Afghanistan,Asia,1972,36.088,13079460,739.9811058</span></span>
+<span id="cb38-8"><a href="tabular-data.html#cb38-8"></a><span class="st">Afghanistan,Asia,1977,38.438,14880372,786.11336</span></span>
+<span id="cb38-9"><a href="tabular-data.html#cb38-9"></a><span class="st">Afghanistan,Asia,1982,39.854,12881816,978.0114388</span></span>
+<span id="cb38-10"><a href="tabular-data.html#cb38-10"></a><span class="st">Afghanistan,Asia,1987,40.822,13867957,852.3959448&#39;</span></span>
+<span id="cb38-11"><a href="tabular-data.html#cb38-11"></a></span>
+<span id="cb38-12"><a href="tabular-data.html#cb38-12"></a>csv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.csv&quot;</span>)      </span>
+<span id="cb38-13"><a href="tabular-data.html#cb38-13"></a>csv_file <span class="co"># a temporary file path</span></span>
+<span id="cb38-14"><a href="tabular-data.html#cb38-14"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpBYPDU9/file8c67028f23e.csv&quot;</span></span>
+<span id="cb38-15"><a href="tabular-data.html#cb38-15"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> csv_text, <span class="dt">con =</span> csv_file) <span class="co"># write `csv_text` to `csv_file`</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="tabular-data.html#cb39-1"></a><span class="kw">read_csv</span>(<span class="dt">file =</span> csv_file)</span>
+<span id="cb39-2"><a href="tabular-data.html#cb39-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
+<span id="cb39-3"><a href="tabular-data.html#cb39-3"></a><span class="co">#&gt; cols(</span></span>
+<span id="cb39-4"><a href="tabular-data.html#cb39-4"></a><span class="co">#&gt;   country = col_character(),</span></span>
+<span id="cb39-5"><a href="tabular-data.html#cb39-5"></a><span class="co">#&gt;   continent = col_character(),</span></span>
+<span id="cb39-6"><a href="tabular-data.html#cb39-6"></a><span class="co">#&gt;   year = col_double(),</span></span>
+<span id="cb39-7"><a href="tabular-data.html#cb39-7"></a><span class="co">#&gt;   lifeExp = col_double(),</span></span>
+<span id="cb39-8"><a href="tabular-data.html#cb39-8"></a><span class="co">#&gt;   pop = col_double(),</span></span>
+<span id="cb39-9"><a href="tabular-data.html#cb39-9"></a><span class="co">#&gt;   gdpPercap = col_double()</span></span>
+<span id="cb39-10"><a href="tabular-data.html#cb39-10"></a><span class="co">#&gt; )</span></span>
+<span id="cb39-11"><a href="tabular-data.html#cb39-11"></a><span class="co">#&gt; # A tibble: 8 x 6</span></span>
+<span id="cb39-12"><a href="tabular-data.html#cb39-12"></a><span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span></span>
+<span id="cb39-13"><a href="tabular-data.html#cb39-13"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb39-14"><a href="tabular-data.html#cb39-14"></a><span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779.</span></span>
+<span id="cb39-15"><a href="tabular-data.html#cb39-15"></a><span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821.</span></span>
+<span id="cb39-16"><a href="tabular-data.html#cb39-16"></a><span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853.</span></span>
+<span id="cb39-17"><a href="tabular-data.html#cb39-17"></a><span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836.</span></span>
+<span id="cb39-18"><a href="tabular-data.html#cb39-18"></a><span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span></span>
+<span id="cb39-19"><a href="tabular-data.html#cb39-19"></a><span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span></span>
+<span id="cb39-20"><a href="tabular-data.html#cb39-20"></a><span class="co">#&gt; 7 Afghanistan Asia       1982    39.9 12881816      978.</span></span>
+<span id="cb39-21"><a href="tabular-data.html#cb39-21"></a><span class="co">#&gt; 8 Afghanistan Asia       1987    40.8 13867957      852.</span></span></code></pre></div>
 <p>You may encounter Tab-Delimited data where values are separated by <code>\t</code> instead of <code>,</code>. Instead of <code>readr::read_csv()</code>, we can use <code>readr::read_tsv()</code>.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="tabular-data.html#cb41-1"></a>tsv_text &lt;-<span class="st"> </span></span>
-<span id="cb41-2"><a href="tabular-data.html#cb41-2"></a><span class="st">&#39;country</span><span class="ch">\t</span><span class="st">continent</span><span class="ch">\t</span><span class="st">year</span><span class="ch">\t</span><span class="st">lifeExp</span><span class="ch">\t</span><span class="st">pop</span><span class="ch">\t</span><span class="st">gdpPercap     </span></span>
-<span id="cb41-3"><a href="tabular-data.html#cb41-3"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1952</span><span class="ch">\t</span><span class="st">28.801</span><span class="ch">\t</span><span class="st">8425333</span><span class="ch">\t</span><span class="st">779.4453145</span></span>
-<span id="cb41-4"><a href="tabular-data.html#cb41-4"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1957</span><span class="ch">\t</span><span class="st">30.332</span><span class="ch">\t</span><span class="st">9240934</span><span class="ch">\t</span><span class="st">820.8530296</span></span>
-<span id="cb41-5"><a href="tabular-data.html#cb41-5"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1962</span><span class="ch">\t</span><span class="st">31.997</span><span class="ch">\t</span><span class="st">10267083</span><span class="ch">\t</span><span class="st">853.10071</span></span>
-<span id="cb41-6"><a href="tabular-data.html#cb41-6"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1967</span><span class="ch">\t</span><span class="st">34.02</span><span class="ch">\t</span><span class="st">11537966</span><span class="ch">\t</span><span class="st">836.1971382</span></span>
-<span id="cb41-7"><a href="tabular-data.html#cb41-7"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1972</span><span class="ch">\t</span><span class="st">36.088</span><span class="ch">\t</span><span class="st">13079460</span><span class="ch">\t</span><span class="st">739.9811058</span></span>
-<span id="cb41-8"><a href="tabular-data.html#cb41-8"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1977</span><span class="ch">\t</span><span class="st">38.438</span><span class="ch">\t</span><span class="st">14880372</span><span class="ch">\t</span><span class="st">786.11336</span></span>
-<span id="cb41-9"><a href="tabular-data.html#cb41-9"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1982</span><span class="ch">\t</span><span class="st">39.854</span><span class="ch">\t</span><span class="st">12881816</span><span class="ch">\t</span><span class="st">978.0114388</span></span>
-<span id="cb41-10"><a href="tabular-data.html#cb41-10"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1987</span><span class="ch">\t</span><span class="st">40.822</span><span class="ch">\t</span><span class="st">13867957</span><span class="ch">\t</span><span class="st">852.3959448&#39;</span></span>
-<span id="cb41-11"><a href="tabular-data.html#cb41-11"></a></span>
-<span id="cb41-12"><a href="tabular-data.html#cb41-12"></a>tsv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.tsv&quot;</span>)</span>
-<span id="cb41-13"><a href="tabular-data.html#cb41-13"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> tsv_text, <span class="dt">con =</span> tsv_file)</span></code></pre></div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="tabular-data.html#cb42-1"></a><span class="kw">read_tsv</span>(<span class="dt">file =</span> tsv_file)</span>
-<span id="cb42-2"><a href="tabular-data.html#cb42-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
-<span id="cb42-3"><a href="tabular-data.html#cb42-3"></a><span class="co">#&gt; cols(</span></span>
-<span id="cb42-4"><a href="tabular-data.html#cb42-4"></a><span class="co">#&gt;   country = col_character(),</span></span>
-<span id="cb42-5"><a href="tabular-data.html#cb42-5"></a><span class="co">#&gt;   continent = col_character(),</span></span>
-<span id="cb42-6"><a href="tabular-data.html#cb42-6"></a><span class="co">#&gt;   year = col_double(),</span></span>
-<span id="cb42-7"><a href="tabular-data.html#cb42-7"></a><span class="co">#&gt;   lifeExp = col_double(),</span></span>
-<span id="cb42-8"><a href="tabular-data.html#cb42-8"></a><span class="co">#&gt;   pop = col_double(),</span></span>
-<span id="cb42-9"><a href="tabular-data.html#cb42-9"></a><span class="co">#&gt;   gdpPercap = col_double()</span></span>
-<span id="cb42-10"><a href="tabular-data.html#cb42-10"></a><span class="co">#&gt; )</span></span>
-<span id="cb42-11"><a href="tabular-data.html#cb42-11"></a><span class="co">#&gt; # A tibble: 8 x 6</span></span>
-<span id="cb42-12"><a href="tabular-data.html#cb42-12"></a><span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span></span>
-<span id="cb42-13"><a href="tabular-data.html#cb42-13"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb42-14"><a href="tabular-data.html#cb42-14"></a><span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779.</span></span>
-<span id="cb42-15"><a href="tabular-data.html#cb42-15"></a><span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821.</span></span>
-<span id="cb42-16"><a href="tabular-data.html#cb42-16"></a><span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853.</span></span>
-<span id="cb42-17"><a href="tabular-data.html#cb42-17"></a><span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836.</span></span>
-<span id="cb42-18"><a href="tabular-data.html#cb42-18"></a><span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span></span>
-<span id="cb42-19"><a href="tabular-data.html#cb42-19"></a><span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span></span>
-<span id="cb42-20"><a href="tabular-data.html#cb42-20"></a><span class="co">#&gt; 7 Afghanistan Asia       1982    39.9 12881816      978.</span></span>
-<span id="cb42-21"><a href="tabular-data.html#cb42-21"></a><span class="co">#&gt; 8 Afghanistan Asia       1987    40.8 13867957      852.</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="tabular-data.html#cb40-1"></a>tsv_text &lt;-<span class="st"> </span></span>
+<span id="cb40-2"><a href="tabular-data.html#cb40-2"></a><span class="st">&#39;country</span><span class="ch">\t</span><span class="st">continent</span><span class="ch">\t</span><span class="st">year</span><span class="ch">\t</span><span class="st">lifeExp</span><span class="ch">\t</span><span class="st">pop</span><span class="ch">\t</span><span class="st">gdpPercap     </span></span>
+<span id="cb40-3"><a href="tabular-data.html#cb40-3"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1952</span><span class="ch">\t</span><span class="st">28.801</span><span class="ch">\t</span><span class="st">8425333</span><span class="ch">\t</span><span class="st">779.4453145</span></span>
+<span id="cb40-4"><a href="tabular-data.html#cb40-4"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1957</span><span class="ch">\t</span><span class="st">30.332</span><span class="ch">\t</span><span class="st">9240934</span><span class="ch">\t</span><span class="st">820.8530296</span></span>
+<span id="cb40-5"><a href="tabular-data.html#cb40-5"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1962</span><span class="ch">\t</span><span class="st">31.997</span><span class="ch">\t</span><span class="st">10267083</span><span class="ch">\t</span><span class="st">853.10071</span></span>
+<span id="cb40-6"><a href="tabular-data.html#cb40-6"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1967</span><span class="ch">\t</span><span class="st">34.02</span><span class="ch">\t</span><span class="st">11537966</span><span class="ch">\t</span><span class="st">836.1971382</span></span>
+<span id="cb40-7"><a href="tabular-data.html#cb40-7"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1972</span><span class="ch">\t</span><span class="st">36.088</span><span class="ch">\t</span><span class="st">13079460</span><span class="ch">\t</span><span class="st">739.9811058</span></span>
+<span id="cb40-8"><a href="tabular-data.html#cb40-8"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1977</span><span class="ch">\t</span><span class="st">38.438</span><span class="ch">\t</span><span class="st">14880372</span><span class="ch">\t</span><span class="st">786.11336</span></span>
+<span id="cb40-9"><a href="tabular-data.html#cb40-9"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1982</span><span class="ch">\t</span><span class="st">39.854</span><span class="ch">\t</span><span class="st">12881816</span><span class="ch">\t</span><span class="st">978.0114388</span></span>
+<span id="cb40-10"><a href="tabular-data.html#cb40-10"></a><span class="st">Afghanistan</span><span class="ch">\t</span><span class="st">Asia</span><span class="ch">\t</span><span class="st">1987</span><span class="ch">\t</span><span class="st">40.822</span><span class="ch">\t</span><span class="st">13867957</span><span class="ch">\t</span><span class="st">852.3959448&#39;</span></span>
+<span id="cb40-11"><a href="tabular-data.html#cb40-11"></a></span>
+<span id="cb40-12"><a href="tabular-data.html#cb40-12"></a>tsv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.tsv&quot;</span>)</span>
+<span id="cb40-13"><a href="tabular-data.html#cb40-13"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> tsv_text, <span class="dt">con =</span> tsv_file)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="tabular-data.html#cb41-1"></a><span class="kw">read_tsv</span>(<span class="dt">file =</span> tsv_file)</span>
+<span id="cb41-2"><a href="tabular-data.html#cb41-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
+<span id="cb41-3"><a href="tabular-data.html#cb41-3"></a><span class="co">#&gt; cols(</span></span>
+<span id="cb41-4"><a href="tabular-data.html#cb41-4"></a><span class="co">#&gt;   country = col_character(),</span></span>
+<span id="cb41-5"><a href="tabular-data.html#cb41-5"></a><span class="co">#&gt;   continent = col_character(),</span></span>
+<span id="cb41-6"><a href="tabular-data.html#cb41-6"></a><span class="co">#&gt;   year = col_double(),</span></span>
+<span id="cb41-7"><a href="tabular-data.html#cb41-7"></a><span class="co">#&gt;   lifeExp = col_double(),</span></span>
+<span id="cb41-8"><a href="tabular-data.html#cb41-8"></a><span class="co">#&gt;   pop = col_double(),</span></span>
+<span id="cb41-9"><a href="tabular-data.html#cb41-9"></a><span class="co">#&gt;   gdpPercap = col_double()</span></span>
+<span id="cb41-10"><a href="tabular-data.html#cb41-10"></a><span class="co">#&gt; )</span></span>
+<span id="cb41-11"><a href="tabular-data.html#cb41-11"></a><span class="co">#&gt; # A tibble: 8 x 6</span></span>
+<span id="cb41-12"><a href="tabular-data.html#cb41-12"></a><span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span></span>
+<span id="cb41-13"><a href="tabular-data.html#cb41-13"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb41-14"><a href="tabular-data.html#cb41-14"></a><span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779.</span></span>
+<span id="cb41-15"><a href="tabular-data.html#cb41-15"></a><span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821.</span></span>
+<span id="cb41-16"><a href="tabular-data.html#cb41-16"></a><span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853.</span></span>
+<span id="cb41-17"><a href="tabular-data.html#cb41-17"></a><span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836.</span></span>
+<span id="cb41-18"><a href="tabular-data.html#cb41-18"></a><span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span></span>
+<span id="cb41-19"><a href="tabular-data.html#cb41-19"></a><span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span></span>
+<span id="cb41-20"><a href="tabular-data.html#cb41-20"></a><span class="co">#&gt; 7 Afghanistan Asia       1982    39.9 12881816      978.</span></span>
+<span id="cb41-21"><a href="tabular-data.html#cb41-21"></a><span class="co">#&gt; 8 Afghanistan Asia       1987    40.8 13867957      852.</span></span></code></pre></div>
 <p>If we find ourselves reading delmited data that uses something other than <code>\t</code> or <code>,</code> to separate values, we can use <code>readr::read_delim()</code>.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tabular-data.html#cb43-1"></a>pipe_separated_values_text &lt;-<span class="st"> </span></span>
-<span id="cb43-2"><a href="tabular-data.html#cb43-2"></a><span class="st">&#39;country|continent|year|lifeExp|pop|gdpPercap     </span></span>
-<span id="cb43-3"><a href="tabular-data.html#cb43-3"></a><span class="st">Afghanistan|Asia|1952|28.801|8425333|779.4453145</span></span>
-<span id="cb43-4"><a href="tabular-data.html#cb43-4"></a><span class="st">Afghanistan|Asia|1957|30.332|9240934|820.8530296</span></span>
-<span id="cb43-5"><a href="tabular-data.html#cb43-5"></a><span class="st">Afghanistan|Asia|1962|31.997|10267083|853.10071</span></span>
-<span id="cb43-6"><a href="tabular-data.html#cb43-6"></a><span class="st">Afghanistan|Asia|1967|34.02|11537966|836.1971382</span></span>
-<span id="cb43-7"><a href="tabular-data.html#cb43-7"></a><span class="st">Afghanistan|Asia|1972|36.088|13079460|739.9811058</span></span>
-<span id="cb43-8"><a href="tabular-data.html#cb43-8"></a><span class="st">Afghanistan|Asia|1977|38.438|14880372|786.11336</span></span>
-<span id="cb43-9"><a href="tabular-data.html#cb43-9"></a><span class="st">Afghanistan|Asia|1982|39.854|12881816|978.0114388</span></span>
-<span id="cb43-10"><a href="tabular-data.html#cb43-10"></a><span class="st">Afghanistan|Asia|1987|40.822|13867957|852.3959448&#39;</span></span>
-<span id="cb43-11"><a href="tabular-data.html#cb43-11"></a></span>
-<span id="cb43-12"><a href="tabular-data.html#cb43-12"></a>psv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.tsv&quot;</span>)</span>
-<span id="cb43-13"><a href="tabular-data.html#cb43-13"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> pipe_separated_values_text, <span class="dt">con =</span> psv_file)</span></code></pre></div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="tabular-data.html#cb44-1"></a><span class="kw">read_delim</span>(<span class="dt">file =</span> psv_file, <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>)</span>
-<span id="cb44-2"><a href="tabular-data.html#cb44-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
-<span id="cb44-3"><a href="tabular-data.html#cb44-3"></a><span class="co">#&gt; cols(</span></span>
-<span id="cb44-4"><a href="tabular-data.html#cb44-4"></a><span class="co">#&gt;   country = col_character(),</span></span>
-<span id="cb44-5"><a href="tabular-data.html#cb44-5"></a><span class="co">#&gt;   continent = col_character(),</span></span>
-<span id="cb44-6"><a href="tabular-data.html#cb44-6"></a><span class="co">#&gt;   year = col_double(),</span></span>
-<span id="cb44-7"><a href="tabular-data.html#cb44-7"></a><span class="co">#&gt;   lifeExp = col_double(),</span></span>
-<span id="cb44-8"><a href="tabular-data.html#cb44-8"></a><span class="co">#&gt;   pop = col_double(),</span></span>
-<span id="cb44-9"><a href="tabular-data.html#cb44-9"></a><span class="co">#&gt;   `gdpPercap     ` = col_double()</span></span>
-<span id="cb44-10"><a href="tabular-data.html#cb44-10"></a><span class="co">#&gt; )</span></span>
-<span id="cb44-11"><a href="tabular-data.html#cb44-11"></a><span class="co">#&gt; # A tibble: 8 x 6</span></span>
-<span id="cb44-12"><a href="tabular-data.html#cb44-12"></a><span class="co">#&gt;   country     continent  year lifeExp      pop `gdpPercap     `</span></span>
-<span id="cb44-13"><a href="tabular-data.html#cb44-13"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;</span></span>
-<span id="cb44-14"><a href="tabular-data.html#cb44-14"></a><span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333             779.</span></span>
-<span id="cb44-15"><a href="tabular-data.html#cb44-15"></a><span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934             821.</span></span>
-<span id="cb44-16"><a href="tabular-data.html#cb44-16"></a><span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083             853.</span></span>
-<span id="cb44-17"><a href="tabular-data.html#cb44-17"></a><span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966             836.</span></span>
-<span id="cb44-18"><a href="tabular-data.html#cb44-18"></a><span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460             740.</span></span>
-<span id="cb44-19"><a href="tabular-data.html#cb44-19"></a><span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372             786.</span></span>
-<span id="cb44-20"><a href="tabular-data.html#cb44-20"></a><span class="co">#&gt; 7 Afghanistan Asia       1982    39.9 12881816             978.</span></span>
-<span id="cb44-21"><a href="tabular-data.html#cb44-21"></a><span class="co">#&gt; 8 Afghanistan Asia       1987    40.8 13867957             852.</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="tabular-data.html#cb42-1"></a>pipe_separated_values_text &lt;-<span class="st"> </span></span>
+<span id="cb42-2"><a href="tabular-data.html#cb42-2"></a><span class="st">&#39;country|continent|year|lifeExp|pop|gdpPercap     </span></span>
+<span id="cb42-3"><a href="tabular-data.html#cb42-3"></a><span class="st">Afghanistan|Asia|1952|28.801|8425333|779.4453145</span></span>
+<span id="cb42-4"><a href="tabular-data.html#cb42-4"></a><span class="st">Afghanistan|Asia|1957|30.332|9240934|820.8530296</span></span>
+<span id="cb42-5"><a href="tabular-data.html#cb42-5"></a><span class="st">Afghanistan|Asia|1962|31.997|10267083|853.10071</span></span>
+<span id="cb42-6"><a href="tabular-data.html#cb42-6"></a><span class="st">Afghanistan|Asia|1967|34.02|11537966|836.1971382</span></span>
+<span id="cb42-7"><a href="tabular-data.html#cb42-7"></a><span class="st">Afghanistan|Asia|1972|36.088|13079460|739.9811058</span></span>
+<span id="cb42-8"><a href="tabular-data.html#cb42-8"></a><span class="st">Afghanistan|Asia|1977|38.438|14880372|786.11336</span></span>
+<span id="cb42-9"><a href="tabular-data.html#cb42-9"></a><span class="st">Afghanistan|Asia|1982|39.854|12881816|978.0114388</span></span>
+<span id="cb42-10"><a href="tabular-data.html#cb42-10"></a><span class="st">Afghanistan|Asia|1987|40.822|13867957|852.3959448&#39;</span></span>
+<span id="cb42-11"><a href="tabular-data.html#cb42-11"></a></span>
+<span id="cb42-12"><a href="tabular-data.html#cb42-12"></a>psv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.tsv&quot;</span>)</span>
+<span id="cb42-13"><a href="tabular-data.html#cb42-13"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> pipe_separated_values_text, <span class="dt">con =</span> psv_file)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tabular-data.html#cb43-1"></a><span class="kw">read_delim</span>(<span class="dt">file =</span> psv_file, <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>)</span>
+<span id="cb43-2"><a href="tabular-data.html#cb43-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
+<span id="cb43-3"><a href="tabular-data.html#cb43-3"></a><span class="co">#&gt; cols(</span></span>
+<span id="cb43-4"><a href="tabular-data.html#cb43-4"></a><span class="co">#&gt;   country = col_character(),</span></span>
+<span id="cb43-5"><a href="tabular-data.html#cb43-5"></a><span class="co">#&gt;   continent = col_character(),</span></span>
+<span id="cb43-6"><a href="tabular-data.html#cb43-6"></a><span class="co">#&gt;   year = col_double(),</span></span>
+<span id="cb43-7"><a href="tabular-data.html#cb43-7"></a><span class="co">#&gt;   lifeExp = col_double(),</span></span>
+<span id="cb43-8"><a href="tabular-data.html#cb43-8"></a><span class="co">#&gt;   pop = col_double(),</span></span>
+<span id="cb43-9"><a href="tabular-data.html#cb43-9"></a><span class="co">#&gt;   `gdpPercap     ` = col_double()</span></span>
+<span id="cb43-10"><a href="tabular-data.html#cb43-10"></a><span class="co">#&gt; )</span></span>
+<span id="cb43-11"><a href="tabular-data.html#cb43-11"></a><span class="co">#&gt; # A tibble: 8 x 6</span></span>
+<span id="cb43-12"><a href="tabular-data.html#cb43-12"></a><span class="co">#&gt;   country     continent  year lifeExp      pop `gdpPercap     `</span></span>
+<span id="cb43-13"><a href="tabular-data.html#cb43-13"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;</span></span>
+<span id="cb43-14"><a href="tabular-data.html#cb43-14"></a><span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333             779.</span></span>
+<span id="cb43-15"><a href="tabular-data.html#cb43-15"></a><span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934             821.</span></span>
+<span id="cb43-16"><a href="tabular-data.html#cb43-16"></a><span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083             853.</span></span>
+<span id="cb43-17"><a href="tabular-data.html#cb43-17"></a><span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966             836.</span></span>
+<span id="cb43-18"><a href="tabular-data.html#cb43-18"></a><span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460             740.</span></span>
+<span id="cb43-19"><a href="tabular-data.html#cb43-19"></a><span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372             786.</span></span>
+<span id="cb43-20"><a href="tabular-data.html#cb43-20"></a><span class="co">#&gt; 7 Afghanistan Asia       1982    39.9 12881816             978.</span></span>
+<span id="cb43-21"><a href="tabular-data.html#cb43-21"></a><span class="co">#&gt; 8 Afghanistan Asia       1987    40.8 13867957             852.</span></span></code></pre></div>
 <pre><code>country,continent,year,lifeExp,pop,gdpPercap       # header/column names
 Afghanistan,Asia,1952,28.801,8425333,779.4453145
 Afghanistan,Asia,1957,30.332,9240934,820.8530296
@@ -359,84 +366,84 @@ Afghanistan,Asia,1977,38.438,14880372,786.11336
 Afghanistan,Asia,1982,39.854,12881816,978.0114388
 Afghanistan,Asia,1987,40.822,13867957,852.3959448
 Afghanistan,,,N/A,,                                # notice that we&#39;re missing values</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="tabular-data.html#cb46-1"></a>csv_text &lt;-<span class="st"> </span></span>
-<span id="cb46-2"><a href="tabular-data.html#cb46-2"></a><span class="st">&#39;country,continent,year,lifeExp,pop,gdpPercap</span></span>
-<span id="cb46-3"><a href="tabular-data.html#cb46-3"></a><span class="st">Afghanistan,Asia,1952,28.801,8425333,779.4453145</span></span>
-<span id="cb46-4"><a href="tabular-data.html#cb46-4"></a><span class="st">Afghanistan,Asia,1957,30.332,9240934,820.8530296</span></span>
-<span id="cb46-5"><a href="tabular-data.html#cb46-5"></a><span class="st">Afghanistan,Asia,1962,31.997,10267083,853.10071</span></span>
-<span id="cb46-6"><a href="tabular-data.html#cb46-6"></a><span class="st">Afghanistan,Asia,1967,34.02,11537966,836.1971382</span></span>
-<span id="cb46-7"><a href="tabular-data.html#cb46-7"></a><span class="st">Afghanistan,Asia,1972,36.088,13079460,739.9811058</span></span>
-<span id="cb46-8"><a href="tabular-data.html#cb46-8"></a><span class="st">Afghanistan,Asia,1977,38.438,14880372,786.11336</span></span>
-<span id="cb46-9"><a href="tabular-data.html#cb46-9"></a><span class="st">Afghanistan,Asia,1982,39.854,12881816,978.0114388</span></span>
-<span id="cb46-10"><a href="tabular-data.html#cb46-10"></a><span class="st">Afghanistan,Asia,1987,40.822,13867957,852.3959448</span></span>
-<span id="cb46-11"><a href="tabular-data.html#cb46-11"></a><span class="st">Afghanistan,,,N/A,,&#39;</span></span>
-<span id="cb46-12"><a href="tabular-data.html#cb46-12"></a></span>
-<span id="cb46-13"><a href="tabular-data.html#cb46-13"></a>csv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.csv&quot;</span>)</span>
-<span id="cb46-14"><a href="tabular-data.html#cb46-14"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> csv_text, <span class="dt">con =</span> csv_file)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="tabular-data.html#cb45-1"></a>csv_text &lt;-<span class="st"> </span></span>
+<span id="cb45-2"><a href="tabular-data.html#cb45-2"></a><span class="st">&#39;country,continent,year,lifeExp,pop,gdpPercap</span></span>
+<span id="cb45-3"><a href="tabular-data.html#cb45-3"></a><span class="st">Afghanistan,Asia,1952,28.801,8425333,779.4453145</span></span>
+<span id="cb45-4"><a href="tabular-data.html#cb45-4"></a><span class="st">Afghanistan,Asia,1957,30.332,9240934,820.8530296</span></span>
+<span id="cb45-5"><a href="tabular-data.html#cb45-5"></a><span class="st">Afghanistan,Asia,1962,31.997,10267083,853.10071</span></span>
+<span id="cb45-6"><a href="tabular-data.html#cb45-6"></a><span class="st">Afghanistan,Asia,1967,34.02,11537966,836.1971382</span></span>
+<span id="cb45-7"><a href="tabular-data.html#cb45-7"></a><span class="st">Afghanistan,Asia,1972,36.088,13079460,739.9811058</span></span>
+<span id="cb45-8"><a href="tabular-data.html#cb45-8"></a><span class="st">Afghanistan,Asia,1977,38.438,14880372,786.11336</span></span>
+<span id="cb45-9"><a href="tabular-data.html#cb45-9"></a><span class="st">Afghanistan,Asia,1982,39.854,12881816,978.0114388</span></span>
+<span id="cb45-10"><a href="tabular-data.html#cb45-10"></a><span class="st">Afghanistan,Asia,1987,40.822,13867957,852.3959448</span></span>
+<span id="cb45-11"><a href="tabular-data.html#cb45-11"></a><span class="st">Afghanistan,,,N/A,,&#39;</span></span>
+<span id="cb45-12"><a href="tabular-data.html#cb45-12"></a></span>
+<span id="cb45-13"><a href="tabular-data.html#cb45-13"></a>csv_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.csv&quot;</span>)</span>
+<span id="cb45-14"><a href="tabular-data.html#cb45-14"></a><span class="kw">writeLines</span>(<span class="dt">text =</span> csv_text, <span class="dt">con =</span> csv_file)</span></code></pre></div>
 </div>
 <div id="common-pitfalls" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Common Pitfalls</h2>
 <div id="incorrect-column-types" class="section level3" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Incorrect Column Types</h3>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="tabular-data.html#cb47-1"></a>data_frame_from_csv &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> csv_file)</span>
-<span id="cb47-2"><a href="tabular-data.html#cb47-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
-<span id="cb47-3"><a href="tabular-data.html#cb47-3"></a><span class="co">#&gt; cols(</span></span>
-<span id="cb47-4"><a href="tabular-data.html#cb47-4"></a><span class="co">#&gt;   country = col_character(),</span></span>
-<span id="cb47-5"><a href="tabular-data.html#cb47-5"></a><span class="co">#&gt;   continent = col_character(),</span></span>
-<span id="cb47-6"><a href="tabular-data.html#cb47-6"></a><span class="co">#&gt;   year = col_double(),</span></span>
-<span id="cb47-7"><a href="tabular-data.html#cb47-7"></a><span class="co">#&gt;   lifeExp = col_character(),</span></span>
-<span id="cb47-8"><a href="tabular-data.html#cb47-8"></a><span class="co">#&gt;   pop = col_double(),</span></span>
-<span id="cb47-9"><a href="tabular-data.html#cb47-9"></a><span class="co">#&gt;   gdpPercap = col_double()</span></span>
-<span id="cb47-10"><a href="tabular-data.html#cb47-10"></a><span class="co">#&gt; )</span></span>
-<span id="cb47-11"><a href="tabular-data.html#cb47-11"></a>data_frame_from_csv</span>
-<span id="cb47-12"><a href="tabular-data.html#cb47-12"></a><span class="co">#&gt; # A tibble: 9 x 6</span></span>
-<span id="cb47-13"><a href="tabular-data.html#cb47-13"></a><span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span></span>
-<span id="cb47-14"><a href="tabular-data.html#cb47-14"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb47-15"><a href="tabular-data.html#cb47-15"></a><span class="co">#&gt; 1 Afghanistan Asia       1952 28.801   8425333      779.</span></span>
-<span id="cb47-16"><a href="tabular-data.html#cb47-16"></a><span class="co">#&gt; 2 Afghanistan Asia       1957 30.332   9240934      821.</span></span>
-<span id="cb47-17"><a href="tabular-data.html#cb47-17"></a><span class="co">#&gt; 3 Afghanistan Asia       1962 31.997  10267083      853.</span></span>
-<span id="cb47-18"><a href="tabular-data.html#cb47-18"></a><span class="co">#&gt; 4 Afghanistan Asia       1967 34.02   11537966      836.</span></span>
-<span id="cb47-19"><a href="tabular-data.html#cb47-19"></a><span class="co">#&gt; 5 Afghanistan Asia       1972 36.088  13079460      740.</span></span>
-<span id="cb47-20"><a href="tabular-data.html#cb47-20"></a><span class="co">#&gt; 6 Afghanistan Asia       1977 38.438  14880372      786.</span></span>
-<span id="cb47-21"><a href="tabular-data.html#cb47-21"></a><span class="co">#&gt; 7 Afghanistan Asia       1982 39.854  12881816      978.</span></span>
-<span id="cb47-22"><a href="tabular-data.html#cb47-22"></a><span class="co">#&gt; 8 Afghanistan Asia       1987 40.822  13867957      852.</span></span>
-<span id="cb47-23"><a href="tabular-data.html#cb47-23"></a><span class="co">#&gt; 9 Afghanistan &lt;NA&gt;         NA N/A           NA       NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="tabular-data.html#cb46-1"></a>data_frame_from_csv &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> csv_file)</span>
+<span id="cb46-2"><a href="tabular-data.html#cb46-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
+<span id="cb46-3"><a href="tabular-data.html#cb46-3"></a><span class="co">#&gt; cols(</span></span>
+<span id="cb46-4"><a href="tabular-data.html#cb46-4"></a><span class="co">#&gt;   country = col_character(),</span></span>
+<span id="cb46-5"><a href="tabular-data.html#cb46-5"></a><span class="co">#&gt;   continent = col_character(),</span></span>
+<span id="cb46-6"><a href="tabular-data.html#cb46-6"></a><span class="co">#&gt;   year = col_double(),</span></span>
+<span id="cb46-7"><a href="tabular-data.html#cb46-7"></a><span class="co">#&gt;   lifeExp = col_character(),</span></span>
+<span id="cb46-8"><a href="tabular-data.html#cb46-8"></a><span class="co">#&gt;   pop = col_double(),</span></span>
+<span id="cb46-9"><a href="tabular-data.html#cb46-9"></a><span class="co">#&gt;   gdpPercap = col_double()</span></span>
+<span id="cb46-10"><a href="tabular-data.html#cb46-10"></a><span class="co">#&gt; )</span></span>
+<span id="cb46-11"><a href="tabular-data.html#cb46-11"></a>data_frame_from_csv</span>
+<span id="cb46-12"><a href="tabular-data.html#cb46-12"></a><span class="co">#&gt; # A tibble: 9 x 6</span></span>
+<span id="cb46-13"><a href="tabular-data.html#cb46-13"></a><span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span></span>
+<span id="cb46-14"><a href="tabular-data.html#cb46-14"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb46-15"><a href="tabular-data.html#cb46-15"></a><span class="co">#&gt; 1 Afghanistan Asia       1952 28.801   8425333      779.</span></span>
+<span id="cb46-16"><a href="tabular-data.html#cb46-16"></a><span class="co">#&gt; 2 Afghanistan Asia       1957 30.332   9240934      821.</span></span>
+<span id="cb46-17"><a href="tabular-data.html#cb46-17"></a><span class="co">#&gt; 3 Afghanistan Asia       1962 31.997  10267083      853.</span></span>
+<span id="cb46-18"><a href="tabular-data.html#cb46-18"></a><span class="co">#&gt; 4 Afghanistan Asia       1967 34.02   11537966      836.</span></span>
+<span id="cb46-19"><a href="tabular-data.html#cb46-19"></a><span class="co">#&gt; 5 Afghanistan Asia       1972 36.088  13079460      740.</span></span>
+<span id="cb46-20"><a href="tabular-data.html#cb46-20"></a><span class="co">#&gt; 6 Afghanistan Asia       1977 38.438  14880372      786.</span></span>
+<span id="cb46-21"><a href="tabular-data.html#cb46-21"></a><span class="co">#&gt; 7 Afghanistan Asia       1982 39.854  12881816      978.</span></span>
+<span id="cb46-22"><a href="tabular-data.html#cb46-22"></a><span class="co">#&gt; 8 Afghanistan Asia       1987 40.822  13867957      852.</span></span>
+<span id="cb46-23"><a href="tabular-data.html#cb46-23"></a><span class="co">#&gt; 9 Afghanistan &lt;NA&gt;         NA N/A           NA       NA</span></span></code></pre></div>
 <p>Notice that our <code>year</code> column says <code>&lt;dbl&gt;</code>, referring to it being of type <code>double</code>, yet all of our <code>year</code> values are whole numbers.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="tabular-data.html#cb48-1"></a><span class="kw">typeof</span>(data_frame_from_csv<span class="op">$</span>year)</span>
-<span id="cb48-2"><a href="tabular-data.html#cb48-2"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
-<span id="cb48-3"><a href="tabular-data.html#cb48-3"></a>data_frame_from_csv<span class="op">$</span>year</span>
-<span id="cb48-4"><a href="tabular-data.html#cb48-4"></a><span class="co">#&gt; [1] 1952 1957 1962 1967 1972 1977 1982 1987   NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="tabular-data.html#cb47-1"></a><span class="kw">typeof</span>(data_frame_from_csv<span class="op">$</span>year)</span>
+<span id="cb47-2"><a href="tabular-data.html#cb47-2"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb47-3"><a href="tabular-data.html#cb47-3"></a>data_frame_from_csv<span class="op">$</span>year</span>
+<span id="cb47-4"><a href="tabular-data.html#cb47-4"></a><span class="co">#&gt; [1] 1952 1957 1962 1967 1972 1977 1982 1987   NA</span></span></code></pre></div>
 <p>We also have <code>"N/A"</code> in our <code>lifeExp</code> column, forcing R to interpret all <code>lifeExp</code> values as <code>character</code>s (<code>&lt;chr&gt;</code>).</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="tabular-data.html#cb49-1"></a><span class="kw">typeof</span>(data_frame_from_csv<span class="op">$</span>lifeExp)</span>
-<span id="cb49-2"><a href="tabular-data.html#cb49-2"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
-<span id="cb49-3"><a href="tabular-data.html#cb49-3"></a>data_frame_from_csv<span class="op">$</span>lifeExp</span>
-<span id="cb49-4"><a href="tabular-data.html#cb49-4"></a><span class="co">#&gt; [1] &quot;28.801&quot; &quot;30.332&quot; &quot;31.997&quot; &quot;34.02&quot;  &quot;36.088&quot; &quot;38.438&quot; &quot;39.854&quot; &quot;40.822&quot; &quot;N/A&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="tabular-data.html#cb48-1"></a><span class="kw">typeof</span>(data_frame_from_csv<span class="op">$</span>lifeExp)</span>
+<span id="cb48-2"><a href="tabular-data.html#cb48-2"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
+<span id="cb48-3"><a href="tabular-data.html#cb48-3"></a>data_frame_from_csv<span class="op">$</span>lifeExp</span>
+<span id="cb48-4"><a href="tabular-data.html#cb48-4"></a><span class="co">#&gt; [1] &quot;28.801&quot; &quot;30.332&quot; &quot;31.997&quot; &quot;34.02&quot;  &quot;36.088&quot; &quot;38.438&quot; &quot;39.854&quot; &quot;40.822&quot; &quot;N/A&quot;</span></span></code></pre></div>
 <div id="solution" class="section level4" number="3.2.1.1">
 <h4><span class="header-section-number">3.2.1.1</span> Solution</h4>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="tabular-data.html#cb50-1"></a><span class="kw">read_csv</span>(</span>
-<span id="cb50-2"><a href="tabular-data.html#cb50-2"></a>  <span class="dt">file =</span> csv_file,</span>
-<span id="cb50-3"><a href="tabular-data.html#cb50-3"></a>  <span class="dt">col_types =</span> <span class="kw">cols</span>(</span>
-<span id="cb50-4"><a href="tabular-data.html#cb50-4"></a>    <span class="dt">country =</span> <span class="kw">col_character</span>(),</span>
-<span id="cb50-5"><a href="tabular-data.html#cb50-5"></a>    <span class="dt">continent =</span> <span class="kw">col_character</span>(),</span>
-<span id="cb50-6"><a href="tabular-data.html#cb50-6"></a>    <span class="dt">year =</span> <span class="kw">col_integer</span>(),        <span class="co"># read `year` as `integer`</span></span>
-<span id="cb50-7"><a href="tabular-data.html#cb50-7"></a>    <span class="dt">lifeExp =</span> <span class="kw">col_double</span>(),      <span class="co"># read `lifeExp` as `double`</span></span>
-<span id="cb50-8"><a href="tabular-data.html#cb50-8"></a>    <span class="dt">pop =</span> <span class="kw">col_double</span>(),</span>
-<span id="cb50-9"><a href="tabular-data.html#cb50-9"></a>    <span class="dt">gdpPercap =</span> <span class="kw">col_double</span>()</span>
-<span id="cb50-10"><a href="tabular-data.html#cb50-10"></a>  ),</span>
-<span id="cb50-11"><a href="tabular-data.html#cb50-11"></a>  <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;N/A&quot;</span>)              <span class="co"># be explicit about how `csv_file` represents missing values</span></span>
-<span id="cb50-12"><a href="tabular-data.html#cb50-12"></a>)</span>
-<span id="cb50-13"><a href="tabular-data.html#cb50-13"></a><span class="co">#&gt; # A tibble: 9 x 6</span></span>
-<span id="cb50-14"><a href="tabular-data.html#cb50-14"></a><span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span></span>
-<span id="cb50-15"><a href="tabular-data.html#cb50-15"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb50-16"><a href="tabular-data.html#cb50-16"></a><span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779.</span></span>
-<span id="cb50-17"><a href="tabular-data.html#cb50-17"></a><span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821.</span></span>
-<span id="cb50-18"><a href="tabular-data.html#cb50-18"></a><span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853.</span></span>
-<span id="cb50-19"><a href="tabular-data.html#cb50-19"></a><span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836.</span></span>
-<span id="cb50-20"><a href="tabular-data.html#cb50-20"></a><span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span></span>
-<span id="cb50-21"><a href="tabular-data.html#cb50-21"></a><span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span></span>
-<span id="cb50-22"><a href="tabular-data.html#cb50-22"></a><span class="co">#&gt; 7 Afghanistan Asia       1982    39.9 12881816      978.</span></span>
-<span id="cb50-23"><a href="tabular-data.html#cb50-23"></a><span class="co">#&gt; 8 Afghanistan Asia       1987    40.8 13867957      852.</span></span>
-<span id="cb50-24"><a href="tabular-data.html#cb50-24"></a><span class="co">#&gt; 9 Afghanistan &lt;NA&gt;         NA    NA         NA       NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="tabular-data.html#cb49-1"></a><span class="kw">read_csv</span>(</span>
+<span id="cb49-2"><a href="tabular-data.html#cb49-2"></a>  <span class="dt">file =</span> csv_file,</span>
+<span id="cb49-3"><a href="tabular-data.html#cb49-3"></a>  <span class="dt">col_types =</span> <span class="kw">cols</span>(</span>
+<span id="cb49-4"><a href="tabular-data.html#cb49-4"></a>    <span class="dt">country =</span> <span class="kw">col_character</span>(),</span>
+<span id="cb49-5"><a href="tabular-data.html#cb49-5"></a>    <span class="dt">continent =</span> <span class="kw">col_character</span>(),</span>
+<span id="cb49-6"><a href="tabular-data.html#cb49-6"></a>    <span class="dt">year =</span> <span class="kw">col_integer</span>(),        <span class="co"># read `year` as `integer`</span></span>
+<span id="cb49-7"><a href="tabular-data.html#cb49-7"></a>    <span class="dt">lifeExp =</span> <span class="kw">col_double</span>(),      <span class="co"># read `lifeExp` as `double`</span></span>
+<span id="cb49-8"><a href="tabular-data.html#cb49-8"></a>    <span class="dt">pop =</span> <span class="kw">col_double</span>(),</span>
+<span id="cb49-9"><a href="tabular-data.html#cb49-9"></a>    <span class="dt">gdpPercap =</span> <span class="kw">col_double</span>()</span>
+<span id="cb49-10"><a href="tabular-data.html#cb49-10"></a>  ),</span>
+<span id="cb49-11"><a href="tabular-data.html#cb49-11"></a>  <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;N/A&quot;</span>)              <span class="co"># be explicit about how `csv_file` represents missing values</span></span>
+<span id="cb49-12"><a href="tabular-data.html#cb49-12"></a>)</span>
+<span id="cb49-13"><a href="tabular-data.html#cb49-13"></a><span class="co">#&gt; # A tibble: 9 x 6</span></span>
+<span id="cb49-14"><a href="tabular-data.html#cb49-14"></a><span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span></span>
+<span id="cb49-15"><a href="tabular-data.html#cb49-15"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb49-16"><a href="tabular-data.html#cb49-16"></a><span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779.</span></span>
+<span id="cb49-17"><a href="tabular-data.html#cb49-17"></a><span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821.</span></span>
+<span id="cb49-18"><a href="tabular-data.html#cb49-18"></a><span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853.</span></span>
+<span id="cb49-19"><a href="tabular-data.html#cb49-19"></a><span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836.</span></span>
+<span id="cb49-20"><a href="tabular-data.html#cb49-20"></a><span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span></span>
+<span id="cb49-21"><a href="tabular-data.html#cb49-21"></a><span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span></span>
+<span id="cb49-22"><a href="tabular-data.html#cb49-22"></a><span class="co">#&gt; 7 Afghanistan Asia       1982    39.9 12881816      978.</span></span>
+<span id="cb49-23"><a href="tabular-data.html#cb49-23"></a><span class="co">#&gt; 8 Afghanistan Asia       1987    40.8 13867957      852.</span></span>
+<span id="cb49-24"><a href="tabular-data.html#cb49-24"></a><span class="co">#&gt; 9 Afghanistan &lt;NA&gt;         NA    NA         NA       NA</span></span></code></pre></div>
 
 </div>
 </div>

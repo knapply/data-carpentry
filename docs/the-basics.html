@@ -24,7 +24,7 @@
 <meta name="author" content="Brendan Knapp and Christopher Callaghan" />
 
 
-<meta name="date" content="2020-10-03" />
+<meta name="date" content="2020-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -190,10 +190,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="manipulating-data-frames.html"><a href="manipulating-data-frames.html#arrange-rows"><i class="fa fa-check"></i><b>4.3</b> <code>arrange()</code> Rows</a></li>
 </ul></li>
-<li class="part"><span><b>III Day 3</b></span></li>
-<li class="chapter" data-level="5" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>5</b> Spatial Data</a>
+<li class="part"><span><b>III Spatial Data</b></span></li>
+<li class="chapter" data-level="5" data-path="types-of-spatial-data.html"><a href="types-of-spatial-data.html"><i class="fa fa-check"></i><b>5</b> Types of Spatial Data</a></li>
+<li class="chapter" data-level="6" data-path="vector-geometries.html"><a href="vector-geometries.html"><i class="fa fa-check"></i><b>6</b> Vector Geometries</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="spatial-data.html"><a href="spatial-data.html#geometry"><i class="fa fa-check"></i><b>5.1</b> <code>geometry</code></a></li>
+<li class="chapter" data-level="6.1" data-path="vector-geometries.html"><a href="vector-geometries.html#point"><i class="fa fa-check"></i><b>6.1</b> <code>POINT</code></a></li>
+<li class="chapter" data-level="6.2" data-path="vector-geometries.html"><a href="vector-geometries.html#multipoint"><i class="fa fa-check"></i><b>6.2</b> <code>MULTIPOINT</code></a></li>
+<li class="chapter" data-level="6.3" data-path="vector-geometries.html"><a href="vector-geometries.html#linestring"><i class="fa fa-check"></i><b>6.3</b> <code>LINESTRING</code></a></li>
+<li class="chapter" data-level="6.4" data-path="vector-geometries.html"><a href="vector-geometries.html#multilinestring"><i class="fa fa-check"></i><b>6.4</b> <code>MULTILINESTRING</code></a></li>
+<li class="chapter" data-level="6.5" data-path="vector-geometries.html"><a href="vector-geometries.html#polygon"><i class="fa fa-check"></i><b>6.5</b> <code>POLYGON</code></a></li>
+<li class="chapter" data-level="6.6" data-path="vector-geometries.html"><a href="vector-geometries.html#multipolygon"><i class="fa fa-check"></i><b>6.6</b> <code>MULTIPOLYGON</code></a></li>
+<li class="chapter" data-level="6.7" data-path="vector-geometries.html"><a href="vector-geometries.html#geometry"><i class="fa fa-check"></i><b>6.7</b> <code>GEOMETRY</code></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/knapply/data-carpentry" target="blank">Published with bookdown</a></li>
@@ -217,179 +224,179 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="the-basics" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> The Basics</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="the-basics.html#cb2-1"></a><span class="st">&quot;Hello, World!&quot;</span></span>
-<span id="cb2-2"><a href="the-basics.html#cb2-2"></a><span class="co">#&gt; [1] &quot;Hello, World!&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="the-basics.html#cb1-1"></a><span class="st">&quot;Hello, World!&quot;</span></span>
+<span id="cb1-2"><a href="the-basics.html#cb1-2"></a><span class="co">#&gt; [1] &quot;Hello, World!&quot;</span></span></code></pre></div>
 <div id="r-as-a-calculator" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> R as a Calculator</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="the-basics.html#cb3-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>                     <span class="co"># addition</span></span>
-<span id="cb3-2"><a href="the-basics.html#cb3-2"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb3-3"><a href="the-basics.html#cb3-3"></a></span>
-<span id="cb3-4"><a href="the-basics.html#cb3-4"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>                     <span class="co"># subtraction</span></span>
-<span id="cb3-5"><a href="the-basics.html#cb3-5"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb3-6"><a href="the-basics.html#cb3-6"></a></span>
-<span id="cb3-7"><a href="the-basics.html#cb3-7"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span>                     <span class="co"># multiplication</span></span>
-<span id="cb3-8"><a href="the-basics.html#cb3-8"></a><span class="co">#&gt; [1] 6</span></span>
-<span id="cb3-9"><a href="the-basics.html#cb3-9"></a></span>
-<span id="cb3-10"><a href="the-basics.html#cb3-10"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span>                 <span class="co"># combining operations</span></span>
-<span id="cb3-11"><a href="the-basics.html#cb3-11"></a><span class="co">#&gt; [1] 4</span></span>
-<span id="cb3-12"><a href="the-basics.html#cb3-12"></a></span>
-<span id="cb3-13"><a href="the-basics.html#cb3-13"></a>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="dv">3</span>               <span class="co"># operator precedence</span></span>
-<span id="cb3-14"><a href="the-basics.html#cb3-14"></a><span class="co">#&gt; [1] 6</span></span>
-<span id="cb3-15"><a href="the-basics.html#cb3-15"></a></span>
-<span id="cb3-16"><a href="the-basics.html#cb3-16"></a><span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>                     <span class="co"># division</span></span>
-<span id="cb3-17"><a href="the-basics.html#cb3-17"></a><span class="co">#&gt; [1] 1.5</span></span>
-<span id="cb3-18"><a href="the-basics.html#cb3-18"></a></span>
-<span id="cb3-19"><a href="the-basics.html#cb3-19"></a><span class="co"># ↓↓ pronounced &quot;modulo&quot;</span></span>
-<span id="cb3-20"><a href="the-basics.html#cb3-20"></a><span class="dv">3</span> <span class="op">%%</span><span class="st"> </span><span class="dv">2</span>                    <span class="co"># division remainder</span></span>
-<span id="cb3-21"><a href="the-basics.html#cb3-21"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb3-22"><a href="the-basics.html#cb3-22"></a></span>
-<span id="cb3-23"><a href="the-basics.html#cb3-23"></a><span class="dv">4</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span>                   <span class="co"># integer division</span></span>
-<span id="cb3-24"><a href="the-basics.html#cb3-24"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb3-25"><a href="the-basics.html#cb3-25"></a></span>
-<span id="cb3-26"><a href="the-basics.html#cb3-26"></a><span class="dv">3</span><span class="op">^</span><span class="dv">2</span>                       <span class="co"># exponents</span></span>
-<span id="cb3-27"><a href="the-basics.html#cb3-27"></a><span class="co">#&gt; [1] 9</span></span>
-<span id="cb3-28"><a href="the-basics.html#cb3-28"></a><span class="dv">4</span><span class="op">**</span><span class="dv">2</span>                      <span class="co"># also exponents!</span></span>
-<span id="cb3-29"><a href="the-basics.html#cb3-29"></a><span class="co">#&gt; [1] 16</span></span>
-<span id="cb3-30"><a href="the-basics.html#cb3-30"></a></span>
-<span id="cb3-31"><a href="the-basics.html#cb3-31"></a><span class="ot">Inf</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>       <span class="co"># 🤔</span></span>
-<span id="cb3-32"><a href="the-basics.html#cb3-32"></a><span class="co">#&gt; [1] Inf</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="the-basics.html#cb2-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>                     <span class="co"># addition</span></span>
+<span id="cb2-2"><a href="the-basics.html#cb2-2"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb2-3"><a href="the-basics.html#cb2-3"></a></span>
+<span id="cb2-4"><a href="the-basics.html#cb2-4"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>                     <span class="co"># subtraction</span></span>
+<span id="cb2-5"><a href="the-basics.html#cb2-5"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb2-6"><a href="the-basics.html#cb2-6"></a></span>
+<span id="cb2-7"><a href="the-basics.html#cb2-7"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span>                     <span class="co"># multiplication</span></span>
+<span id="cb2-8"><a href="the-basics.html#cb2-8"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb2-9"><a href="the-basics.html#cb2-9"></a></span>
+<span id="cb2-10"><a href="the-basics.html#cb2-10"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span>                 <span class="co"># combining operations</span></span>
+<span id="cb2-11"><a href="the-basics.html#cb2-11"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb2-12"><a href="the-basics.html#cb2-12"></a></span>
+<span id="cb2-13"><a href="the-basics.html#cb2-13"></a>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="dv">3</span>               <span class="co"># operator precedence</span></span>
+<span id="cb2-14"><a href="the-basics.html#cb2-14"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb2-15"><a href="the-basics.html#cb2-15"></a></span>
+<span id="cb2-16"><a href="the-basics.html#cb2-16"></a><span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>                     <span class="co"># division</span></span>
+<span id="cb2-17"><a href="the-basics.html#cb2-17"></a><span class="co">#&gt; [1] 1.5</span></span>
+<span id="cb2-18"><a href="the-basics.html#cb2-18"></a></span>
+<span id="cb2-19"><a href="the-basics.html#cb2-19"></a><span class="co"># ↓↓ pronounced &quot;modulo&quot;</span></span>
+<span id="cb2-20"><a href="the-basics.html#cb2-20"></a><span class="dv">3</span> <span class="op">%%</span><span class="st"> </span><span class="dv">2</span>                    <span class="co"># division remainder</span></span>
+<span id="cb2-21"><a href="the-basics.html#cb2-21"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb2-22"><a href="the-basics.html#cb2-22"></a></span>
+<span id="cb2-23"><a href="the-basics.html#cb2-23"></a><span class="dv">4</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span>                   <span class="co"># integer division</span></span>
+<span id="cb2-24"><a href="the-basics.html#cb2-24"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb2-25"><a href="the-basics.html#cb2-25"></a></span>
+<span id="cb2-26"><a href="the-basics.html#cb2-26"></a><span class="dv">3</span><span class="op">^</span><span class="dv">2</span>                       <span class="co"># exponents</span></span>
+<span id="cb2-27"><a href="the-basics.html#cb2-27"></a><span class="co">#&gt; [1] 9</span></span>
+<span id="cb2-28"><a href="the-basics.html#cb2-28"></a><span class="dv">4</span><span class="op">**</span><span class="dv">2</span>                      <span class="co"># also exponents!</span></span>
+<span id="cb2-29"><a href="the-basics.html#cb2-29"></a><span class="co">#&gt; [1] 16</span></span>
+<span id="cb2-30"><a href="the-basics.html#cb2-30"></a></span>
+<span id="cb2-31"><a href="the-basics.html#cb2-31"></a><span class="ot">Inf</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>       <span class="co"># 🤔</span></span>
+<span id="cb2-32"><a href="the-basics.html#cb2-32"></a><span class="co">#&gt; [1] Inf</span></span></code></pre></div>
 <div class="caution">
 <p>If your code doesn’t form a complete <em>expression</em>, then R will look for more on the next line.</p>
 <p>Here’s an example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="the-basics.html#cb4-1"></a><span class="dv">1</span> <span class="op">+</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="the-basics.html#cb3-1"></a><span class="dv">1</span> <span class="op">+</span></span></code></pre></div>
 <p><code>1 +</code> isn’t a complete expression, so R prompt for more code on subsequent lines. You’ll see something like the following:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="the-basics.html#cb5-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span></span>
-<span id="cb5-2"><a href="the-basics.html#cb5-2"></a><span class="op">+</span></span>
-<span id="cb5-3"><a href="the-basics.html#cb5-3"></a><span class="op">+</span></span>
-<span id="cb5-4"><a href="the-basics.html#cb5-4"></a><span class="op">+</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="the-basics.html#cb4-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span></span>
+<span id="cb4-2"><a href="the-basics.html#cb4-2"></a><span class="op">+</span></span>
+<span id="cb4-3"><a href="the-basics.html#cb4-3"></a><span class="op">+</span></span>
+<span id="cb4-4"><a href="the-basics.html#cb4-4"></a><span class="op">+</span></span></code></pre></div>
 <p>If this happens, press the <strong>Esc</strong>(scape) key (you may have to click on the Console pane first) and fix your code.</p>
 </div>
 </div>
 <div id="fundamental-types" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Fundamental Types</h2>
 <p>R has several basic data types that serve as the foundation upon which everything is built.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="the-basics.html#cb6-1"></a><span class="dv">1</span>             <span class="co"># double (short for double-precision floating-point number)</span></span>
-<span id="cb6-2"><a href="the-basics.html#cb6-2"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb6-3"><a href="the-basics.html#cb6-3"></a><span class="fl">3.14</span>          <span class="co"># also double (we can just think of them as decimals)</span></span>
-<span id="cb6-4"><a href="the-basics.html#cb6-4"></a><span class="co">#&gt; [1] 3.14</span></span>
-<span id="cb6-5"><a href="the-basics.html#cb6-5"></a></span>
-<span id="cb6-6"><a href="the-basics.html#cb6-6"></a>1L            <span class="co"># integer (`L` for &quot;Literal&quot; or `long` integers)</span></span>
-<span id="cb6-7"><a href="the-basics.html#cb6-7"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb6-8"><a href="the-basics.html#cb6-8"></a></span>
-<span id="cb6-9"><a href="the-basics.html#cb6-9"></a><span class="st">&quot;1&quot;</span>           <span class="co"># character or string (kinda... we&#39;ll discuss later)</span></span>
-<span id="cb6-10"><a href="the-basics.html#cb6-10"></a><span class="co">#&gt; [1] &quot;1&quot;</span></span>
-<span id="cb6-11"><a href="the-basics.html#cb6-11"></a></span>
-<span id="cb6-12"><a href="the-basics.html#cb6-12"></a><span class="ot">TRUE</span>          <span class="co"># logical (similar to `bool`s in other languages)</span></span>
-<span id="cb6-13"><a href="the-basics.html#cb6-13"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb6-14"><a href="the-basics.html#cb6-14"></a><span class="ot">FALSE</span>         <span class="co"># also logical</span></span>
-<span id="cb6-15"><a href="the-basics.html#cb6-15"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb6-16"><a href="the-basics.html#cb6-16"></a></span>
-<span id="cb6-17"><a href="the-basics.html#cb6-17"></a>4i            <span class="co"># complex (we&#39;re never going to use these)</span></span>
-<span id="cb6-18"><a href="the-basics.html#cb6-18"></a><span class="co">#&gt; [1] 0+4i</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="the-basics.html#cb5-1"></a><span class="dv">1</span>             <span class="co"># double (short for double-precision floating-point number)</span></span>
+<span id="cb5-2"><a href="the-basics.html#cb5-2"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb5-3"><a href="the-basics.html#cb5-3"></a><span class="fl">3.14</span>          <span class="co"># also double (we can just think of them as decimals)</span></span>
+<span id="cb5-4"><a href="the-basics.html#cb5-4"></a><span class="co">#&gt; [1] 3.14</span></span>
+<span id="cb5-5"><a href="the-basics.html#cb5-5"></a></span>
+<span id="cb5-6"><a href="the-basics.html#cb5-6"></a>1L            <span class="co"># integer (`L` for &quot;Literal&quot; or `long` integers)</span></span>
+<span id="cb5-7"><a href="the-basics.html#cb5-7"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb5-8"><a href="the-basics.html#cb5-8"></a></span>
+<span id="cb5-9"><a href="the-basics.html#cb5-9"></a><span class="st">&quot;1&quot;</span>           <span class="co"># character or string (kinda... we&#39;ll discuss later)</span></span>
+<span id="cb5-10"><a href="the-basics.html#cb5-10"></a><span class="co">#&gt; [1] &quot;1&quot;</span></span>
+<span id="cb5-11"><a href="the-basics.html#cb5-11"></a></span>
+<span id="cb5-12"><a href="the-basics.html#cb5-12"></a><span class="ot">TRUE</span>          <span class="co"># logical (similar to `bool`s in other languages)</span></span>
+<span id="cb5-13"><a href="the-basics.html#cb5-13"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb5-14"><a href="the-basics.html#cb5-14"></a><span class="ot">FALSE</span>         <span class="co"># also logical</span></span>
+<span id="cb5-15"><a href="the-basics.html#cb5-15"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb5-16"><a href="the-basics.html#cb5-16"></a></span>
+<span id="cb5-17"><a href="the-basics.html#cb5-17"></a>4i            <span class="co"># complex (we&#39;re never going to use these)</span></span>
+<span id="cb5-18"><a href="the-basics.html#cb5-18"></a><span class="co">#&gt; [1] 0+4i</span></span></code></pre></div>
 <div class="info">
 <p>Like most programming languages, R lets us mix <em>comments</em> into our code. Anything that follows <code>#</code> on the same line is ignored by R.</p>
 <p>Comments enable us to annotate our work or temporarily (hopefully) disable lines of code.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="the-basics.html#cb7-1"></a><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="dv">-1000</span> <span class="co"># a negative number times a negative is positive</span></span>
-<span id="cb7-2"><a href="the-basics.html#cb7-2"></a><span class="co">#&gt; [1] 1000</span></span>
-<span id="cb7-3"><a href="the-basics.html#cb7-3"></a></span>
-<span id="cb7-4"><a href="the-basics.html#cb7-4"></a><span class="co"># TRUE + FALSE # felt cute, might un-comment later  🤷</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="the-basics.html#cb6-1"></a><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="dv">-1000</span> <span class="co"># a negative number times a negative is positive</span></span>
+<span id="cb6-2"><a href="the-basics.html#cb6-2"></a><span class="co">#&gt; [1] 1000</span></span>
+<span id="cb6-3"><a href="the-basics.html#cb6-3"></a></span>
+<span id="cb6-4"><a href="the-basics.html#cb6-4"></a><span class="co"># TRUE + FALSE # felt cute, might un-comment later  🤷</span></span></code></pre></div>
 <p>Leverage comments to communicate with humans! They’re an opportunity for explaining <em>what</em> something does and (often more-importantly) <em>why</em> something works or is necessary.</p>
 <p>Since comments are ubiquitous, it’s worth pointing out two common conventions:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="the-basics.html#cb8-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">(CC): CC (initials) is going to implement some behavior</span></span>
-<span id="cb8-2"><a href="the-basics.html#cb8-2"></a><span class="co"># </span><span class="al">FIXME</span><span class="co">(BK): BK is going to fix some problem</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="the-basics.html#cb7-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">(CC): CC (initials) is going to implement some behavior</span></span>
+<span id="cb7-2"><a href="the-basics.html#cb7-2"></a><span class="co"># </span><span class="al">FIXME</span><span class="co">(BK): BK is going to fix some problem</span></span></code></pre></div>
 </div>
 </div>
 <div id="variables" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Variables</h2>
 <p>R’s assignment operator is <code>&lt;-</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="the-basics.html#cb9-1"></a>my_first_var &lt;-<span class="st"> &quot;referring to data w/ names is handy!&quot;</span></span>
-<span id="cb9-2"><a href="the-basics.html#cb9-2"></a>my_first_var</span>
-<span id="cb9-3"><a href="the-basics.html#cb9-3"></a><span class="co">#&gt; [1] &quot;referring to data w/ names is handy!&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="the-basics.html#cb8-1"></a>my_first_var &lt;-<span class="st"> &quot;referring to data w/ names is handy!&quot;</span></span>
+<span id="cb8-2"><a href="the-basics.html#cb8-2"></a>my_first_var</span>
+<span id="cb8-3"><a href="the-basics.html#cb8-3"></a><span class="co">#&gt; [1] &quot;referring to data w/ names is handy!&quot;</span></span></code></pre></div>
 <p>We can also use <code>=</code> like many other languages, but we <em>highly</em> discourage this (especially starting out) because we use <code>=</code> elsewhere. If you stick to <code>&lt;-</code>, you’ll never have to guess where you’ve assigned variables or rely on context clues to predict <code>=</code>’s intended purpose or behavior.</p>
 <p>You should always prefer descriptive variable names so that others can more easily understand your code. Most of the time, the other person will just be you in the future.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="the-basics.html#cb10-1"></a>length &lt;-<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb10-2"><a href="the-basics.html#cb10-2"></a>width &lt;-<span class="st"> </span><span class="dv">4</span></span>
-<span id="cb10-3"><a href="the-basics.html#cb10-3"></a></span>
-<span id="cb10-4"><a href="the-basics.html#cb10-4"></a>area &lt;-<span class="st"> </span>length <span class="op">*</span><span class="st"> </span>width</span>
-<span id="cb10-5"><a href="the-basics.html#cb10-5"></a>area</span>
-<span id="cb10-6"><a href="the-basics.html#cb10-6"></a><span class="co">#&gt; [1] 8</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="the-basics.html#cb9-1"></a>length &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb9-2"><a href="the-basics.html#cb9-2"></a>width &lt;-<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb9-3"><a href="the-basics.html#cb9-3"></a></span>
+<span id="cb9-4"><a href="the-basics.html#cb9-4"></a>area &lt;-<span class="st"> </span>length <span class="op">*</span><span class="st"> </span>width</span>
+<span id="cb9-5"><a href="the-basics.html#cb9-5"></a>area</span>
+<span id="cb9-6"><a href="the-basics.html#cb9-6"></a><span class="co">#&gt; [1] 8</span></span></code></pre></div>
 </div>
 <div id="multiple-values" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Multiple Values</h2>
 <p>We’ll almost always need to deal with more than one value, so R let’s us <code>c()</code>ombine values.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="the-basics.html#cb11-1"></a><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb11-2"><a href="the-basics.html#cb11-2"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="the-basics.html#cb10-1"></a><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb10-2"><a href="the-basics.html#cb10-2"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div>
 <p>We won’t get into the nitty-gritty details just yet, but we typically call a collection of values of the same type (<em>homogeneous</em>) a <code>vector</code>.</p>
 <p>R is special for a few reasons and having native <code>vector</code>s is definitely one of them. Understanding how they work is fundamental to writing good (and fast!) code.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="the-basics.html#cb12-1"></a><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)       <span class="co"># `c()` is short for &quot;combine&quot;</span></span>
-<span id="cb12-2"><a href="the-basics.html#cb12-2"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
-<span id="cb12-3"><a href="the-basics.html#cb12-3"></a></span>
-<span id="cb12-4"><a href="the-basics.html#cb12-4"></a><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>                       <span class="co"># `:` lets us create sequences</span></span>
-<span id="cb12-5"><a href="the-basics.html#cb12-5"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
-<span id="cb12-6"><a href="the-basics.html#cb12-6"></a></span>
-<span id="cb12-7"><a href="the-basics.html#cb12-7"></a>my_first_vector &lt;-<span class="st"> </span><span class="dv">-5</span><span class="op">:</span><span class="dv">5</span> <span class="co"># we&#39;ll explain `vector`s later,</span></span>
-<span id="cb12-8"><a href="the-basics.html#cb12-8"></a>my_first_vector</span>
-<span id="cb12-9"><a href="the-basics.html#cb12-9"></a><span class="co">#&gt;  [1] -5 -4 -3 -2 -1  0  1  2  3  4  5</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="the-basics.html#cb11-1"></a><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)       <span class="co"># `c()` is short for &quot;combine&quot;</span></span>
+<span id="cb11-2"><a href="the-basics.html#cb11-2"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
+<span id="cb11-3"><a href="the-basics.html#cb11-3"></a></span>
+<span id="cb11-4"><a href="the-basics.html#cb11-4"></a><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>                       <span class="co"># `:` lets us create sequences</span></span>
+<span id="cb11-5"><a href="the-basics.html#cb11-5"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
+<span id="cb11-6"><a href="the-basics.html#cb11-6"></a></span>
+<span id="cb11-7"><a href="the-basics.html#cb11-7"></a>my_first_vector &lt;-<span class="st"> </span><span class="dv">-5</span><span class="op">:</span><span class="dv">5</span> <span class="co"># we&#39;ll explain `vector`s later,</span></span>
+<span id="cb11-8"><a href="the-basics.html#cb11-8"></a>my_first_vector</span>
+<span id="cb11-9"><a href="the-basics.html#cb11-9"></a><span class="co">#&gt;  [1] -5 -4 -3 -2 -1  0  1  2  3  4  5</span></span></code></pre></div>
 </div>
 <div id="functions" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Functions</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="the-basics.html#cb13-1"></a><span class="co"># ↓️️ name of function</span></span>
-<span id="cb13-2"><a href="the-basics.html#cb13-2"></a><span class="kw">sqrt</span>(<span class="dt">x =</span> <span class="dv">16</span>)</span>
-<span id="cb13-3"><a href="the-basics.html#cb13-3"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="the-basics.html#cb12-1"></a><span class="co"># ↓️️ name of function</span></span>
+<span id="cb12-2"><a href="the-basics.html#cb12-2"></a><span class="kw">sqrt</span>(<span class="dt">x =</span> <span class="dv">16</span>)</span>
+<span id="cb12-3"><a href="the-basics.html#cb12-3"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div>
 <p>R comes with some handy variables built-in , such as <code>letters</code> and <code>LETTERS</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="the-basics.html#cb14-1"></a>letters</span>
-<span id="cb14-2"><a href="the-basics.html#cb14-2"></a><span class="co">#&gt;  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot;</span></span>
-<span id="cb14-3"><a href="the-basics.html#cb14-3"></a><span class="co">#&gt; [23] &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</span></span>
-<span id="cb14-4"><a href="the-basics.html#cb14-4"></a></span>
-<span id="cb14-5"><a href="the-basics.html#cb14-5"></a>LETTERS</span>
-<span id="cb14-6"><a href="the-basics.html#cb14-6"></a><span class="co">#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;V&quot;</span></span>
-<span id="cb14-7"><a href="the-basics.html#cb14-7"></a><span class="co">#&gt; [23] &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="the-basics.html#cb15-1"></a><span class="co">#       ↓ parameter, formal, or argument </span></span>
-<span id="cb15-2"><a href="the-basics.html#cb15-2"></a><span class="kw">toupper</span>(<span class="dt">x =</span> letters)</span>
-<span id="cb15-3"><a href="the-basics.html#cb15-3"></a><span class="co">#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;V&quot;</span></span>
-<span id="cb15-4"><a href="the-basics.html#cb15-4"></a><span class="co">#&gt; [23] &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</span></span>
-<span id="cb15-5"><a href="the-basics.html#cb15-5"></a></span>
-<span id="cb15-6"><a href="the-basics.html#cb15-6"></a><span class="co">#           ↓↓↓↓↓↓↓ argument (always)</span></span>
-<span id="cb15-7"><a href="the-basics.html#cb15-7"></a><span class="kw">tolower</span>(<span class="dt">x =</span> LETTERS)</span>
-<span id="cb15-8"><a href="the-basics.html#cb15-8"></a><span class="co">#&gt;  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot;</span></span>
-<span id="cb15-9"><a href="the-basics.html#cb15-9"></a><span class="co">#&gt; [23] &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="the-basics.html#cb13-1"></a>letters</span>
+<span id="cb13-2"><a href="the-basics.html#cb13-2"></a><span class="co">#&gt;  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot;</span></span>
+<span id="cb13-3"><a href="the-basics.html#cb13-3"></a><span class="co">#&gt; [23] &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</span></span>
+<span id="cb13-4"><a href="the-basics.html#cb13-4"></a></span>
+<span id="cb13-5"><a href="the-basics.html#cb13-5"></a>LETTERS</span>
+<span id="cb13-6"><a href="the-basics.html#cb13-6"></a><span class="co">#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;V&quot;</span></span>
+<span id="cb13-7"><a href="the-basics.html#cb13-7"></a><span class="co">#&gt; [23] &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="the-basics.html#cb14-1"></a><span class="co">#       ↓ parameter, formal, or argument </span></span>
+<span id="cb14-2"><a href="the-basics.html#cb14-2"></a><span class="kw">toupper</span>(<span class="dt">x =</span> letters)</span>
+<span id="cb14-3"><a href="the-basics.html#cb14-3"></a><span class="co">#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;V&quot;</span></span>
+<span id="cb14-4"><a href="the-basics.html#cb14-4"></a><span class="co">#&gt; [23] &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</span></span>
+<span id="cb14-5"><a href="the-basics.html#cb14-5"></a></span>
+<span id="cb14-6"><a href="the-basics.html#cb14-6"></a><span class="co">#           ↓↓↓↓↓↓↓ argument (always)</span></span>
+<span id="cb14-7"><a href="the-basics.html#cb14-7"></a><span class="kw">tolower</span>(<span class="dt">x =</span> LETTERS)</span>
+<span id="cb14-8"><a href="the-basics.html#cb14-8"></a><span class="co">#&gt;  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot;</span></span>
+<span id="cb14-9"><a href="the-basics.html#cb14-9"></a><span class="co">#&gt; [23] &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</span></span></code></pre></div>
 <p>We refer to <code>x = letters</code> as a <em>named</em> argument because we specify the parameter (<code>x</code>) to which we’re passing our argument (<code>letters</code>), but we often don’t specify the name of a parameter.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="the-basics.html#cb16-1"></a><span class="kw">tolower</span>(letters)</span>
-<span id="cb16-2"><a href="the-basics.html#cb16-2"></a><span class="co">#&gt;  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot;</span></span>
-<span id="cb16-3"><a href="the-basics.html#cb16-3"></a><span class="co">#&gt; [23] &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="the-basics.html#cb15-1"></a><span class="kw">tolower</span>(letters)</span>
+<span id="cb15-2"><a href="the-basics.html#cb15-2"></a><span class="co">#&gt;  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot;</span></span>
+<span id="cb15-3"><a href="the-basics.html#cb15-3"></a><span class="co">#&gt; [23] &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</span></span></code></pre></div>
 <p>We can’t screw up too easily since <code>tolower()</code> and <code>toupper()</code> only have one paramter (<code>x</code>), but many functions can take multiple arguments.</p>
 <p>Let’s say we have a <code>vector</code> of <code>unsorted_numbers</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="the-basics.html#cb17-1"></a>unsorted_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
-<span id="cb17-2"><a href="the-basics.html#cb17-2"></a>unsorted_numbers</span>
-<span id="cb17-3"><a href="the-basics.html#cb17-3"></a><span class="co">#&gt;  [1]  3  2 10  8  1  4  9  6  5  7</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="the-basics.html#cb16-1"></a>unsorted_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
+<span id="cb16-2"><a href="the-basics.html#cb16-2"></a>unsorted_numbers</span>
+<span id="cb16-3"><a href="the-basics.html#cb16-3"></a><span class="co">#&gt;  [1]  3  2 10  8  1  4  9  6  5  7</span></span></code></pre></div>
 <p>Like most languages, R has a built-in <code>sort()</code> function we can use, which works like so:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="the-basics.html#cb18-1"></a><span class="kw">sort</span>(<span class="dt">x =</span> unsorted_numbers)</span>
-<span id="cb18-2"><a href="the-basics.html#cb18-2"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="the-basics.html#cb17-1"></a><span class="kw">sort</span>(<span class="dt">x =</span> unsorted_numbers)</span>
+<span id="cb17-2"><a href="the-basics.html#cb17-2"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
 <p>By default, <code>sort()</code> sorts in <em>ascending</em> order, but we oftentimes will want to sort in <em>descending</em> (or <code>decreasing</code>) order.</p>
 <p>Rather than having a separate function called <code>sort_decreasing()</code>, we pass an argument to <code>sort()</code>’s <code>decreasing</code> parameter.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="the-basics.html#cb19-1"></a><span class="kw">sort</span>(<span class="dt">x =</span> unsorted_numbers, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb19-2"><a href="the-basics.html#cb19-2"></a><span class="co">#&gt;  [1] 10  9  8  7  6  5  4  3  2  1</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="the-basics.html#cb18-1"></a><span class="kw">sort</span>(<span class="dt">x =</span> unsorted_numbers, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb18-2"><a href="the-basics.html#cb18-2"></a><span class="co">#&gt;  [1] 10  9  8  7  6  5  4  3  2  1</span></span></code></pre></div>
 <p>Even though <code>sort()</code> has multiple parameters, we can still skip the names if we pass our arguments <em>by position</em>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="the-basics.html#cb20-1"></a><span class="kw">sort</span>(unsorted_numbers, <span class="ot">TRUE</span>)</span>
-<span id="cb20-2"><a href="the-basics.html#cb20-2"></a><span class="co">#&gt;  [1] 10  9  8  7  6  5  4  3  2  1</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="the-basics.html#cb19-1"></a><span class="kw">sort</span>(unsorted_numbers, <span class="ot">TRUE</span>)</span>
+<span id="cb19-2"><a href="the-basics.html#cb19-2"></a><span class="co">#&gt;  [1] 10  9  8  7  6  5  4  3  2  1</span></span></code></pre></div>
 <p>Considering that <code>x</code> is <code>sort()</code>’s first parameter, and <code>decreaing</code> is <code>sort()</code>’s second parameter, we can pass our arguments (<code>unsorted_numbers</code> and <code>TRUE</code>) in the same order and R will know what we meant.</p>
 <p>We can also mix <em>positional</em> and <em>named</em> argument (and often do), but we should always prioritize <em>readable</em> code.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="the-basics.html#cb21-1"></a><span class="kw">sort</span>(unsorted_numbers, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>) <span class="co"># good</span></span>
-<span id="cb21-2"><a href="the-basics.html#cb21-2"></a><span class="co">#&gt;  [1] 10  9  8  7  6  5  4  3  2  1</span></span>
-<span id="cb21-3"><a href="the-basics.html#cb21-3"></a></span>
-<span id="cb21-4"><a href="the-basics.html#cb21-4"></a><span class="kw">sort</span>(<span class="dt">x =</span> unsorted_numbers, <span class="ot">TRUE</span>)          <span class="co"># avoid this</span></span>
-<span id="cb21-5"><a href="the-basics.html#cb21-5"></a><span class="co">#&gt;  [1] 10  9  8  7  6  5  4  3  2  1</span></span>
-<span id="cb21-6"><a href="the-basics.html#cb21-6"></a></span>
-<span id="cb21-7"><a href="the-basics.html#cb21-7"></a><span class="kw">sort</span>(<span class="dt">decreasing =</span> <span class="ot">TRUE</span>, unsorted_numbers) <span class="co"># just... no</span></span>
-<span id="cb21-8"><a href="the-basics.html#cb21-8"></a><span class="co">#&gt;  [1] 10  9  8  7  6  5  4  3  2  1</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="the-basics.html#cb20-1"></a><span class="kw">sort</span>(unsorted_numbers, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>) <span class="co"># good</span></span>
+<span id="cb20-2"><a href="the-basics.html#cb20-2"></a><span class="co">#&gt;  [1] 10  9  8  7  6  5  4  3  2  1</span></span>
+<span id="cb20-3"><a href="the-basics.html#cb20-3"></a></span>
+<span id="cb20-4"><a href="the-basics.html#cb20-4"></a><span class="kw">sort</span>(<span class="dt">x =</span> unsorted_numbers, <span class="ot">TRUE</span>)          <span class="co"># avoid this</span></span>
+<span id="cb20-5"><a href="the-basics.html#cb20-5"></a><span class="co">#&gt;  [1] 10  9  8  7  6  5  4  3  2  1</span></span>
+<span id="cb20-6"><a href="the-basics.html#cb20-6"></a></span>
+<span id="cb20-7"><a href="the-basics.html#cb20-7"></a><span class="kw">sort</span>(<span class="dt">decreasing =</span> <span class="ot">TRUE</span>, unsorted_numbers) <span class="co"># just... no</span></span>
+<span id="cb20-8"><a href="the-basics.html#cb20-8"></a><span class="co">#&gt;  [1] 10  9  8  7  6  5  4  3  2  1</span></span></code></pre></div>
 </div>
 <div id="documentation" class="section level2" number="2.6">
 <h2><span class="header-section-number">2.6</span> Documentation</h2>
 <p>You’re hopefully wondering “How could we know the order of <code>sort()</code>’s parameters?” which leads us to documentation.</p>
 <p>If you want more information on a specific function, you should <a href="https://en.wikipedia.org/wiki/RTFM">check out the documentation</a>, which you can do with <code>?</code> or <code>help()</code>.</p>
 <p>Here’s what that looks like for <code>sort()</code></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="the-basics.html#cb22-1"></a>?sort </span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="the-basics.html#cb23-1"></a><span class="kw">help</span>(sort) <span class="co"># does the same thing as `?sort`</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="the-basics.html#cb21-1"></a>?sort </span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="the-basics.html#cb22-1"></a><span class="kw">help</span>(sort) <span class="co"># does the same thing as `?sort`</span></span></code></pre></div>
 <p><img src="images/sort-documentation.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>There’s <em>a ton</em> of information here, but all we’re interested in at the moment is the order in which we need to pass arguments to <code>sort()</code>, which we can find in the <strong>Arguments</strong> section.</p>
 </div>
@@ -398,24 +405,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="na" class="section level3" number="2.7.1">
 <h3><span class="header-section-number">2.7.1</span> <code>NA</code></h3>
 <p>You may have noticed the <code>na.last</code> argument in <code>sort()</code>’s documentation. R can represent nothingness with <code>NULL</code> (same as <code>null</code> or <code>None</code> in other languages), but it can also represent <em>unknown</em> or <em>missing</em> values with <code>NA</code>.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="the-basics.html#cb24-1"></a>unsorted_numbers_with_nas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="ot">NA</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="ot">NA</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
-<span id="cb24-2"><a href="the-basics.html#cb24-2"></a>unsorted_numbers_with_nas</span>
-<span id="cb24-3"><a href="the-basics.html#cb24-3"></a><span class="co">#&gt;  [1]  3  2 10  8 NA  1  4  9 NA  6  5  7</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="the-basics.html#cb23-1"></a>unsorted_numbers_with_nas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="ot">NA</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="ot">NA</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
+<span id="cb23-2"><a href="the-basics.html#cb23-2"></a>unsorted_numbers_with_nas</span>
+<span id="cb23-3"><a href="the-basics.html#cb23-3"></a><span class="co">#&gt;  [1]  3  2 10  8 NA  1  4  9 NA  6  5  7</span></span></code></pre></div>
 <p><code>sort()</code>’s default behavior is <code>na.last = NA</code>, which simply removes any <code>NA</code>s.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="the-basics.html#cb25-1"></a><span class="kw">sort</span>(unsorted_numbers_with_nas)</span>
-<span id="cb25-2"><a href="the-basics.html#cb25-2"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="the-basics.html#cb24-1"></a><span class="kw">sort</span>(unsorted_numbers_with_nas)</span>
+<span id="cb24-2"><a href="the-basics.html#cb24-2"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
 <p>If we want to keep <code>NA</code>s, we must specify whether <code>sort()</code> places them first or last.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="the-basics.html#cb26-1"></a><span class="kw">sort</span>(unsorted_numbers_with_nas, <span class="dt">na.last =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb26-2"><a href="the-basics.html#cb26-2"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 NA NA</span></span>
-<span id="cb26-3"><a href="the-basics.html#cb26-3"></a><span class="kw">sort</span>(unsorted_numbers_with_nas, <span class="dt">na.last =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb26-4"><a href="the-basics.html#cb26-4"></a><span class="co">#&gt;  [1] NA NA  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="the-basics.html#cb25-1"></a><span class="kw">sort</span>(unsorted_numbers_with_nas, <span class="dt">na.last =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb25-2"><a href="the-basics.html#cb25-2"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 NA NA</span></span>
+<span id="cb25-3"><a href="the-basics.html#cb25-3"></a><span class="kw">sort</span>(unsorted_numbers_with_nas, <span class="dt">na.last =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb25-4"><a href="the-basics.html#cb25-4"></a><span class="co">#&gt;  [1] NA NA  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
 </div>
 <div id="null" class="section level3" number="2.7.2">
 <h3><span class="header-section-number">2.7.2</span> <code>NULL</code></h3>
 <p>For the moment, think of the difference between <code>NA</code> and <code>NULL</code> as being that <code>vector</code>s (like <code>unsorted_numbers_with_nas</code>) can have <code>NA</code> values but they cannot have <code>NULL</code> values.</p>
 <p>If we try to put <code>NULL</code> in a <code>vector</code>, it simply disappears.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="the-basics.html#cb27-1"></a><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="ot">NULL</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="ot">NULL</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
-<span id="cb27-2"><a href="the-basics.html#cb27-2"></a><span class="co">#&gt;  [1]  3  2 10  8  1  4  9  6  5  7</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="the-basics.html#cb26-1"></a><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="ot">NULL</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="ot">NULL</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
+<span id="cb26-2"><a href="the-basics.html#cb26-2"></a><span class="co">#&gt;  [1]  3  2 10  8  1  4  9  6  5  7</span></span></code></pre></div>
 <p>But, how do we check if something is <code>NA</code> or <code>NULL</code>?</p>
 </div>
 </div>
@@ -424,60 +431,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A <em>predicate function</em> is a function that <code>return</code>s either <code>TRUE</code> or <code>FALSE</code> based on some condition the function is checking.</p>
 <p>Predicate functions <em>should</em> use a name that expresses this intent, such as <code>is&lt;some condition&gt;</code>, <code>any&lt;some condition&gt;()</code>, or <code>all&lt;some condition&gt;()</code>.</p>
 <p>If we want check if something is <code>NULL</code>, we use <code>is.null()</code>.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="the-basics.html#cb28-1"></a><span class="kw">is.null</span>(<span class="st">&quot;this string isn&#39;t NULL!&quot;</span>)</span>
-<span id="cb28-2"><a href="the-basics.html#cb28-2"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb28-3"><a href="the-basics.html#cb28-3"></a><span class="kw">is.null</span>(<span class="ot">NULL</span>)</span>
-<span id="cb28-4"><a href="the-basics.html#cb28-4"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="the-basics.html#cb27-1"></a><span class="kw">is.null</span>(<span class="st">&quot;this string isn&#39;t NULL!&quot;</span>)</span>
+<span id="cb27-2"><a href="the-basics.html#cb27-2"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb27-3"><a href="the-basics.html#cb27-3"></a><span class="kw">is.null</span>(<span class="ot">NULL</span>)</span>
+<span id="cb27-4"><a href="the-basics.html#cb27-4"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>R has <em>many</em> built-in predicate functions, including ones to check the basic data types that we’ve already seen.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="the-basics.html#cb29-1"></a><span class="kw">is.double</span>(<span class="dv">1</span>)</span>
-<span id="cb29-2"><a href="the-basics.html#cb29-2"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb29-3"><a href="the-basics.html#cb29-3"></a><span class="kw">is.double</span>(1L)</span>
-<span id="cb29-4"><a href="the-basics.html#cb29-4"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb29-5"><a href="the-basics.html#cb29-5"></a></span>
-<span id="cb29-6"><a href="the-basics.html#cb29-6"></a>vec_dbl &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">9</span>)</span>
-<span id="cb29-7"><a href="the-basics.html#cb29-7"></a><span class="kw">is.double</span>(vec_dbl)</span>
-<span id="cb29-8"><a href="the-basics.html#cb29-8"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb29-9"><a href="the-basics.html#cb29-9"></a></span>
-<span id="cb29-10"><a href="the-basics.html#cb29-10"></a><span class="kw">is.integer</span>(<span class="dv">1</span>)</span>
-<span id="cb29-11"><a href="the-basics.html#cb29-11"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb29-12"><a href="the-basics.html#cb29-12"></a><span class="kw">is.integer</span>(1L)</span>
-<span id="cb29-13"><a href="the-basics.html#cb29-13"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb29-14"><a href="the-basics.html#cb29-14"></a>vec_int &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb29-15"><a href="the-basics.html#cb29-15"></a><span class="kw">is.integer</span>(vec_int)</span>
-<span id="cb29-16"><a href="the-basics.html#cb29-16"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb29-17"><a href="the-basics.html#cb29-17"></a></span>
-<span id="cb29-18"><a href="the-basics.html#cb29-18"></a><span class="kw">is.character</span>(<span class="fl">3.14</span>)</span>
-<span id="cb29-19"><a href="the-basics.html#cb29-19"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb29-20"><a href="the-basics.html#cb29-20"></a><span class="kw">is.character</span>(<span class="st">&quot;is it though?&quot;</span>)</span>
-<span id="cb29-21"><a href="the-basics.html#cb29-21"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb29-22"><a href="the-basics.html#cb29-22"></a><span class="kw">is.character</span>(letters)</span>
-<span id="cb29-23"><a href="the-basics.html#cb29-23"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb29-24"><a href="the-basics.html#cb29-24"></a></span>
-<span id="cb29-25"><a href="the-basics.html#cb29-25"></a><span class="kw">is.logical</span>(<span class="st">&quot;the year 2020&quot;</span>)</span>
-<span id="cb29-26"><a href="the-basics.html#cb29-26"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb29-27"><a href="the-basics.html#cb29-27"></a><span class="kw">is.logical</span>(<span class="ot">TRUE</span>)</span>
-<span id="cb29-28"><a href="the-basics.html#cb29-28"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb29-29"><a href="the-basics.html#cb29-29"></a><span class="kw">is.logical</span>(<span class="ot">FALSE</span>)</span>
-<span id="cb29-30"><a href="the-basics.html#cb29-30"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb29-31"><a href="the-basics.html#cb29-31"></a>vec_lgl &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</span>
-<span id="cb29-32"><a href="the-basics.html#cb29-32"></a><span class="kw">is.logical</span>(vec_lgl)</span>
-<span id="cb29-33"><a href="the-basics.html#cb29-33"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="the-basics.html#cb28-1"></a><span class="kw">is.double</span>(<span class="dv">1</span>)</span>
+<span id="cb28-2"><a href="the-basics.html#cb28-2"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb28-3"><a href="the-basics.html#cb28-3"></a><span class="kw">is.double</span>(1L)</span>
+<span id="cb28-4"><a href="the-basics.html#cb28-4"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb28-5"><a href="the-basics.html#cb28-5"></a></span>
+<span id="cb28-6"><a href="the-basics.html#cb28-6"></a>vec_dbl &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">9</span>)</span>
+<span id="cb28-7"><a href="the-basics.html#cb28-7"></a><span class="kw">is.double</span>(vec_dbl)</span>
+<span id="cb28-8"><a href="the-basics.html#cb28-8"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb28-9"><a href="the-basics.html#cb28-9"></a></span>
+<span id="cb28-10"><a href="the-basics.html#cb28-10"></a><span class="kw">is.integer</span>(<span class="dv">1</span>)</span>
+<span id="cb28-11"><a href="the-basics.html#cb28-11"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb28-12"><a href="the-basics.html#cb28-12"></a><span class="kw">is.integer</span>(1L)</span>
+<span id="cb28-13"><a href="the-basics.html#cb28-13"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb28-14"><a href="the-basics.html#cb28-14"></a>vec_int &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb28-15"><a href="the-basics.html#cb28-15"></a><span class="kw">is.integer</span>(vec_int)</span>
+<span id="cb28-16"><a href="the-basics.html#cb28-16"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb28-17"><a href="the-basics.html#cb28-17"></a></span>
+<span id="cb28-18"><a href="the-basics.html#cb28-18"></a><span class="kw">is.character</span>(<span class="fl">3.14</span>)</span>
+<span id="cb28-19"><a href="the-basics.html#cb28-19"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb28-20"><a href="the-basics.html#cb28-20"></a><span class="kw">is.character</span>(<span class="st">&quot;is it though?&quot;</span>)</span>
+<span id="cb28-21"><a href="the-basics.html#cb28-21"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb28-22"><a href="the-basics.html#cb28-22"></a><span class="kw">is.character</span>(letters)</span>
+<span id="cb28-23"><a href="the-basics.html#cb28-23"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb28-24"><a href="the-basics.html#cb28-24"></a></span>
+<span id="cb28-25"><a href="the-basics.html#cb28-25"></a><span class="kw">is.logical</span>(<span class="st">&quot;the year 2020&quot;</span>)</span>
+<span id="cb28-26"><a href="the-basics.html#cb28-26"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb28-27"><a href="the-basics.html#cb28-27"></a><span class="kw">is.logical</span>(<span class="ot">TRUE</span>)</span>
+<span id="cb28-28"><a href="the-basics.html#cb28-28"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb28-29"><a href="the-basics.html#cb28-29"></a><span class="kw">is.logical</span>(<span class="ot">FALSE</span>)</span>
+<span id="cb28-30"><a href="the-basics.html#cb28-30"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb28-31"><a href="the-basics.html#cb28-31"></a>vec_lgl &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</span>
+<span id="cb28-32"><a href="the-basics.html#cb28-32"></a><span class="kw">is.logical</span>(vec_lgl)</span>
+<span id="cb28-33"><a href="the-basics.html#cb28-33"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>Similar to <code>is.null()</code>, there’s <code>is.na()</code>.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="the-basics.html#cb30-1"></a><span class="kw">is.na</span>(<span class="st">&quot;not NA!&quot;</span>)</span>
-<span id="cb30-2"><a href="the-basics.html#cb30-2"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb30-3"><a href="the-basics.html#cb30-3"></a><span class="kw">is.na</span>(<span class="ot">NA</span>)</span>
-<span id="cb30-4"><a href="the-basics.html#cb30-4"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="the-basics.html#cb29-1"></a><span class="kw">is.na</span>(<span class="st">&quot;not NA!&quot;</span>)</span>
+<span id="cb29-2"><a href="the-basics.html#cb29-2"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb29-3"><a href="the-basics.html#cb29-3"></a><span class="kw">is.na</span>(<span class="ot">NA</span>)</span>
+<span id="cb29-4"><a href="the-basics.html#cb29-4"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>Recall our variable <code>unsorted_numbers_with_nas</code>.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="the-basics.html#cb31-1"></a>unsorted_numbers_with_nas</span>
-<span id="cb31-2"><a href="the-basics.html#cb31-2"></a><span class="co">#&gt;  [1]  3  2 10  8 NA  1  4  9 NA  6  5  7</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="the-basics.html#cb30-1"></a>unsorted_numbers_with_nas</span>
+<span id="cb30-2"><a href="the-basics.html#cb30-2"></a><span class="co">#&gt;  [1]  3  2 10  8 NA  1  4  9 NA  6  5  7</span></span></code></pre></div>
 <p>Consider the following:</p>
 <ul>
 <li>The predicate functions we’ve seen so far <code>return</code> either <code>TRUE</code> or <code>FALSE</code>.</li>
 <li><code>vector</code>s can contain both <code>NA</code> <em>and</em> non-<code>NA</code> values.</li>
 </ul>
 <p>Can you guess what <code>is.na()</code> <code>return</code>s?</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="the-basics.html#cb32-1"></a><span class="kw">is.na</span>(unsorted_numbers_with_nas)</span>
-<span id="cb32-2"><a href="the-basics.html#cb32-2"></a><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="the-basics.html#cb31-1"></a><span class="kw">is.na</span>(unsorted_numbers_with_nas)</span>
+<span id="cb31-2"><a href="the-basics.html#cb31-2"></a><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span></code></pre></div>
 <p><img src="images/the-what.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>We’ll discuss accessing a <code>vector</code>’s individual elements later, but <code>is.na()</code> is what we call a <em>vectorized</em> function: a function that takes <code>vector</code> argument and operates on every element simultaneously.</p>
 </div>
@@ -487,23 +494,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>While R isn’t the fastest language out there, complaints about its speed usually come from poor code, including code that “speaks” R with a C or Python accent.</p>
 <p>The simplest way to wrap our heads around <code>vector</code>ized operations is with math. let’s first make a <code>vector</code> with five <code>0</code>s in it.</p>
 <p>We could do that like the following:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="the-basics.html#cb33-1"></a><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb33-2"><a href="the-basics.html#cb33-2"></a><span class="co">#&gt; [1] 0 0 0 0 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="the-basics.html#cb32-1"></a><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb32-2"><a href="the-basics.html#cb32-2"></a><span class="co">#&gt; [1] 0 0 0 0 0</span></span></code></pre></div>
 <p>But, good coders are <em>lazy</em> and want to (correctly) automate everything they can. With that in mind, let’s <code>rep()</code>eat <code>0</code> <code>5</code> times.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="the-basics.html#cb34-1"></a>zeros &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="dt">length =</span> <span class="dv">5</span>)</span>
-<span id="cb34-2"><a href="the-basics.html#cb34-2"></a>zeros</span>
-<span id="cb34-3"><a href="the-basics.html#cb34-3"></a><span class="co">#&gt; [1] 0 0 0 0 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="the-basics.html#cb33-1"></a>zeros &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="dt">length =</span> <span class="dv">5</span>)</span>
+<span id="cb33-2"><a href="the-basics.html#cb33-2"></a>zeros</span>
+<span id="cb33-3"><a href="the-basics.html#cb33-3"></a><span class="co">#&gt; [1] 0 0 0 0 0</span></span></code></pre></div>
 <p>For our purposes, the term <em>scalar</em> refers to an object that is a single value.</p>
 <p>If we want to add <code>1</code> (a scalar) to every element of <code>zeros</code>, we can run <code>zeros + 1</code> or <code>1 + zeros</code>:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="the-basics.html#cb35-1"></a>zeros <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb35-2"><a href="the-basics.html#cb35-2"></a><span class="co">#&gt; [1] 1 1 1 1 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="the-basics.html#cb34-1"></a>zeros <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb34-2"><a href="the-basics.html#cb34-2"></a><span class="co">#&gt; [1] 1 1 1 1 1</span></span></code></pre></div>
 <p>R knows that <code>1</code> is a single value (and assumes we know what we’re doing) and performs the operation (<code>+</code>) between it and every element of <code>zeros</code>. In R-speak, we refer to this behavior as <em>recycling</em>.</p>
 <p>Let’s see what happens when we add <code>zeros</code> and a <code>vector</code> containing two elements.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="the-basics.html#cb36-1"></a>two_threes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb36-2"><a href="the-basics.html#cb36-2"></a></span>
-<span id="cb36-3"><a href="the-basics.html#cb36-3"></a>zeros <span class="op">+</span><span class="st"> </span>two_threes</span>
-<span id="cb36-4"><a href="the-basics.html#cb36-4"></a><span class="co">#&gt; Warning in zeros + two_threes: longer object length is not a multiple of shorter object length</span></span>
-<span id="cb36-5"><a href="the-basics.html#cb36-5"></a><span class="co">#&gt; [1] 3 3 3 3 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="the-basics.html#cb35-1"></a>two_threes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb35-2"><a href="the-basics.html#cb35-2"></a></span>
+<span id="cb35-3"><a href="the-basics.html#cb35-3"></a>zeros <span class="op">+</span><span class="st"> </span>two_threes</span>
+<span id="cb35-4"><a href="the-basics.html#cb35-4"></a><span class="co">#&gt; Warning in zeros + two_threes: longer object length is not a multiple of shorter object length</span></span>
+<span id="cb35-5"><a href="the-basics.html#cb35-5"></a><span class="co">#&gt; [1] 3 3 3 3 3</span></span></code></pre></div>
 <p>That’s probably not what you expected and R gives us a <code>warning()</code> to tell us something seems wrong.</p>
 <p>R let’s us get away with a lot of things it shouldn’t, which includes</p>
 

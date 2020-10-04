@@ -19,7 +19,8 @@ rmd_files: [
   "2-thesaurus.Rmd",
 
   "3.Rmd",
-  "3-spatial.Rmd"
+  "3-spatial.Rmd",
+  "3-geometries.Rmd"
 ]
 
 before_chapter_script: "_common.R"

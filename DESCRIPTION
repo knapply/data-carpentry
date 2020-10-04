@@ -11,5 +11,8 @@ Authors@R: c(person(given = "Brendan", family = "Knapp",
                     comment = c(ORCID = "0000-0002-1426-3624"))
 Depends: R (>= 4.0)
 Imports:
-  bookdown
+  bookdown,
+  mapview
+Remotes:
+  r-spatial/mapview
 RoxygenNote: 7.0.2

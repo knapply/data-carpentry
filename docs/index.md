@@ -1,8 +1,8 @@
 ---
 title: "Data Carpentry"
-subtitle: "The Craft of Working with Data"
+# subtitle: "The Craft of Working with Data"
 author: "Brendan Knapp and Christopher Callaghan"
-date: "2020-10-03"
+date: "2020-10-04"
 site: bookdown::bookdown_site
 documentclass: report
 bibliography: [book.bib]
@@ -22,14 +22,20 @@ description: "A practical roadmap for practitioners."
 
 
 
+
 # Welcome {-}
 
-Test 
-
-`<- == !=`
 
 
-```r
-test <- "face"
-```
+
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{images/hackerman} \end{center}
+
+
+
+
+
+
 

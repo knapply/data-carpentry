@@ -139,10 +139,10 @@
 
 \usepackage{eso-pic}
 \AddToShipoutPictureBG{%
- \AtPageLowerLeft{\put(10,20){\includegraphics[width = 4cm]{images/corelogo-big.png}}}}
+ \AtPageLowerLeft{\put(490,20){\includegraphics[width = 4cm]{images/corelogo-big.png}}}}
 
 \AddToShipoutPictureBG{%
- \AtPageLowerLeft{\put(10,10){https://nps.edu/web/core}}}
+ \AtPageLowerLeft{\put(490,10){https://nps.edu/web/core}}}
 
 
 \usepackage{color}
@@ -219,15 +219,8 @@
 \bibliographystyle{apalike}
 
 \title{Data Carpentry}
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
-\subtitle{The Craft of Working with Data}
 \author{Brendan Knapp and Christopher Callaghan}
-\date{2020-10-03}
+\date{2020-10-04}
 
 \begin{document}
 \maketitle
@@ -240,15 +233,7 @@
 \chapter*{Welcome}\label{welcome}}
 \addcontentsline{toc}{chapter}{Welcome}
 
-Test
-
-\texttt{\textless{}-\ ==\ !=}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{test \textless{}{-}}\StringTok{ "face"}
-\end{Highlighting}
-\end{Shaded}
+\begin{center}\includegraphics[width=1\linewidth]{images/hackerman} \end{center}
 
 \hypertarget{preface}{%
 \chapter*{Preface}\label{preface}}
@@ -885,7 +870,7 @@ Afghanistan,Asia,1987,40.822,13867957,852.3959448
 
 \NormalTok{csv\_file \textless{}{-}}\StringTok{ }\KeywordTok{tempfile}\NormalTok{(}\DataTypeTok{fileext =} \StringTok{".csv"}\NormalTok{)      }
 \NormalTok{csv\_file }\CommentTok{\# a temporary file path}
-\CommentTok{\#\textgreater{} [1] "/tmp/RtmpuxJjlO/file386534d96861.csv"}
+\CommentTok{\#\textgreater{} [1] "/tmp/RtmpkiXbVj/filec5e2405303c.csv"}
 \KeywordTok{writeLines}\NormalTok{(}\DataTypeTok{text =}\NormalTok{ csv\_text, }\DataTypeTok{con =}\NormalTok{ csv\_file) }\CommentTok{\# write \textasciigrave{}csv\_text\textasciigrave{} to \textasciigrave{}csv\_file\textasciigrave{}}
 \end{Highlighting}
 \end{Shaded}
@@ -1771,11 +1756,11 @@ We also have \texttt{"N/A"} in our \texttt{lifeExp} column, forcing R to interpr
 
 \cleardoublepage
 
-\hypertarget{part-day-3}{%
-\part{Day 3}\label{part-day-3}}
+\hypertarget{part-spatial-data}{%
+\part{Spatial Data}\label{part-spatial-data}}
 
-\hypertarget{spatial-data}{%
-\chapter{Spatial Data}\label{spatial-data}}
+\hypertarget{types-of-spatial-data}{%
+\chapter{Types of Spatial Data}\label{types-of-spatial-data}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1809,29 +1794,51 @@ We also have \texttt{"N/A"} in our \texttt{lifeExp} column, forcing R to interpr
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-3-1} \includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-3-2} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-4-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{images/osm_all} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
-\hypertarget{geometry}{%
-\section{\texorpdfstring{\texttt{geometry}}{geometry}}\label{geometry}}
+\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-7-1} \includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-7-2} \end{center}
+
+\hypertarget{vector-geometries}{%
+\chapter{Vector Geometries}\label{vector-geometries}}
 
 Spatial vector data represent the world as a collection of points which, for two-dimensional data, are stored as \(x\) and \(y\) coordinates.
 
-Points can be joined in order to make lines, which themselves can be joined to make polygons.
-
-\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-7-1} \end{center}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{suppressPackageStartupMessages}\NormalTok{(}\KeywordTok{library}\NormalTok{(tidyverse))}
+\KeywordTok{library}\NormalTok{(sf)}
+\CommentTok{\#\textgreater{} Linking to GEOS 3.7.1, GDAL 2.4.2, PROJ 5.2.0}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{practice\_coords \textless{}{-}}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{lng =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{20}\NormalTok{, }\DecValTok{{-}20}\NormalTok{, }\DecValTok{{-}10}\NormalTok{, }\DecValTok{{-}10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{20}\NormalTok{,  }\DecValTok{10}\NormalTok{,  }\DecValTok{10}\NormalTok{), }
-                          \DataTypeTok{lat =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{20}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{{-}10}\NormalTok{, }\DecValTok{{-}10}\NormalTok{,  }\DecValTok{10}\NormalTok{,  }\DecValTok{20}\NormalTok{, }\DecValTok{{-}20}\NormalTok{),}
-                          \DataTypeTok{lab =} \KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"D"}\NormalTok{, }\StringTok{"E"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"G"}\NormalTok{, }\StringTok{"H"}\NormalTok{),}
-                          \DataTypeTok{grp =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{))}
+\NormalTok{theme\_spatial \textless{}{-}}\StringTok{ }\KeywordTok{theme\_minimal}\NormalTok{(}\DataTypeTok{base\_family =} \StringTok{"serif"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text =} \KeywordTok{element\_blank}\NormalTok{(), }\DataTypeTok{axis.title =} \KeywordTok{element\_blank}\NormalTok{(),}
+        \DataTypeTok{axis.ticks =} \KeywordTok{element\_blank}\NormalTok{(), }\DataTypeTok{panel.grid =} \KeywordTok{element\_blank}\NormalTok{(),}
+        \DataTypeTok{plot.title =} \KeywordTok{element\_text}\NormalTok{(}\DataTypeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
+
+\KeywordTok{theme\_set}\NormalTok{(theme\_spatial)}
+\end{Highlighting}
+\end{Shaded}
+
+Points can be joined in order to make lines, which themselves can be joined to make polygons.
+
+\begin{center}\includegraphics[width=1\linewidth]{3-geometries_files/figure-latex/unnamed-chunk-3-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{practice\_coords \textless{}{-}}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}
+  \DataTypeTok{lng =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{20}\NormalTok{, }\DecValTok{{-}20}\NormalTok{, }\DecValTok{{-}10}\NormalTok{, }\DecValTok{{-}10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{20}\NormalTok{,  }\DecValTok{10}\NormalTok{,  }\DecValTok{10}\NormalTok{), }
+  \DataTypeTok{lat =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{20}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{{-}10}\NormalTok{, }\DecValTok{{-}10}\NormalTok{,  }\DecValTok{10}\NormalTok{,  }\DecValTok{20}\NormalTok{, }\DecValTok{{-}20}\NormalTok{),}
+  \DataTypeTok{lab =} \KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"D"}\NormalTok{, }\StringTok{"E"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"G"}\NormalTok{, }\StringTok{"H"}\NormalTok{),}
+  \DataTypeTok{grp =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"b"}\NormalTok{)}
+\NormalTok{)}
+
 \NormalTok{practice\_coords}
 \CommentTok{\#\textgreater{} \# A tibble: 8 x 4}
 \CommentTok{\#\textgreater{}     lng   lat lab   grp  }
@@ -1848,7 +1855,7 @@ Points can be joined in order to make lines, which themselves can be joined to m
 \end{Shaded}
 
 \hypertarget{point}{%
-\subsubsection{\texorpdfstring{\texttt{POINT}}{POINT}}\label{point}}
+\section{\texorpdfstring{\texttt{POINT}}{POINT}}\label{point}}
 
 \texttt{POINT} refers to the location of a single point in space.
 
@@ -1873,9 +1880,10 @@ Here, we use \texttt{st\_as\_sf()} to convert a regular \texttt{data.frame} into
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{point\_sf \textless{}{-}}\StringTok{ }\NormalTok{practice\_coords }\OperatorTok{\%\textgreater{}\%}\StringTok{              }\CommentTok{\# Step 1.}
-\StringTok{  }\KeywordTok{st\_as\_sf}\NormalTok{(}\DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\StringTok{"lng"}\NormalTok{, }\StringTok{"lat"}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{     }\CommentTok{\# 2.}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{st\_geometry\_type}\NormalTok{(geometry)) }\CommentTok{\# 3.}
+\NormalTok{point\_sf \textless{}{-}}\StringTok{ }\NormalTok{practice\_coords }\OperatorTok{\%\textgreater{}\%}\StringTok{                     }\CommentTok{\# Step 1.}
+\StringTok{  }\KeywordTok{st\_as\_sf}\NormalTok{(}\DataTypeTok{coords =} \KeywordTok{c}\NormalTok{(}\DataTypeTok{x =} \StringTok{"lng"}\NormalTok{, }\DataTypeTok{y =}\StringTok{"lat"}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{     }\CommentTok{\# 2.}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{st\_geometry\_type}\NormalTok{(geometry))        }\CommentTok{\# 3.}
+
 \NormalTok{point\_sf}
 \CommentTok{\#\textgreater{} Simple feature collection with 8 features and 3 fields}
 \CommentTok{\#\textgreater{} geometry type:  POINT}
@@ -1906,10 +1914,10 @@ The data in our \texttt{lng} and \texttt{lat} columns are moved to a new \texttt
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-10-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{3-geometries_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 \hypertarget{multipoint}{%
-\subsubsection{\texorpdfstring{\texttt{MULTIPOINT}}{MULTIPOINT}}\label{multipoint}}
+\section{\texorpdfstring{\texttt{MULTIPOINT}}{MULTIPOINT}}\label{multipoint}}
 
 \texttt{MULTIPOINT} refers to a collection of \texttt{POINT}s.
 
@@ -1964,10 +1972,10 @@ Instead of the 8 separate \texttt{POINT}s with which we started, we now have 2 r
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-12-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{3-geometries_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
 \hypertarget{linestring}{%
-\subsubsection{\texorpdfstring{\texttt{LINESTRING}}{LINESTRING}}\label{linestring}}
+\section{\texorpdfstring{\texttt{LINESTRING}}{LINESTRING}}\label{linestring}}
 
 \texttt{LINESTRING} is how we represent individual lines.
 
@@ -2017,10 +2025,10 @@ Now we have 2 rows that each contain a \texttt{LINESTRING}, which was built by c
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-14-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{3-geometries_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 \hypertarget{multilinestring}{%
-\subsubsection{\texorpdfstring{\texttt{MULTILINESTRING}}{MULTILINESTRING}}\label{multilinestring}}
+\section{\texorpdfstring{\texttt{MULTILINESTRING}}{MULTILINESTRING}}\label{multilinestring}}
 
 Similar to \texttt{MULTIPOINT}s that contain multiple points, we also have \texttt{MULTILINESTRING}s.
 
@@ -2071,10 +2079,10 @@ Now we have 2 lines embedded inside a single \texttt{MULTILINESTRING} row.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-16-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{3-geometries_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 \hypertarget{polygon}{%
-\subsubsection{\texorpdfstring{\texttt{POLYGON}}{POLYGON}}\label{polygon}}
+\section{\texorpdfstring{\texttt{POLYGON}}{POLYGON}}\label{polygon}}
 
 \texttt{POLYGON}s are essentially sets of lines that close to form a ring, although \texttt{POLGYON}s can also contain holes. We can easily wrap a shape around any \texttt{geometry} using \texttt{st\_convex\_hull()} to form a \href{https://en.wikipedia.org/wiki/Convex_hull}{convex hull} polygon.
 
@@ -2130,10 +2138,10 @@ Now we have 2 lines embedded inside a single \texttt{MULTILINESTRING} row.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-18-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{3-geometries_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 \hypertarget{multipolygon}{%
-\subsubsection{\texorpdfstring{\texttt{MULTIPOLYGON}}{MULTIPOLYGON}}\label{multipolygon}}
+\section{\texorpdfstring{\texttt{MULTIPOLYGON}}{MULTIPOLYGON}}\label{multipolygon}}
 
 \texttt{POLYGON}s can also be grouped together to form \texttt{MULTIPOLYGON}s.
 
@@ -2182,10 +2190,10 @@ Now we have 2 lines embedded inside a single \texttt{MULTILINESTRING} row.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-20-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{3-geometries_files/figure-latex/unnamed-chunk-16-1} \end{center}
 
-\hypertarget{geometry-1}{%
-\subsubsection{\texorpdfstring{\texttt{GEOMETRY}}{GEOMETRY}}\label{geometry-1}}
+\hypertarget{geometry}{%
+\section{\texorpdfstring{\texttt{GEOMETRY}}{GEOMETRY}}\label{geometry}}
 
 \texttt{GEOMETRY} is a special \texttt{geometry} type. It refers to a column of mixed geometries, i.e.~we have multiple geometry types in our \texttt{geometry} column.
 
@@ -2234,7 +2242,7 @@ Now we have 2 lines embedded inside a single \texttt{MULTILINESTRING} row.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{3-spatial_files/figure-latex/unnamed-chunk-22-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{3-geometries_files/figure-latex/unnamed-chunk-18-1} \end{center}
 
   \bibliography{book.bib}
 

@@ -1,6 +1,6 @@
 ---
 title: "Data Carpentry"
-subtitle: "The Craft of Working with Data"
+# subtitle: "The Craft of Working with Data"
 author: "Brendan Knapp and Christopher Callaghan"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -28,13 +28,21 @@ knitr::write_bib(
 )
 ```
 
+
 # Welcome {-}
 
-Test 
 
-`<- == !=`
 
-```{r}
-test <- "face"
+
+
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/hackerman.jpg")
 ```
+
+
+
+
+
+
 
